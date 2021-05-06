@@ -108,7 +108,7 @@ $llocfirst = urldecode($video_id);
   
 // reading contents from the 
 // geeksforgeeks homepage 
-$homepage = file_get_contents('https://letsdvl.000webhostapp.com/dl/search.php/?s='.$lloc.''); 
+$homepage = file_get_contents('https://getsdlv.herokuapp.com/dl/search.php/?s='.$lloc.''); 
 echo $homepage; 
   
 ?> 
