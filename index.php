@@ -126,9 +126,25 @@ body > div:nth-last-of-type(1)[style]{
 img[src*="http://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"] { display: none;}
 img[src*="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"] { display: none;}
 </style>
-<br><br>
-<div style="position: fixed;bottom: 0;width: 100%;background-color: aquamarine;color: white;text-align: center;z-index: 99999999999999999;">
-  <p> &copy; All right Reserved <?php echo $year; ?> . Powered By <a href="https://tinyurl.com/buydlapitube"><b> Vijay Kumar </b> </a></p>
-</div>
 
+<style>
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: red;
+   color: white;
+   text-align: center;
+}
+</style>
+<div class="footer">
+  <p>
+      
+      
+     </p><div style="position: fixed;bottom: 0;width: 100%;background-color: black;color: white;text-align: center;z-index: 99999999999999999;">
+  <p> © All right Reserved 2021 . Powered By <a href="https://tinyurl.com/buydlapitube"><b> Vijay Kumar </b> </a></p>
+</div>
+  <p></p>
+</div>
 </body></html>
