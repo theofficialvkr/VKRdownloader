@@ -133,7 +133,7 @@ img[src*="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhos
    left: 0;
    bottom: 0;
    width: 100%;
-   background-color: red;
+   background-color: aqua;
    color: white;
    text-align: center;
 }
@@ -142,7 +142,7 @@ img[src*="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhos
   <p>
       
       
-     </p><div style="position: fixed;bottom: 0;width: 100%;background-color: black;color: white;text-align: center;z-index: 99999999999999999;">
+     </p><div style="position: fixed;bottom: 0;width: 100%;background-color: aqua;color: white;text-align: center;z-index: 99999999999999999;">
   <p> © All right Reserved 2021 . Powered By <a href="https://tinyurl.com/buydlapitube"><b> Vijay Kumar </b> </a></p>
 </div>
   <p></p>
