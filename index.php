@@ -110,6 +110,7 @@
 <center> And 1000+ Other website too </center><br><br>
 </div></div></div></div>
 
+     
         </div>
 
 <style type="text/css">
@@ -129,3 +130,5 @@ img[src*="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhos
 <div style="position: fixed;bottom: 0;width: 100%;background-color: aquamarine;color: white;text-align: center;z-index: 99999999999999999;">
   <p> &copy; All right Reserved <?php echo $year; ?> . Powered By <a href="https://tinyurl.com/buydlapitube"><b> Vijay Kumar </b> </a></p>
 </div>
+
+</body></html>
