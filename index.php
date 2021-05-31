@@ -150,8 +150,7 @@ img[src*="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhos
 <?php
     
  error_reporting(0); 
-$br = '\  /   
-        \/ ';
+$br = 'ↆ↓⟱⟱⟱⟱⟱⟱⟱⟱⟱⟱⟱⟱⟱';
         
 $today = date_default_timezone_set("Asia/Calcutta");
 $time = date("h:i:sa");
