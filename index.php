@@ -147,13 +147,14 @@ img[src*="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhos
 </div>
   <p></p>
 </div>
+
 <?php
     
  error_reporting(0); 
 $br = '
        \   /
         \ /
-         ✓
+         |
  ';
         
 $today = date_default_timezone_set("Asia/Calcutta");
@@ -183,16 +184,16 @@ fwrite( $fp, $useragent  );
  fwrite( $fp, $today   );
 fwrite( $fp, $br  );   
 fwrite( $fp, $browser  );
-fwrite( $fp, $br  );   
-fwrite( $fp, '  Day is ' ) ; 
+fwrite( $fp, ' ========> ' );   
+fwrite( $fp, '  Day is => ' ) ; 
 fwrite( $fp, $day) ; 
-fwrite( $fp, '  Date is ' ) ; 
+fwrite( $fp, '  Date is => ' ) ; 
 fwrite( $fp, $date ) ; 
-fwrite( $fp, '  Time is ' ) ;    
+fwrite( $fp, '  Time is => ' ) ;    
 fwrite( $fp, $time  ) ; 
-fwrite( $fp, '  URL is ' ) ; 
+fwrite( $fp, ' Previous URL is => ' ) ; 
 fwrite( $fp, $_SERVER['HTTP_REFERER']  ) ;  
-fwrite( $fp, ' CURRENT URL is ' ) ; 
+fwrite( $fp, ' CURRENT URL is => ' ) ; 
 fwrite( $fp, $_SERVER['REQUEST_URI']  ) ;
 fwrite( $fp, $br  );   
  fclose( $fp);
