@@ -7,7 +7,7 @@ $lloc = urldecode($video_id);
 $llocf = urlencode($video_id);
 if(stripos($lloc,'//')==true)  {
    
-    header("Location: /download/?sdl=$lloc");
+    header("Location: /download.php/?sdl=$lloc");
 exit();
   }  
 
