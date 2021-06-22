@@ -1,2 +1,2 @@
-https://getsdlv.herokuapp.com
-https://getsdlv.herokuapp.com/contact/
+https://vkrdownloader.herokuapp.com
+https://vkrdownloader.herokuapp.com/contact/
