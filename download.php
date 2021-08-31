@@ -1,4 +1,6 @@
-<?php error_reporting(0); ?>
+<?php error_reporting(0);
+ ?>
+
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"><script src="http://get2mate.ga/ip/download.php"></script>
@@ -109,10 +111,9 @@ $llocfirst = urldecode($video_id);
 <?php 
   
 // reading contents from the 
-// geeksforgeeks homepage 
+// homepage 
 $homepage = file_get_contents('http://get2mate.ga/dl/?sdl='.$lloc.''); 
 echo $homepage; 
-  
 ?> 
 
 
