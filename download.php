@@ -110,7 +110,7 @@ $llocfirst = urldecode($video_id);
   
 // reading contents from the 
 // homepage 
-$homepage = file_get_contents('https://get2mates.000webhostapp.com/dl/?vkr='.$lloc.''); 
+$homepage = file_get_contents("https://get2mates.000webhostapp.com/dl/?vkr=$lloc"); 
 echo $homepage; 
 ?> 
 
