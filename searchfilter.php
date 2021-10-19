@@ -7,15 +7,12 @@ $lloc = urldecode($video_id);
 $llocf = urlencode($video_id);
 $domain = "https://vkrdownloader.herokuapp.com";
 if(stripos($lloc,'//')==true)  {
-   
-    header("Location: $domain/download.php/?vkr=$lloc");
+header("Location: $domain/download.php/?vkr=$lloc");
 exit();
   }  
-
-   elseif(stripos($lloc,'://')===false) {
-   
-    header("Location: $domain/search.php/?vkr=$video_id");
+elseif(stripos($lloc,'://')===false) {
+header("Location: $domain/search.php/?vkr=$lloc");
 exit();
   }  
-   else '';
+else '';
 ?>
