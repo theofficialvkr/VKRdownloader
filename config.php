@@ -1,3 +1,3 @@
 <?php
-$domain = "https://vkrdownloaderr.herokuapp.com";
+$domain = "https://vkrdownloader.herokuapp.com";
 ?>
