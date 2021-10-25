@@ -5,7 +5,7 @@ $video_id = explode("vkr=", $urlx);
 $video_id = $video_id[1];
 $lloc = urldecode($video_id);
 $llocf = urlencode($video_id);
-$domain = "https://vkrdownloader.herokuapp.com";
+include("config.php");
 if(stripos($lloc,'//')==true)  {
 header("Location: $domain/download.php/?vkr=$lloc");
 exit();
