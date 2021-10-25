@@ -4,6 +4,7 @@ $urlx = $_SERVER['REQUEST_URI'];
 $video_id = explode("vkr=", $urlx);
 $video_id = $video_id[1];
 $lloc = urlencode($video_id);
+include("config.php");
 $llocfirst = urldecode($video_id);
 ?>
 <html>
@@ -88,7 +89,7 @@ $llocfirst = urldecode($video_id);
 <body>  
 <div class="w3-input w3-border w3-round-large" >
 <a href="/"><center> <h1 > Home </h1> </center></a> </div>  
-<form action="/searchfilter.php" class="w3-container w3-card-4 w3-light-grey">
+<form action="<?php echo $domain; ?>/searchfilter.php" class="w3-container w3-card-4 w3-light-grey">
    <center> <h2> Put The Query to Search </h2> </center>  
   <p>
   <input class="w3-input w3-border w3-round-large" name="vkr" type="text"></p>
