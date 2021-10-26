@@ -7,11 +7,11 @@ $lloc = urldecode($video_id);
 $llocf = urlencode($video_id);
 include("config.php");
 if(stripos($lloc,'//')==true)  {
-header("Location: $domain/download.php/?vkr=$lloc");
+header("Location: $domain/download/?vkr=$lloc");
 exit();
   }  
 elseif(stripos($lloc,'://')===false) {
-header("Location: $domain/search.php/?vkr=$lloc");
+header("Location: $domain/search/?vkr=$lloc");
 exit();
   }  
 else '';
