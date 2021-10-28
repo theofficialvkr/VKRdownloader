@@ -4,7 +4,6 @@ $urlx = $_SERVER['REQUEST_URI'];
 $video_id = explode("vkr=", $urlx);
 $video_id = $video_id[1];
 $lloc = urlencode($video_id);
-include("config.php");
 $llocfirst = urldecode($video_id);
 ?>
 <html>
