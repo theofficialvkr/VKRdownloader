@@ -19,7 +19,7 @@ Open Your Site And it start Working ....
 
 # For Any kind of Help 
 
-Demo : https://vkrdownloader.herokuapp.com
+Demo : http://get2mate.ga/demo/vkrdownloader
 
 Contact me On Mail      : contactvkr@yahoo.com  
 Or On Social media 
