@@ -106,7 +106,7 @@
       <br><br>
    </form>
    <?php
-      $homepage = file_get_contents("http://dl4hut.xyz/api/info.php/?vkr=$vidDe"); 
+      $homepage = file_get_contents("http://dl4hut.xyz/api/info.php/?vkr=$vidEn"); 
       echo $homepage;
       ?>
    <style>
