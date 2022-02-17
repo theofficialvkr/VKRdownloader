@@ -12,7 +12,9 @@ Step 2 - unzip file on your server / hosting file manager ..
 
 Step 3 - it work on all hosting so don't care about requirement ...
 
-Step 4 - Thats it !
+Step 4 - edit config.php and replace domain with your domain .. 
+
+Step 5 - Thats it !
 
 Open Your Site And it start Working ....
 
