@@ -1,6 +1,7 @@
 <html>
 <title> VKR Downloader : Search And Download YouTube Videos </title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="/manifest.webmanifest">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
     .video-list-thumbs{}
@@ -304,5 +305,17 @@
         </div>
         <p></p>
     </div>
+          <script>
+         if ('serviceWorker' in navigator) {
+           console.log("Will service worker register?");
+           navigator.serviceWorker.register('/sw.js').then(function(reg){
+             console.log("Yes it did.");
+           }).catch(function(err) {
+             console.log("No it didn't. This happened: ", err)
+           });
+         }
+      </script>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6294962915821930"
+     crossorigin="anonymous"></script>
 </body>
 </html>
