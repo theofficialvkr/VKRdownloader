@@ -1,0 +1,52 @@
+{
+    "short_name":"VKRDownloader",
+    "name":"VKRDownloader Video Downloader",
+    "start_url":"/",
+    "display":"standalone",
+    "theme_color":"#007bff",
+    "background_color":"purple",
+    "icons": [
+      {
+       "src": "/logo.png",
+       "sizes": "536x536",
+       "type": "image/png",
+       "density": "0.75"
+      },
+      {
+       "src": "/logo.png",
+       "sizes": "548x548",
+       "type": "image/png",
+       "density": "1.0"
+      },
+      {
+       "src": "/logo.png",
+       "sizes": "572x572",
+       "type": "image/png",
+       "density": "1.5"
+      },
+      {
+       "src": "/logo.png",
+       "sizes": "596x596",
+       "type": "image/png",
+       "density": "2.0"
+      },
+      {
+       "src": "/logo.png",
+       "sizes": "444x444",
+       "type": "image/png",
+       "density": "3.0"
+      },
+      {
+       "src": "/logo.png",
+       "sizes": "492x492",
+       "type": "image/png",
+       "density": "4.0"
+      },
+      {
+        "src": "/logo.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "density": "4.0"
+       }
+     ]
+ }
