@@ -6,17 +6,17 @@
     "enable_top_isolation": true,
     "orientation":"any",
     "enable_auto_refresh": true,
-    "name": "Get2Mate Video Downloader",
+    "name": "VKRdownloader Video Downloader",
     "description": "Online download videos from YouTube, All in One DL, Download videos from twitter, instagram, facebook, mxtakatak, josh, ipl, ted, tiktok.",
     "display": "fullscreen",
     "gcm_sender_id": 1007869709378,
     "gcm_user_visible_only": true,
-    "short_name": "Get2Mate",
+    "short_name": "VKRdownloader",
     "start_url": "/",
     "theme_color": "#0096ff",
     "default_locale":"en",
     "scope": "/",
-    "android_package_name": "app.get2mate.android",
+    "android_package_name": "app.vkrdownloader.android",
     "prefer_related_applications": true,
     "lang":"en",
     "dir":"ltr",
@@ -49,28 +49,7 @@
       "type": "image/png"
     }
   ],
-  "share_target": {
-    "action": "/",
-    "enctype": "multipart/form-data",
-    "method": "POST",
-    "params": {
-      "title": "title",
-      "text": "text",
-      "url": "url",
-      "files": [
-        {
-          "name": "externalMedia",
-          "accept": [
-            "image/jpeg",
-            "image/png",
-            "image/gif",
-            "video/quicktime",
-            "video/mp4"
-          ]
-        }
-      ]
-    }
-  },
+ 
   "shortcuts": [
     {
       "name": "Download Video",
@@ -118,7 +97,7 @@
     }
   ],
   "related_applications": {
-    "id": "com.get2mate.android",
+    "id": "com.vkrdownloader.android",
     "platform": "chromeos_play",
     "url": "/"
   },
