@@ -1,0 +1,154 @@
+# Google Search Engine Robot
+# ==========================
+User-agent: Googlebot
+Allow: /?_escaped_fragment_
+Allow: /*?lang=
+Allow: /?vkr=%23
+Allow: /
+Allow: /contacts.html
+Allow: /blog.html
+Allow: /inc/terms.php
+Allow: /inc/privacy.php
+Allow: /inc/disclaimer.php
+Allow: /about.html
+Allow: /*?
+Disallow: /api
+Disallow: /assets
+Disallow: /cache
+Disallow: /css
+Disallow: /images
+Disallow: /js
+Disallow: /vkrdlpro
+Disallow: /bat
+Disallow: /fonts
+
+# Yahoo! Search Engine Robot
+# ==========================
+User-Agent: Slurp
+Allow: /?_escaped_fragment_
+Allow: /*?lang=
+Allow: /?vkr=%23
+Allow: /
+Allow: /contacts.html
+Allow: /blog.html
+Allow: /inc/terms.php
+Allow: /inc/privacy.php
+Allow: /inc/disclaimer.php
+Allow: /about.html
+Allow: /*?
+Disallow: /api
+Disallow: /assets
+Disallow: /cache
+Disallow: /css
+Disallow: /images
+Disallow: /js
+Disallow: /vkrdlpro
+Disallow: /bat
+Disallow: /fonts
+
+# Yandex Search Engine Robot
+# ==========================
+User-agent: Yandex
+Allow: /?_escaped_fragment_
+Allow: /*?lang=
+Allow: /?vkr=%23
+Allow: /
+Allow: /contacts.html
+Allow: /blog.html
+Allow: /inc/terms.php
+Allow: /inc/privacy.php
+Allow: /inc/disclaimer.php
+Allow: /about.html
+Allow: /*?
+Disallow: /api
+Disallow: /assets
+Disallow: /cache
+Disallow: /css
+Disallow: /images
+Disallow: /js
+Disallow: /vkrdlpro
+Disallow: /bat
+Disallow: /fonts
+
+# Microsoft Search Engine Robot
+# =============================
+User-Agent: msnbot
+Allow: /?_escaped_fragment_
+Allow: /*?lang=
+Allow: /?vkr=%23
+Allow: /
+Allow: /contacts.html
+Allow: /blog.html
+Allow: /inc/terms.php
+Allow: /inc/privacy.php
+Allow: /inc/disclaimer.php
+Allow: /about.html
+Allow: /*?
+Disallow: /api
+Disallow: /assets
+Disallow: /cache
+Disallow: /css
+Disallow: /images
+Disallow: /js
+Disallow: /vkrdlpro
+Disallow: /bat
+Disallow: /fonts
+
+# Bing Search Engine Robot
+# ========================
+User-Agent: bingbot
+Allow: /?_escaped_fragment_
+Allow: /*?lang=
+Allow: /?vkr=%23
+Allow: /
+Allow: /contacts.html
+Allow: /blog.html
+Allow: /inc/terms.php
+Allow: /inc/privacy.php
+Allow: /inc/disclaimer.php
+Allow: /about.html
+Allow: /*?
+Disallow: /api
+Disallow: /assets
+Disallow: /cache
+Disallow: /css
+Disallow: /images
+Disallow: /js
+Disallow: /vkrdlpro
+Disallow: /bat
+Disallow: /fonts
+
+# Every bot that might possibly read and respect this file
+# ========================================================
+User-agent: *
+Allow: /?_escaped_fragment_
+Allow: /*?lang=
+Allow: /?vkr=%23
+Allow: /
+Allow: /contacts.html
+Allow: /blog.html
+Allow: /inc/terms.php
+Allow: /inc/privacy.php
+Allow: /inc/disclaimer.php
+Allow: /about.html
+Allow: /*?
+Disallow: /api
+Disallow: /assets
+Disallow: /cache
+Disallow: /css
+Disallow: /images
+Disallow: /js
+Disallow: /vkrdlpro
+Disallow: /bat
+Disallow: /fonts
+
+# WHAT-4882 - Block indexing of links in notification emails. This applies to all bots.
+# =====================================================================================
+Disallow: /api
+
+# Wait 1 second between successive requests. See ONBOARD-2698 for details.
+Crawl-delay: 1
+
+# Independent of user agent. Links in the sitemap are full URLs using https:// and need to match
+# the protocol of the sitemap.
+Sitemap: http://get2mate.ga/sitemap.xml
