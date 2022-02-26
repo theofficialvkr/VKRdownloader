@@ -118,7 +118,7 @@ $desc = "Download Video from multiple sites easily";
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>
     <div class="w3-input w3-border w3-round-large" >
-        <a href="/">
+        <a href="##">
             <center>
                 <h1 > Home </h1>
             </center>
@@ -158,62 +158,62 @@ $desc = "Download Video from multiple sites easily";
                 <div class="col-xs-12 py-2 mt-2 rounded px-0">
                     <div class="supported-sites-box">
                         <div class="supported-site">
-                            <a href="/">
+                            <a href="##">
                                 <div class="icon-container" style="background:#FAEDED"><img src="https://raw.githubusercontent.com/videoder/main/master/public/images/site_icons/tiktok.jpg" alt="Tiktok downloader" style="width:50%; height:auto;"/></div>
                                 <small class="text-muted">Tiktok</small>
                             </a>
                         </div>
                         <div class="supported-site">
-                            <a href="/">
+                            <a href="##">
                                 <div class="icon-container" style="background:#F0F2F7"><img src="https://raw.githubusercontent.com/videoder/main/master/public/web_images/site_icons/facebook.png" alt="Facebook downloader" style="width:50%; height:auto;"/></div>
                                 <small class="text-muted">Facebook</small>
                             </a>
                         </div>
                         <div class="supported-site">
-                            <a href="/">
+                            <a href="##">
                                 <div class="icon-container" style="background:#FCEFF4"><img src="https://raw.githubusercontent.com/videoder/main/master/public/web_images/site_icons/instagram.png" alt="Instagram downloader" style="width:50%; height:auto;"/></div>
                                 <small class="text-muted">Instagram</small>
                             </a>
                         </div>
                         <div class="supported-site">
-                            <a href="/">
+                            <a href="##">
                                 <div class="icon-container" style="background:#F2F8FC"><img src="https://raw.githubusercontent.com/videoder/main/master/public/web_images/site_icons/twitter.png" alt="Twitter downloader" style="width:50%; height:auto;"/></div>
                                 <small class="text-muted">Twitter</small>
                             </a>
                         </div>
                         <div class="supported-site">
-                            <a href="/">
+                            <a href="##">
                                 <div class="icon-container" style="background:#FFF4EE"><img src="https://raw.githubusercontent.com/videoder/main/master/public/images/site_icons/voot.png" alt="Voot downloader" style="width:50%; height:auto;"/></div>
                                 <small class="text-muted">Voot</small>
                             </a>
                         </div>
                         <div class="supported-site">
-                            <a href="/">
+                            <a href="##">
                                 <div class="icon-container" style="background:#FEF5EA"><img src="https://raw.githubusercontent.com/videoder/main/master/public/web_images/site_icons/youtube.png" alt="Ozee downloader" style="width:50%; height:auto;"/></div>
                                 <small class="text-muted">YouTube</small>
                             </a>
                         </div>
                         <!--+supportedSite({--><!--    url: urlPrefix + '/fmovies',--><!--    icon: 'https://raw.githubusercontent.com/videoder/main/master/public/images/site_icons/fmovies.png',--><!--    backgroundColor: '#EFFAF7',--><!--    siteName: "FMovies",--><!--    altText: 'Download Movies from Fmovies'--><!--})-->
                         <div class="supported-site">
-                            <a href="/">
+                            <a href="##">
                                 <div class="icon-container" style="background:#EFFAF7"><img src="https://raw.githubusercontent.com/videoder/main/master/public/images/site_icons/9anime.png" alt="Download Anime" style="width:50%; height:auto;"/></div>
                                 <small class="text-muted">9Anime</small>
                             </a>
                         </div>
                         <div class="supported-site">
-                            <a href="/">
+                            <a href="##">
                                 <div class="icon-container" style="background:#EEEEEE"><img src="https://raw.githubusercontent.com/videoder/main/master/public/web_images/site_icons/vidme.png" alt="VidMe downloader" style="width:50%; height:auto;"/></div>
                                 <small class="text-muted">VidMe</small>
                             </a>
                         </div>
                         <div class="supported-site">
-                            <a href="/">
+                            <a href="##">
                                 <div class="icon-container" style="background:#edfcff"><img src="https://raw.githubusercontent.com/videoder/main/master/public/web_images/site_icons/dailymotion.png" alt="Dailymotion downloader" style="width:50%; height:auto;"/></div>
                                 <small class="text-muted">Dailymotion</small>
                             </a>
                         </div>
                         <div class="supported-site">
-                            <a href="/">
+                            <a href="##">
                                 <div class="icon-container" style="background:#FEF1EB"><img src="https://raw.githubusercontent.com/videoder/main/master/public/web_images/site_icons/soundcloud.png" alt="Soundcloud downloader" style="width:50%; height:auto;"/></div>
                                 <small class="text-muted">Soundcloud</small>
                             </a>
@@ -225,73 +225,73 @@ $desc = "Download Video from multiple sites easily";
                             </a>
                         </div>
                         <div class="supported-site">
-                            <a href="/">
+                            <a href="##">
                                 <div class="icon-container" style="background:#e2f2f4"><img src="https://raw.githubusercontent.com/videoder/main/master/public/web_images/site_icons/audio_boom.png" alt="AudioBoom downloader" style="width:50%; height:auto;"/></div>
                                 <small class="text-muted">AudioBoom</small>
                             </a>
                         </div>
                         <div class="supported-site">
-                            <a href="/">
+                            <a href="##">
                                 <div class="icon-container" style="background:#e8e8e8"><img src="https://raw.githubusercontent.com/videoder/main/master/public/web_images/site_icons/funny_or_die.png" alt="Funny Or Die downloader" style="width:50%; height:auto;"/></div>
                                 <small class="text-muted">Funny Or Die</small>
                             </a>
                         </div>
                         <div class="supported-site">
-                            <a href="/">
+                            <a href="##">
                                 <div class="icon-container" style="background:#FDFAEC"><img src="https://raw.githubusercontent.com/videoder/main/master/public/web_images/site_icons/imdb.png" alt="Youtube downloader" style="width:50%; height:auto;"/></div>
                                 <small class="text-muted">IMDB</small>
                             </a>
                         </div>
                         <div class="supported-site">
-                            <a href="/">
+                            <a href="##">
                                 <div class="icon-container" style="background:#F6EBEB"><img src="https://raw.githubusercontent.com/videoder/main/master/public/web_images/site_icons/liveleak.png" alt="Liveleak downloader" style="width:50%; height:auto;"/></div>
                                 <small class="text-muted">Liveleak</small>
                             </a>
                         </div>
                         <div class="supported-site">
-                            <a href="/">
+                            <a href="##">
                                 <div class="icon-container" style="background:#FDEEEE"><img src="https://raw.githubusercontent.com/videoder/main/master/public/web_images/site_icons/ted.png" alt="Ted downloader" style="width:50%; height:auto;"/></div>
                                 <small class="text-muted">Ted</small>
                             </a>
                         </div>
                         <div class="supported-site">
-                            <a href="/">
+                            <a href="##">
                                 <div class="icon-container" style="background:#F0F9FD"><img src="https://raw.githubusercontent.com/videoder/main/master/public/web_images/site_icons/vimeo.png" alt="Vimeo downloader" style="width:50%; height:auto;"/></div>
                                 <small class="text-muted">Vimeo</small>
                             </a>
                         </div>
                         <div class="supported-site">
-                            <a href="/">
+                            <a href="##">
                                 <div class="icon-container" style="background:#ECF9F6"><img src="https://raw.githubusercontent.com/videoder/main/master/public/web_images/site_icons/vine.png" alt="Vine downloader" style="width:50%; height:auto;"/></div>
                                 <small class="text-muted">Vine</small>
                             </a>
                         </div>
                         <div class="supported-site">
-                            <a href="/">
+                            <a href="##">
                                 <div class="icon-container" style="background:#F0F3F6"><img src="https://raw.githubusercontent.com/videoder/main/master/public/web_images/site_icons/vk.png" alt="VK downloader" style="width:50%; height:auto;"/></div>
                                 <small class="text-muted">VK</small>
                             </a>
                         </div>
                         <div class="supported-site">
-                            <a href="/">
+                            <a href="##">
                                 <div class="icon-container" style="background:#FFFDEB"><img src="https://raw.githubusercontent.com/videoder/main/master/public/images/site_icons/sonyliv.png" alt="Sonyliv downloader" style="width:50%; height:auto;"/></div>
                                 <small class="text-muted">Sonyliv</small>
                             </a>
                         </div>
                         <div class="supported-site">
-                            <a href="/">
+                            <a href="##">
                                 <div class="icon-container" style="background:#FFFAEB"><img src="https://raw.githubusercontent.com/videoder/main/master/public/images/site_icons/tvf.jpg" alt="TVF Play downloader" style="width:50%; height:auto;"/></div>
                                 <small class="text-muted">TVF Play</small>
                             </a>
                         </div>
                         <div class="supported-site">
-                            <a href="/">
+                            <a href="##">
                                 <div class="icon-container" style="background:#EEF9FD"><img src="https://raw.githubusercontent.com/videoder/main/master/public/images/site_icons/youku.png" alt="Youku downloader" style="width:50%; height:auto;"/></div>
                                 <small class="text-muted">Youku</small>
                             </a>
                         </div>
                         <div class="supported-site">
-                            <a href="/">
+                            <a href="##">
                                 <div class="icon-container" style="background:#F0F5FB"><img src="https://raw.githubusercontent.com/videoder/main/master/public/images/site_icons/rutube.png" alt="Rutube downloader" style="width:50%; height:auto;"/></div>
                                 <small class="text-muted">Rutube</small>
                             </a>
@@ -352,7 +352,7 @@ $desc = "Download Video from multiple sites easily";
            });
          }
       </script>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6294962915821930"
+                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6294962915821930"
      crossorigin="anonymous"></script>
 </body>
 </html>
