@@ -1,8 +1,45 @@
 <html>
+<?php 
+$title = "VKR Downloader : Search And Download YouTube Videos ";
+$desc = "Download Video from multiple sites easily";
+?>
 <title> VKR Downloader : Search And Download YouTube Videos </title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <link rel="canonical" href="<?php echo $domain; ?>">
+      <meta name="title" content="Get2Mate - <?php echo $title; ?> Online Download Video, Audio, GIF Photo from YouTube & More">
+      <meta name="description" content="<?php echo $desc; ?> Online download videos from YouTube, All in One DL, Download videos from twitter, instagram, facebook, mxtakatak, josh, ipl, ted, tiktok - Get2Mate">
+      <meta name="keywords" content="<?php echo $title; ?> online video downloader website,online video downloader app 2022,online video downloader chrome,online video downloader android,online video downloader for pc,online video downloader free,online video downloader for iphone,online video downloader and trimmer,online youtube video downloader app,best online video download app,online video download browser,online video converter downloader free,youtube video downloader cutter online,how to create online video downloader website,online video downloader download youtube dailymotion... videos with 1-click,online video downloader editor,online video downloader embed code,online video downloader for pc windows 10,online video downloader for sony liv,best online video downloader for android,online youtube video downloader for pc windows 10,online video downloader github,online video downloader iphone free,online video downloader idm,online video editor no download,online video downloader reviews,online video download software,online video download site,online video song download,online class video download sinhala,youtube online download video save to gallery,best online video downloader from any site android,best online video downloader from any site,how to online video download,online video downloader with trim,online youtube video downloader website,online video download karne wala app,online youtube video downloader for pc windows 7,online video download youtube,zee5 video downloader online">
+      <meta name="robots" content="index,follow">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="language" content="en">
+      <meta name="revisit-after" content="2 days">
+      <meta name="author" content="TheOfficialVKr">
+      <meta itemprop="name" content="Get2Mate -<?php echo $title; ?> Online Download Video, Audio, GIF Photo from YouTube & More">
+      <meta itemprop="description" content="<?php echo $desc; ?> Online download videos from YouTube, All in One DL, Download videos from twitter, instagram, facebook, mxtakatak, josh, ipl, ted, tiktok - Get2Mate">
+      <meta itemprop="image" content="<?php echo $stream.$thumb; ?>">
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="Get2Mate -<?php echo $title; ?> Online Download Video, Audio, GIF Photo from YouTube & More">
+      <meta name="twitter:description" content="<?php echo $desc; ?> Online download videos from YouTube, All in One DL, Download videos from twitter, instagram, facebook, mxtakatak, josh, ipl, ted, tiktok - Get2Mate">
+      <meta name="twitter:site" content="theofficialvkr">
+      <meta name="twitter:creator" content="itsmethevkr">
+      <meta name="twitter:image:src" content="<?php echo $stream.$thumb; ?>">
+      <meta property="og:title" content="Get2Mate - <?php echo $title; ?> Online Download Video, Audio, GIF Photo from YouTube & More">
+      <meta property="og:description" content="<?php echo $desc; ?> Online download videos from YouTube, All in One DL, Download videos from twitter, instagram, facebook, mxtakatak, josh, ipl, ted, tiktok - Get2Mate">
+      <meta property="og:image" content="<?php echo $stream.$thumb; ?>">
+      <meta property="og:url" content="<?php echo $domain; ?>">
+      <meta property="og:site_name" content="Get2Mate - <?php echo $title; ?> Online Download Video, Audio, GIF Photo from YouTube & More">
+      <meta property="fb:app_id" content="427710135379286">
+      <meta property="og:locale" content="en_US">
+      <meta property="og:type" content="website">
+      <meta name="msapplication-TileColor" content="#ffffff">
+      <meta name="msapplication-TileImage" content="<?php echo $domain; ?>/images/logo-default-200x34.png">
+      <meta name="theme-color" content="#ffffff">
+      <meta name="viewport" content="width=device-width ,  initial-scale=1 ,  shrink-to-fit=no">
+      <div class="snackbars" id="form-output-global"></div>
+        <!--coded by Drel-->
+      <script type='application/ld+json'>{"@context": "http://www.schema.org","@type": "product", "name": "VKRDOWNLOADER", "brand":"VKRDOWNLOADER", "image": " /images512x512.png ","sku": "IF", "mpn": "IF", "description": "Online download videos from YouTube, All in One DL, Download videos from twitter, instagram, facebook, mxtakatak, josh, ipl, ted, tiktok - Get2Mate ","offers": { "@type": "AggregateOffer", "lowPrice" : " ", "highPrice" : " ","priceCurrency" : "INR ", "offerCount": "10" },"aggregateRating": {"@type": "aggregateRating", "ratingValue": "5", "reviewCount": "10000 ","bestRating":"5 " }}</script>
 <style>
     .video-list-thumbs{}
     .video-list-thumbs > li{
@@ -76,7 +113,7 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+<!-- Include the above in your HEAD tag --->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>
