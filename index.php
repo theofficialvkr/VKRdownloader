@@ -1,6 +1,6 @@
 <html>
 <?php 
-$title = "VKR Downloader : Search And Download YouTube Videos ";
+$title = "VKR Downloader ";
 $desc = "Download Video from multiple sites easily";
 ?>
 <title> VKR Downloader : Search And Download YouTube Videos </title>
