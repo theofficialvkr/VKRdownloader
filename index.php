@@ -5,7 +5,7 @@ $desc = "Download Video from multiple sites easily";
 ?>
 <title> VKR Downloader : Search And Download YouTube Videos </title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="manifest" crossorigin="use-credentials" href="manifest.webmanifest">  
+<link rel="manifest" crossorigin="use-credentials" href="manifest.webmanifest">  
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <link rel="canonical" href="<?php echo $domain; ?>">
       <meta name="title" content="Get2Mate - <?php echo $title; ?> Online Download Video, Audio, GIF Photo from YouTube & More">
