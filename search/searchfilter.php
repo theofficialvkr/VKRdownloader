@@ -11,7 +11,7 @@ header("Location: $domain/download/?vkr=$lloc");
 exit();
   }  
 elseif(stripos($lloc,'://')===false) {
-header("Location: $domain/search/?vkr=$llocf");
+header("Location: $domain/search/?vkr=$lloc");
 exit();
   }  
 else '';
