@@ -19,6 +19,7 @@ Step 5 - Thats it !
 
 Open Your Site And it start Working ....
 
+Note - Allow_url_fopen = on
 
 # For Any kind of Help 
 
