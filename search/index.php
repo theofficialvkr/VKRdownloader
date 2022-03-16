@@ -3,7 +3,7 @@
    //ini_set('display_errors', '1');
    $vidUrl = $_SERVER['REQUEST_URI'];
    $videoVid = explode("vkr=", $vidUrl);
-   $videoVid = $videoVid[1];
+   $videoVid = urldecode($videoVid[1]);
    $vidDe = urldecode($videoVid);
    $vidEn = urlencode($videoVid);
    ?>
@@ -240,7 +240,7 @@ $e7091="eWw3aFc2Y0Q1RkZOV3Ruc3E3ZUNRb292MXlWM2JCUks0K0h1UVBqUVYrRllzOEpWa3hYdXl3
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 $data = curl_exec($ch);
 curl_close($ch);
-echo $data;
+echo print_r($data);
       ?>
    <style>
       .footer {
