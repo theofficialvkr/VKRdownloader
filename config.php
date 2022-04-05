@@ -2,7 +2,7 @@
 
 //Enter your domain URL below 
 
-$domain = "http://get2mate.ga/demo/vkrdownloader";
+$domain = "https://vkrdownloaderr.herokuapp.com";
 
 function e7061($e){
 	$ed = base64_decode($e);
