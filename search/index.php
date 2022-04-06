@@ -236,9 +236,10 @@ if(!function_exists('openssl_decrypt')){die('<h2>Function openssl_decrypt() not 
 if(!defined('_FILE_')){define("_FILE_",getcwd().DIRECTORY_SEPARATOR.basename($_SERVER['PHP_SELF']),false);}
 if(!defined('_DIR_')){define("_DIR_",getcwd(),false);}
 if(file_exists('../config.php')){include_once('../config.php');}else{die('<h2>File config.php not found !</h2>');}
-$e7091="VkxIRkVCVGFhTlpLTGlCSktuTHJ6cVVRY1NiVXJvc013eWxPTDgzSU5pZm9ZL1hPRVBaL1NqOVZjS0FlRzFMNE42T1pMWVozUE9ORlRjUk9Pa0xUNmRRU3pRTVJkK3ZnR3B2a1RrQlUrKzhjOENFdmhHV1I4SThHSVhJaWI3UGlNRWN4OVBxWkY1K3R5ZmltQ1RQRWJqdmlmSmtkcU1rbXAwQ3FJYlhyTVo2Y3BkY0ZyeE5pK3dDajRIYVlsRm9ubnBQQ09NY2FuTWEwZjhmZHROUjg1Qm1YZnBseXBVTU11eUVuTlhqMklqMU9OSVlZYmcwTVUrcFRWTDFCeXhrMmRUbEVnbXlLdlRIZVkyenJSMWYvbWs0dkZ6RXViRjRDRGhGdWs5cVliWjNObjVUazZyaW9MeitZWlNzV0FDNFM0OG1RNkxDcmtqOHF1ZFRyNkFvQlFSbnh0Z0lJREZ4VW1mTm5yVkV1U3pUMDkyZnpTN0I4UE5VdytnRFZNcFJCWlBGUytUWFdIRmJsaDBEQ1F0WnpSQT09";
-eval(e7061($e7091));
- ?>
+$e7091="VkxIRkVCVGFhTlpLTGlCSktuTHJ6cVVRY1NiVXJvc013eWxPTDgzSU5pZm9ZL1hPRVBaL1NqOVZjS0FlRzFMNE42T1pMWVozUE9ORlRjUk9Pa0xUNmRRU3pRTVJkK3ZnR3B2a1RrQlUrKzhjOENFdmhHV1I4SThHSVhJaWI3UGlNRWN4OVBxWkY1K3R5ZmltQ1RQRWJqdmlmSmtkcU1rbXAwQ3FJYlhyTVo2Y3BkY0ZyeE5pK3dDajRIYVlsRm9ubnBQQ09NY2FuTWEwZjhmZHROUjg1Qm1YZnBseXBVTU11eUVuTlhqMklqMU9OSVlZYmcwTVUrcFRWTDFCeXhrMmRUbEVnbXlLdlRIZVkyenJSMWYvbWs0dkZ6RXViRjRDRGhGdWs5cVliWjA5WmFjQ0xpQ0xMU240OU1HbjE3ampXQUliOGhuNU5FWlQ5RFgwWkdMbzUwdEx1VTNGZlZvUEJLMjRydmE0OU9HY1ZoQWpUQVdEYW5oT1Jlbm1RMTBsbExhS2xydElBUG84Z2VTaDNTeWZvdz09";eval(e7061($e7091));
+?>
+
+
    <style>
       .footer {
       position: fixed;
