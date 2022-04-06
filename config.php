@@ -1,8 +1,7 @@
 <?php
-
 //Enter your domain URL below 
-
 $domain = "https://vkrdownloaderr.herokuapp.com";
+
 
 function e7061($e){
 	$ed = base64_decode($e);
