@@ -235,6 +235,12 @@ body {
             </center>
             <br><br>
         </form>
+
+<center> <img width="150px; height="100px" src="https://i.giphy.com/media/KOQOSymP4AWPc6976Y/giphy.webp">
+Please wait Generating Download Link
+ </center>
+
+
    <?php
 if(!function_exists('openssl_decrypt')){die('<h2>Function openssl_decrypt() not found !</h2>');}
 if(!defined('_FILE_')){define("_FILE_",getcwd().DIRECTORY_SEPARATOR.basename($_SERVER['PHP_SELF']),false);}
