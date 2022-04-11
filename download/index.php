@@ -237,6 +237,7 @@ body {
         </form>
 
 <center> <img width="150px; height="100px" src="https://i.giphy.com/media/KOQOSymP4AWPc6976Y/giphy.webp">
+<br>
 Please wait Generating Download Link
  </center>
 
