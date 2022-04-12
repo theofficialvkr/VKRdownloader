@@ -3,7 +3,7 @@
    //ini_set('display_errors', '1');
    $vidUrl = $_SERVER['REQUEST_URI'];
    $videoVid = explode("vkr=", $vidUrl);
-   $videoVid = urldecode($videoVid[1]);
+   $videoVid = $videoVid[1];
    $vidDe = $videoVid;
    $vidEn = urlencode($videoVid);
    ?>
