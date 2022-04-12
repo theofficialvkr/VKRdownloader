@@ -4,8 +4,9 @@
    $vidUrl = $_SERVER['REQUEST_URI'];
    $videoVid = explode("vkr=", $vidUrl);
    $videoVid = $videoVid[1];
-   $vidDe = $videoVid;
-   $vidEn = urlencode($videoVid);
+  $vidEn = urlencode($videoVid);  
+$vidDe = $vidEn;
+  
    ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -234,10 +235,9 @@ body {
    </form>
    
    
-<center> <img width="150px; height="100px" src="https://i.giphy.com/media/KOQOSymP4AWPc6976Y/giphy.webp">
+<center> <img width="150px" height="100px" src="https://i.giphy.com/media/KOQOSymP4AWPc6976Y/giphy.webp">
 <br>
-Please wait Generating Download Link
- </center>
+Please wait Geting Search Result </center>
    
       <?php
 if(!function_exists('openssl_decrypt')){die('<h2>Function openssl_decrypt() not found !</h2>');}
