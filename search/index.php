@@ -5,7 +5,7 @@
    $videoVid = explode("vkr=", $vidUrl);
    $videoVid = $videoVid[1];
   $vidEn = urlencode($videoVid);  
-$vidDe = $vidEn;
+$vidDe =urldecode($videoVid);  
   
    ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
