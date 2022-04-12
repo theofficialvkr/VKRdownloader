@@ -24,8 +24,8 @@ Note - Allow_url_fopen = on
 # For Any kind of Help 
 
 #Demo : 
-http://get2mate.ga/demo/vkrdownloader
-https://therealvkr.blogspot.com/p/dv.html
+https://vkrdownloaderr.herokuapp.com/
+https://therealvkr.blogspot.com/p/dl.html
 
 Contact me On Mail      : contactvkr@yahoo.com  
 Or On Social media 
