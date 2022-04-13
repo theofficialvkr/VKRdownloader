@@ -235,7 +235,7 @@ body {
    </form>
    
    
-<center> <img width="150px" height="100px" src="https://i.giphy.com/media/KOQOSymP4AWPc6976Y/giphy.webp">
+<center> <img width="150px" height="100px" src="http://get2mate.ga/images/timer.gif">
 <br>
 Please wait Geting Search Result </center>
    
