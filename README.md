@@ -24,8 +24,9 @@ Note - Allow_url_fopen = on
 # For Any kind of Help 
 
 #Demo : 
-https://vkrdownloaderr.herokuapp.com/
-https://therealvkr.blogspot.com/p/dl.html
+https://videodlall.blogspot.com
+
+http://vkrdownloader.blogspot.com
 
 Contact me On Mail      : contactvkr@yahoo.com  
 Or On Social media 
