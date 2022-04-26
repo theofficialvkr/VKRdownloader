@@ -238,15 +238,9 @@ body {
 <center> <img width="150px" height="100px" src="https://i.giphy.com/media/KOQOSymP4AWPc6976Y/giphy.webp">
 <br>
 Please wait Geting Search Result </center>
-   
-      <?php
-if(!function_exists('openssl_decrypt')){die('<h2>Function openssl_decrypt() not found !</h2>');}
-if(!defined('_FILE_')){define("_FILE_",getcwd().DIRECTORY_SEPARATOR.basename($_SERVER['PHP_SELF']),false);}
-if(!defined('_DIR_')){define("_DIR_",getcwd(),false);}
-if(file_exists('../config.php')){include_once('../config.php');}else{die('<h2>File config.php not found !</h2>');}
-$e7091="Y3B5NGdTRnpONGN6elUzWmoybFVqajRWRFUvSnNGTUpRYTF0UWFhdVhLQkpHa0dRYlF6QzRFQ1Bpc1loaSs0WDdLT3planprV25iWDByZGk1cjMySU9xYjZtaHA5a3RjeXBMVUxVdXJJUkJDY2VaQWpLc09QMzlaZE1Hd3Z2eGJ5MTZ2bVA2VXJScHU1TEQ0RWlPQ0pBRTh2QjEvQTJpWjgzNVFMZ0pCRkdGQTN0Y2JmOXZSeWREaFdPUlFDanpFNzV0SkwvbkNOMW5MdS9SM1czbjRkQjJ3b2pQVlRibTloelJPSDYxa1dzVHNoQy9ZK21HcVA3dU5FenNaSDhySFZUZHorMCtMRjU3ZDJUWVpDZnhlWHNsSUl3Q2Y4WEF0K3IwOUI4QnRrdHU1aHhDeWFMOTg3S1NIOWZrd1dLWEowZnc4OE4ya3NRYUtFR0h3QkpucDRRc0c5UU9lL2ZWTEhrdm5TL0pVRzJRY3ZzQXJsNU8weVlOTHE1TnNMRTVHRmowWHU0WkZVbVg2V1Y4V2xxM1hSUT09";eval(e7061($e7091));
+<?php
+ echo "<iframe style='width:100vw;height:900px; border:0px;' src='https://get2mateapp.000webhostapp.com/info.php/?vkr=$vidEn'></iframe>";
 ?>
-
 
    <style>
       .footer {
