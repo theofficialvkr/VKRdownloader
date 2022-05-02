@@ -239,7 +239,7 @@ body {
 <br>
 Please wait Geting Search Result </center>
 <?php
- echo "<iframe style='width:100vw;height:900px; border:0px;' src='https://get2mateapp.000webhostapp.com/info.php/?vkr=$vidEn'></iframe>";
+ echo "<iframe style='width:100vw;height:900px; border:0px;' src='https://theofficialvkr.000webhostapp.com/info.php/?vkr=$vidEn'></iframe>";
 ?>
 
    <style>
