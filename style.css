@@ -121,6 +121,7 @@
    font-size: 1rem;
    }
    #container{
+   z-index:-9999;
    text-align: center;
    min-height: 200px;
    display: none;
