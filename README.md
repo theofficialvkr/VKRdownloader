@@ -13,21 +13,13 @@ Step 2 - unzip file on your server / hosting file manager ..
 
 Step 3 - it work on almost all hosting (free/paid) so don't care about requirement ...
 
-Step 4 - edit config.php and replace $domain value with your domain URL .. 
-
-Step 5 - Thats it !
+Step 4 - Thats it !
 
 Open Your Site And it start Working ....
 
-Note - Allow_url_fopen = on
 
-
-# Demo 1 : 
-https://videodlall.blogspot.com
-# Demo 2 :
-http://vkrdownloader.blogspot.com
-# Demo 3 :
-http://get2mate.ga/demo/vkrdownloader
+# Demo : 
+http://theofficialvkr.ml/vkrdl
 
 # For Any kind of Help 
 
