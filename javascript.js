@@ -20,6 +20,11 @@
          loading.style = "display:none";
          // Define 
          const obj = JSON.parse(jsonData.responseText);
+         if(obj==null){
+              alert("Unable To Get Download Link Please Check URL and Contact us on Social Media @TheOfficialVKr");
+         }else {
+            
+         }
          let vidTitle = obj.title;
          let vidId = obj.id;
          let vidThumb = obj.thumbnail;
@@ -87,11 +92,11 @@
          }
          else 
          { 
-         alert("error");
+         alert("Unable To Get Download Link Please Check URL and Contact us on Social Media @TheOfficialVKr");
          }
          
-         }}
+         }};
          
          jsonData.send();
-         };
-         })
+         }
+         });
