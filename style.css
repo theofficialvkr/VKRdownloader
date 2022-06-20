@@ -1,0 +1,318 @@
+@import url('https://fonts.googleapis.com/css2?family=Stoke&display=swap');
+   
+/* Basic CSS */
+
+   *{
+   margin:0;
+   padding: 0;
+   list-style: none;
+   text-decoration: none;
+   box-sizing: border-box;
+   transition: all 0.45s ease;
+   font-family: 'Stoke', serif;
+   }
+   .disclaimer {
+   display:none;
+   }
+
+   /* SHADOW Class to Use any where*/
+
+   .shadow{        
+   box-shadow: rgba(0, 0, 0, 0.79) 3px 5px 10px,
+   rgba(0, 0, 0, 0.79) 3px 5px 10px,
+   inset rgba(255, 255, 255, 0.49) 3px 5px 10px;
+   }
+   .shadow:active{
+   box-shadow: none;
+   }
+
+  /* NavBar And Header CSS  */
+   
+   header {
+   display: flex;
+   justify-content: space-between;
+   width: calc(100% - 0px);
+   height: auto;
+   /* background: cyan; */
+   align-items: center;
+   padding-bottom: 10px;
+   padding-top: 3px;
+   padding-left: 3px;
+   padding-right: 6px;
+   box-shadow: rgba(0, 0, 0, 0.29) 20px 3px 8px,
+   rgba(0, 0, 0, 0.29) 20px 3px 8px,
+   inset rgba(35, 35, 35, 0.29) 5px 3px 8px;
+   }
+   header img{
+   width: 50px;
+   height: 50px;
+   border-radius: 6px;
+   border: 2px solid white;
+   }
+   header nav ul{
+   display: flex;
+   }
+   header nav ul li{
+   padding: 8px 20px;
+   background-color: red;
+   margin: 0 5px;
+   border-radius: 6px;
+   color: white;
+   font-weight: 600;
+   cursor: pointer;
+   }
+   .navMenu{
+   display: none;
+   }
+   .menu{
+   width: 50px;
+   height: 50px;
+   position: relative;
+   display: grid;
+   place-items: center;
+   cursor: pointer;
+   margin: 0 3px;
+   }
+   .menu span{
+   width:100%;
+   height: 7px;
+   background: rgb(173, 19, 19);
+   }
+   #menu{
+   display:none;
+   }
+   #menu:checked ~ nav  {
+   left: 0px;
+   }
+ 
+   /* Body, Footer , Download Css */
+
+   #wrapper{
+   width: 100vw;
+   height: auto;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   align-items: center;
+   position: relative;
+   }
+   #form{
+   display: flex;
+   width: calc(100% - 16px);
+   height: 40px;
+   padding: 5px;
+   margin: 15px 3px;
+   box-shadow: 12px 10px 18px #544141,
+   12px 10px 8px rgba(0,0,0,0.28);
+   }
+   #form #inputUrl{
+   flex: 1;
+   outline: none;
+   border: none;
+   padding: 3px 6px;
+   font-weight: 700;
+   font-size: 1rem;
+   }
+   #form #downloadBtn{
+   outline: none;
+   border: none;
+   padding: 3px 6px;
+   font-weight: 700;
+   font-size: 1rem;
+   }
+   #container{
+   text-align: center;
+   min-height: 200px;
+   display: none;
+   position: relative;
+   overflow: hidden;
+   margin: 10px 35px;
+   box-shadow:  0px 0px 28px #efd261,
+   0px 0px 28px rgba(0,0,0,0.18);
+   }
+   #loading{
+   position: absolute;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(0,0,0,0.9);
+   }
+   #loading p{
+   text-align:center;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 30px;
+   font-weight: 700;
+   height: 100%;
+   color: white;
+   }
+   #dots{
+   animation: dots 1s infinite;
+   }
+   #thumb img{
+   width: 90vw;
+   display: flex;
+   margin:0 auto;
+   }
+   #title h1{
+   padding: 0 10px;
+   }
+   #description h3{
+   padding: 0 10px;
+   }
+   #description details{
+   font-size:25px;
+   font-weight: 400;
+   }
+   #uploader{
+   font-size: 30px;
+   display:inline-block;
+   opacity: 0.68;
+   padding:0 10px;
+   margin-bottom: 10px;
+   }
+   #duration{
+   font-size: 30px;
+   display:inline-block;
+   opacity: 0.68;
+   padding:0 10px;
+   margin-bottom: 10px;
+   }
+   #extractor{
+   font-size: 30px;
+   display:inline-block;
+   opacity: 0.68;
+   padding:0 10px;
+   margin-bottom: 10px;
+   }
+   #download{
+   text-align: center;
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+   grid-row-gap: 10px;
+   grid-column-gap: 5px;
+   margin: 8px auto;
+   }
+   .dlbtn{
+   width:100%;
+   padding: 15px;
+   }
+   .dlbtns{
+   width:95%;
+   padding: 15px;
+   margin: 0 5px;
+   box-shadow:  0px 0px 8px blue,
+   0px 0px 8px rgba(0,0,0,0.18);
+   }
+   #downloadURL{
+   margin: 0 5px;
+   box-shadow:  0px 0px 8px red,
+   0px 0px 8px rgba(0,0,0,0.18);	
+   }
+   #content{
+   padding: 10px;
+   text-align: center;
+   }
+   #content h2{
+   font-size: 25px;
+   }
+   hr{
+   margin: 10px auto;
+   border: 4px solid red;
+   }
+   footer{
+   position: fixed;
+   bottom: 0%;
+   width: 100%;
+   display:grid;
+   place-items: center;
+   font-weight: 700;
+   font-size: 16px;
+   color: white;
+   height:30px;
+   background: rgb(159, 89, 89);
+   }
+
+   /* MEDIA Queries */
+   
+   @media only screen and (max-width:520px) {
+   .navMenu{
+   display: block;
+   }
+   header{
+       position:sticky;
+       top:0%;
+       background:#fff;
+   }
+   header nav {
+   position: fixed;
+   top: 62px;
+   left: -500px;
+   background: white;
+   width: 80%;
+   height: calc(100% - 92px);
+   padding:  30px;
+   z-index: 99999;
+   border-bottom-right-radius: 30px;
+   box-shadow: rgba(0, 0, 0, 0.49) 20px 3px 18px,
+   rgba(0, 0, 0, 0.49) 20px 3px 18px,
+   inset rgba(35, 35, 35, 0.49) 5px 3px 8px;
+   }
+   header nav ul{
+   flex-direction: column;
+   width: 100%;
+   }
+   header nav ul li{
+   margin: 15px 0;
+   }
+   }
+   @media only screen and (max-width:390px) {
+   #form{
+	 flex-direction:Column;
+	 margin-bottom:40px;
+	 }
+   #inputUrl{
+		 margin: 0px auto;
+		 width: 100%;
+	 }
+   #downloadBtn{
+		 margin: 10px auto;
+		 width: 100%;  
+		 box-shadow: rgba(0, 0, 0, 0.79) 3px 5px 10px,
+					 rgba(0, 0, 0, 0.79) 3px 5px 10px,
+					 inset rgba(255, 255, 255, 0.49) 3px 5px 10px;     
+	 }
+   hr{
+		 margin-top: 20px;
+	 }
+   }
+
+   /* ANIMATION  */
+
+   @keyframes dots{
+   0%{
+   transform: translateY(10);
+   font-size: 5px;
+   }
+   20%{
+   transform: translateY(20);
+   font-size: 10px;
+   }
+   40%{
+   transform: translateY(20);
+   font-size: 15px;
+   }
+   60%{
+   transform: translateY(20);
+   font-size: 20px;
+   }
+   80%{
+   transform: translateY(20);
+   font-size: 25px;
+   }
+   100%{
+   transform: translateY(20);
+   font-size: 30px;
+   }
+   }
