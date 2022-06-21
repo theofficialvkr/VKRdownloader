@@ -29,6 +29,7 @@
   /* NavBar And Header CSS  */
    
    header {
+   z-index:9999;
    display: flex;
    justify-content: space-between;
    width: calc(100% - 0px);
@@ -121,7 +122,6 @@
    font-size: 1rem;
    }
    #container{
-   z-index:-9999;
    text-align: center;
    min-height: 200px;
    display: none;
@@ -254,7 +254,6 @@
    width: 80%;
    height: calc(100% - 92px);
    padding:  30px;
-   z-index: 99999;
    border-bottom-right-radius: 30px;
    box-shadow: rgba(0, 0, 0, 0.49) 20px 3px 18px,
    rgba(0, 0, 0, 0.49) 20px 3px 18px,
