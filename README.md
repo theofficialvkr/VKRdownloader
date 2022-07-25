@@ -19,7 +19,7 @@ Open Your Site And it start Working ....
 
 
 # Demo : 
-http://theofficialvkr.ml/vkrdl
+https://theofficialvkr.github.io/VKRdownloader/
 
 # For Any kind of Help 
 
