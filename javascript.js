@@ -1,10 +1,13 @@
+         //VKrDownloader
 
          const jsonData = new XMLHttpRequest();
          let myurl = document.getElementById("inputUrl");
          let downloadBtn = document.getElementById("downloadBtn");
          downloadBtn.addEventListener("click",()=>{
          var myParam = myurl.value;
-         
+        
+ //Loading 
+
          let container = document.getElementById("container");
          let loading = document.getElementById("loading");
          container.style = "display:block";
@@ -18,7 +21,9 @@
          jsonData.onreadystatechange = function(){
          if(jsonData.readyState == 4 && jsonData.status == 200){
          loading.style = "display:none";
-         // Define 
+        
+ // Define 
+
          const obj = JSON.parse(jsonData.responseText);
          if(obj==null){
               alert("Unable To Get Download Link Please Check URL and Contact us on Social Media @TheOfficialVKr");
@@ -41,7 +46,9 @@
          let extractorV = document.getElementById("extractor");
          let urlV = document.getElementById("downloadURL");
          let downloadV = document.getElementById("download");
-         // Checking That Object is Exist Or Not
+        
+ // Checking That Object is Exist Or Not
+
          if(vidThumb)
          {
          thumbV.innerHTML = "<img src='"+vidThumb+"' width='300px'>";
@@ -93,7 +100,7 @@
          else 
          { 
          alert("Unable To Get Download Link Please Check URL and Contact us on Social Media @TheOfficialVKr");
-container.style = "display:none";
+         container.style = "display:none";
          }
          
          }};
@@ -101,3 +108,5 @@ container.style = "display:none";
          jsonData.send();
          }
          });
+
+//Follow me on social media as @theofficialvkr 
