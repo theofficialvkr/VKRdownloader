@@ -84,6 +84,7 @@
          
          if(obj.entries)
          {
+         urlV.innerHTML = "";	
          urlV.innerHTML += "<a href='"+obj.entries[0].url+"'><button class='dlbtn'>Download Video</button></a>";
          }
          
@@ -92,6 +93,7 @@
          for (var i = 0; i< obj.formats.length; i++) 
          {
          
+         downloadV.innerHTML = ""; 
          
          downloadV.innerHTML += "<a href='"+obj.formats[i].url+"'><button class='dlbtns'>"+obj.formats[i].format + "</button></a>";
          
@@ -108,5 +110,3 @@
          jsonData.send();
          }
          });
-
-//Follow me on social media as @theofficialvkr 
