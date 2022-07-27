@@ -79,6 +79,7 @@
          
          if(vidUrl)
          {
+        urlV.innerHTML = "";
          urlV.innerHTML = "<a href='"+vidUrl+"'><button class='dlbtn'>Video</button></a>";
          }	
          
@@ -90,12 +91,11 @@
          
          else if(obj.formats)
          {
+        downloadV.innerHTML = ""; 
          for (var i = 0; i< obj.formats.length; i++) 
          {
-         
-         downloadV.innerHTML = ""; 
-         
-         downloadV.innerHTML += "<a href='"+obj.formats[i].url+"'><button class='dlbtns'>"+obj.formats[i].format + "</button></a>";
+          
+        downloadV.innerHTML += "<a href='"+obj.formats[i].url+"'><button class='dlbtns'>"+obj.formats[i].format + "</button></a>";
          
          }
          }
