@@ -26,7 +26,7 @@
 
          const obj = JSON.parse(jsonData.responseText);
          if(obj==null){
-              alert("Unable To Get Download Link Please Check URL and Contact us on Social Media @TheOfficialVKr");
+              alert("1 - Unable To Get Download Link Please Check URL and Contact us on Social Media @TheOfficialVKr");
          }else {
             
          }
@@ -99,9 +99,20 @@
          
          }
          }
+                  
+         else if(obj.medias)
+         {
+        downloadV.innerHTML = ""; 
+         for (var i = 0; i< obj.medias.length; i++) 
+         {
+          
+        downloadV.innerHTML += "<a href='"+obj.medias[i].url+"'><button class='dlbtns'>"+obj.medias[i].quality + "</button></a>";
+         
+         }
+         }
          else 
          { 
-         alert("Unable To Get Download Link Please Check URL and Contact us on Social Media @TheOfficialVKr");
+         alert("2 -Server Down due to Too Many Requests please Contact us on Social Media @TheOfficialVKr");
          container.style = "display:none";
          }
          
