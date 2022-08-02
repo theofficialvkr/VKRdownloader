@@ -114,6 +114,7 @@
          { 
          alert("2 -Server Down due to Too Many Requests please Contact us on Social Media @TheOfficialVKr");
          container.style = "display:none";
+         location.href="http://theofficialvkr.ml/download.php?vkr="+myParam;
          }
          
          }};
