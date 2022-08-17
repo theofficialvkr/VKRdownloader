@@ -33,4 +33,5 @@ Instagram </a>
 
 <a href="https://twitter.com/theofficialvkr"> 
 Twitter </a><a href="https://facebook.com/theofficialvkr"> 
-Facebook </a>
+Facebook </a><a href="https://t.me/theofficialvkr"> 
+Telegram </a>
