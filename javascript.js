@@ -14,7 +14,7 @@
          loading.style = "display:block";
          
          if(myParam){
-         jsonData.open("GET","https://theofficialvkr.000webhostapp.com/api/test.php?vkr="+myParam);
+         jsonData.open("GET","http://gmvapp.gq/api/test.php?vkr="+myParam);
          
          //Response Check
          
