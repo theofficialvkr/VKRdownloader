@@ -14,7 +14,7 @@
          loading.style = "display:block";
          
          if(myParam){
-         jsonData.open("GET","http://gmvapp.gq/api/test.php?vkr="+myParam);
+         jsonData.open("GET","https://gmvapp.iceiy.com/api/test.php?vkr="+myParam);
          
          //Response Check
          
@@ -114,7 +114,7 @@
          { 
          alert("2 -Server Down due to Too Many Requests please Contact us on Social Media @TheOfficialVKr");
          container.style = "display:none";
-         location.href="http://theofficialvkr.ml/download.php?vkr="+myParam;
+         location.href="https://gmvapp.iceiy.com/download.php?vkr="+myParam;
          }
          
          }};
