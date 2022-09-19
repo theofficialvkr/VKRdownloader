@@ -1,6 +1,5 @@
-     //VKrDownloader
+  //VKrDownloader
 
-         const jsonData = new XMLHttpRequest();
          let myurl = document.getElementById("inputUrl");
          let downloadBtn = document.getElementById("downloadBtn");
          downloadBtn.addEventListener("click",()=>{
@@ -14,17 +13,19 @@
          loading.style = "display:block";
          
          if(myParam){
-         jsonData.open("GET","http://theofficialvkr.ml/api/test.php?vkr="+myParam);
-         
-         //Response Check
-         
-         jsonData.onreadystatechange = function(){
-         if(jsonData.readyState == 4 && jsonData.status == 200){
+$.ajax({
+    url:"http://theofficialvkr.ml/api/test.php?vkr=https://www.youtube.com/watch?v=YxVNvzyO_4A",
+    type:"GET",
+    async:false,
+    crossDomain:true,
+    dataType: 'json',
+  success: function(data){   
+         const obj = data;
          loading.style = "display:none";
+         console.log(obj.title);
         
  // Define 
 
-         const obj = JSON.parse(jsonData.responseText);
          if(obj==null){
               alert("1 - Unable To Get Download Link Please Check URL and Contact us on Social Media @TheOfficialVKr");
          }else {
@@ -81,11 +82,11 @@
          {
         urlV.innerHTML = "";
          urlV.innerHTML = "<a href='"+vidUrl+"'><button class='dlbtn'>Video</button></a>";
-         }	
+         }  
          
          if(obj.entries)
          {
-         urlV.innerHTML = "";	
+         urlV.innerHTML = ""; 
          urlV.innerHTML += "<a href='"+obj.entries[0].url+"'><button class='dlbtn'>Download Video</button></a>";
          }
          
@@ -117,8 +118,8 @@
          location.href="http://theofficialvkr.ml/download.php?vkr="+myParam;
          }
          
-         }};
+        
          
-         jsonData.send();
-         }
-         });
+     }})
+}
+});
