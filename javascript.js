@@ -1,4 +1,4 @@
-L         //VKrDownloader
+     //VKrDownloader
 
          const jsonData = new XMLHttpRequest();
          let myurl = document.getElementById("inputUrl");
