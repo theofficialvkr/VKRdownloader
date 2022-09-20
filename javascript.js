@@ -18,7 +18,7 @@ $.ajax({
     type:"GET",
     async:false,
     crossDomain:true,
-    dataType: 'json',
+    dataType: 'jsonp',
   success: function(data){   
          const obj = data;
          loading.style = "display:none";
