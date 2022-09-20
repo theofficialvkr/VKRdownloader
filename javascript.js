@@ -14,7 +14,7 @@
          
          if(myParam){
 $.ajax({
-    url:"http://theofficialvkr.ml/api/test.php?vkr=https://www.youtube.com/watch?v=YxVNvzyO_4A",
+    url:"https://vijayapi.000webhostapp.com/api/test.php?vkr=https://www.youtube.com/watch?v=YxVNvzyO_4A",
     type:"GET",
     async:false,
     crossDomain:true,
