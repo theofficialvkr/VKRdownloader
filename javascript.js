@@ -14,7 +14,7 @@
          
          if(myParam){
 $.ajax({
-    url:"https://vijayapi.000webhostapp.com/api/test.php?vkr=https://www.youtube.com/watch?v=YxVNvzyO_4A",
+    url:"https://vijayapi.000webhostapp.com/api/test.php?vkr="+myParam,
     type:"GET",
     async:false,
     crossDomain:true,
@@ -29,8 +29,7 @@ $.ajax({
          if(obj==null){
               alert("1 - Unable To Get Download Link Please Check URL and Contact us on Social Media @TheOfficialVKr");
          }else {
-            
-         }
+           
          let vidTitle = obj.title;
          let vidId = obj.id;
          let vidThumb = obj.thumbnail;
@@ -119,6 +118,8 @@ $.ajax({
          }
          
         
+            
+         }
          
      }})
 }
