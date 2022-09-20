@@ -26,7 +26,7 @@ $.ajax({
         
  // Define 
 
-         if(obj==null){
+        if (!$.trim(data)){ 
               alert("1 - Unable To Get Download Link Please Check URL and Contact us on Social Media @TheOfficialVKr");
          }else {
            
