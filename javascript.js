@@ -14,7 +14,7 @@
          
          if(myParam){
 $.ajax({
-    url:"https://vijayapi.000webhostapp.com/api/test.php?vkr="+myParam,
+    url:"https://vkrapi.000webhostapp.com/api/test.php?vkr="+myParam,
     type:"GET",
     async:false,
     crossDomain:true,
