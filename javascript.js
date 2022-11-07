@@ -11,7 +11,7 @@
          let loading = document.getElementById("loading");
          container.style = "display:block";
          loading.style = "display:block";
-         
+         let itagN = '';
          if(myParam){
 $.ajax({
     url:"https://vkrapi.000webhostapp.com/api/test.php?vkr="+myParam,
@@ -95,13 +95,16 @@ $.ajax({
          for (var i = 0; i< obj.formats.length; i++) 
          {
           if (obj.formats[i].url.indexOf('17') >= 0) { 
-  let bgcol = "green !important";
+  let bgcol = "green";
+itagN = 17;
 } else if (obj.formats[i].url.indexOf('18') >= 0)  { 
-  let bgcol = "green !important";
+  let bgcol = "green";
+itagN = 18;
 }else if (obj.formats[i].url.indexOf('22') >= 0)  { 
-  let bgcol = "green !important";
+  let bgcol = "green";
+itagN = 22;
 }else{}
-        downloadV.innerHTML += "<a href='"+obj.formats[i].url+"'><button style='background:"+bgcol+"' class='dlbtns'>"+obj.formats[i].format + "</button></a>";
+        downloadV.innerHTML += "<a href='"+obj.formats[i].url+"'><button style='background:"+bgcol+"' class='dlbtns'>"+obj.formats[i].format + itagN +"</button></a>";
          
          }
          }
