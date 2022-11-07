@@ -94,8 +94,14 @@ $.ajax({
         downloadV.innerHTML = ""; 
          for (var i = 0; i< obj.formats.length; i++) 
          {
-          
-        downloadV.innerHTML += "<a href='"+obj.formats[i].url+"'><button class='dlbtns'>"+obj.formats[i].format + "</button></a>";
+          if (obj.formats[i].url.indexOf('17') >= 0) { 
+  let bgcol = "green !important";
+} else if (obj.formats[i].url.indexOf('18') >= 0)  { 
+  let bgcol = "green !important";
+}else if (obj.formats[i].url.indexOf('22') >= 0)  { 
+  let bgcol = "green !important";
+}else{}
+        downloadV.innerHTML += "<a href='"+obj.formats[i].url+"'><button style='background:"+bgcol+"' class='dlbtns'>"+obj.formats[i].format + "</button></a>";
          
          }
          }
