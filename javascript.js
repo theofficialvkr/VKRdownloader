@@ -11,7 +11,7 @@
          let loading = document.getElementById("loading");
          container.style = "display:block";
          loading.style = "display:block";
-         let itagN = '';
+         
          if(myParam){
 $.ajax({
     url:"https://vkrapi.000webhostapp.com/api/test.php?vkr="+myParam,
@@ -46,6 +46,8 @@ $.ajax({
          let extractorV = document.getElementById("extractor");
          let urlV = document.getElementById("downloadURL");
          let downloadV = document.getElementById("download");
+         let itagN = '';
+         let bgcol = '';
         
  // Checking That Object is Exist Or Not
 
