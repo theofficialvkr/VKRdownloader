@@ -94,13 +94,13 @@ $.ajax({
         downloadV.innerHTML = ""; 
          for (var i = 0; i< obj.formats.length; i++) 
          {
-          if (obj.formats[i].url.indexOf('17') >= 0) { 
+          if (obj.formats[i].url.indexOf('itag=17') >= 0) { 
   let bgcol = "green";
 itagN = 17;
-} else if (obj.formats[i].url.indexOf('18') >= 0)  { 
+} else if (obj.formats[i].url.indexOf('itag=18') >= 0)  { 
   let bgcol = "green";
 itagN = 18;
-}else if (obj.formats[i].url.indexOf('22') >= 0)  { 
+}else if (obj.formats[i].url.indexOf('itag=22') >= 0)  { 
   let bgcol = "green";
 itagN = 22;
 }else{}
@@ -111,13 +111,13 @@ itagN = 22;
                   
          else if(obj.medias)
          {
-if (obj.medias[i].url.indexOf('17') >= 0) { 
+if (obj.medias[i].url.indexOf('itag=17') >= 0) { 
   let bgcol = "green";
 itagN = 17;
-} else if (obj.medias[i].url.indexOf('18') >= 0)  { 
+} else if (obj.medias[i].url.indexOf('itag=18') >= 0)  { 
   let bgcol = "green";
 itagN = 18;
-}else if (obj.medias[i].url.indexOf('22') >= 0)  { 
+}else if (obj.medias[i].url.indexOf('itag=22') >= 0)  { 
   let bgcol = "green";
 itagN = 22;
 }else{}
@@ -125,7 +125,7 @@ itagN = 22;
          for (var i = 0; i< obj.medias.length; i++) 
          {
           
-        downloadV.innerHTML += "<a href='"+obj.medias[i].url+"'><button style='background:"+bgcol+"' class='dlbtns'>"+obj.medias[i].quality + itagN +"</button></a>";
+        downloadV.innerHTML += "<a href='"+obj.medias[i].url+"'><button style='background:"+bgcol+"' class='dlbtns'>"+obj.medias[i].quality + ".."+itagN +"</button></a>";
          
          }
          }
