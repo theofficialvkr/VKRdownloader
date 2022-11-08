@@ -111,11 +111,21 @@ itagN = 22;
                   
          else if(obj.medias)
          {
+if (obj.medias[i].url.indexOf('17') >= 0) { 
+  let bgcol = "green";
+itagN = 17;
+} else if (obj.medias[i].url.indexOf('18') >= 0)  { 
+  let bgcol = "green";
+itagN = 18;
+}else if (obj.medias[i].url.indexOf('22') >= 0)  { 
+  let bgcol = "green";
+itagN = 22;
+}else{}
         downloadV.innerHTML = ""; 
          for (var i = 0; i< obj.medias.length; i++) 
          {
           
-        downloadV.innerHTML += "<a href='"+obj.medias[i].url+"'><button class='dlbtns'>"+obj.medias[i].quality + "</button></a>";
+        downloadV.innerHTML += "<a href='"+obj.medias[i].url+"'><button style='background:"+bgcol+"' class='dlbtns'>"+obj.medias[i].quality + itagN +"</button></a>";
          
          }
          }
