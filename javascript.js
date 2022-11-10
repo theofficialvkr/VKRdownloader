@@ -1,9 +1,8 @@
-  //VKrDownloader
+          //VKrDownloader
 
          let myurl = document.getElementById("inputUrl");
          let downloadBtn = document.getElementById("downloadBtn");
-         downloadBtn.addEventListener("click",()=>{
-         var myParam = myurl.value;
+         downloadBtn.addEventListener("click", () =>{
         
  //Loading 
 
@@ -12,7 +11,17 @@
          container.style = "display:block";
          loading.style = "display:block";
          
-         if(myParam){
+var myParam = myurl.value;
+
+  function getParameterByName(name, url) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+if(myParam){
 $.ajax({
     url:"https://vkrapi.000webhostapp.com/api/test.php?vkr="+myParam,
     type:"GET",
@@ -46,8 +55,6 @@ $.ajax({
          let extractorV = document.getElementById("extractor");
          let urlV = document.getElementById("downloadURL");
          let downloadV = document.getElementById("download");
-         let itagN = '';
-         let bgcol = '';
         
  // Checking That Object is Exist Or Not
 
@@ -96,38 +103,85 @@ $.ajax({
         downloadV.innerHTML = ""; 
          for (var i = 0; i< obj.formats.length; i++) 
          {
-          if (obj.formats[i].url.indexOf('itag=17') >= 0) { 
-  let bgcol = "green";
-itagN = 17;
-} else if (obj.formats[i].url.indexOf('itag=18') >= 0)  { 
-  let bgcol = "green";
-itagN = 18;
-}else if (obj.formats[i].url.indexOf('itag=22') >= 0)  { 
-  let bgcol = "green";
-itagN = 22;
-}else{}
-        downloadV.innerHTML += "<a href='"+obj.formats[i].url+"'><button style='background:"+bgcol+"' class='dlbtns'>"+obj.formats[i].format + itagN +"</button></a>";
+let myParam = getParameterByName('itag',objformats[i].url);
+let bgcol = '';
+if (myParam == 17) { 
+bgcol = "green";
+} 
+if (myParam == 18) { 
+bgcol = "green";
+}
+if (myParam == 22) { 
+bgcol = "green";
+}    
+if (myParam == 139) { 
+bgcol = "aqua";
+} 
+if (myParam == 140) { 
+bgcol = "aqua";
+}
+if (myParam == 141) { 
+bgcol = "aqua";
+}if (myParam == 249) { 
+bgcol = "aqua";
+} 
+if (myParam == 250) { 
+bgcol = "aqua";
+}
+if (myParam == 251) { 
+bgcol = "aqua";
+} 
+if (myParam == 599) { 
+bgcol = "aqua";
+}
+if (myParam == 600) { 
+bgcol = "aqua";
+}
+downloadV.innerHTML += "<a href='"+objformats[i].url+"'><button style='background:"+bgcol+"' class='dlbtns'>"+objformats[i].quality +' - '+ myParam+"</button></a>";
          
          }
-         }
-                  
+         }      
          else if(obj.medias)
          {
-if (obj.medias[i].url.indexOf('itag=17') >= 0) { 
-  let bgcol = "green";
-itagN = 17;
-} else if (obj.medias[i].url.indexOf('itag=18') >= 0)  { 
-  let bgcol = "green";
-itagN = 18;
-}else if (obj.medias[i].url.indexOf('itag=22') >= 0)  { 
-  let bgcol = "green";
-itagN = 22;
-}else{}
+
         downloadV.innerHTML = ""; 
          for (var i = 0; i< obj.medias.length; i++) 
          {
-          
-        downloadV.innerHTML += "<a href='"+obj.medias[i].url+"'><button style='background:"+bgcol+"' class='dlbtns'>"+obj.medias[i].quality + ".."+itagN +"</button></a>";
+let myParam = getParameterByName('itag',obj.medias[i].url);
+let bgcol = '';
+if (myParam == 17) { 
+bgcol = "green";
+} 
+if (myParam == 18) { 
+bgcol = "green";
+}
+if (myParam == 22) { 
+bgcol = "green";
+}    
+if (myParam == 139) { 
+bgcol = "aqua";
+} 
+if (myParam == 140) { 
+bgcol = "aqua";
+}
+if (myParam == 141) { 
+bgcol = "aqua";
+}if (myParam == 249) { 
+bgcol = "aqua";
+} 
+if (myParam == 250) { 
+bgcol = "aqua";
+}
+if (myParam == 251) { 
+bgcol = "aqua";
+} 
+if (myParam == 599) { 
+bgcol = "aqua";
+}
+if (myParam == 600) { 
+bgcol = "aqua";
+}
+downloadV.innerHTML += "<a href='"+obj.medias[i].url+"'><button style='background:"+bgcol+"' class='dlbtns'>"+obj.medias[i].quality +' - '+ myParam+"</button></a>";
          
          }
          }
