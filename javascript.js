@@ -31,7 +31,6 @@ $.ajax({
   success: function(data){   
          const obj = data;
          loading.style = "display:none";
-         console.log(obj.title);
         
  // Define 
 
@@ -103,7 +102,7 @@ $.ajax({
         downloadV.innerHTML = ""; 
          for (var i = 0; i< obj.formats.length; i++) 
          {
-let myParam = " - " +getParameterByName('itag',objformats[i].url);
+let myParam = " - " +getParameterByName('itag',obj.formats[i].url);
 let bgcol = '';
 if (myParam == 17) { 
 bgcol = "green";
@@ -137,7 +136,7 @@ bgcol = "aqua";
 if (myParam == 600) { 
 bgcol = "aqua";
 }
-downloadV.innerHTML += "<a href='"+objformats[i].url+"'><button style='background:"+bgcol+"' class='dlbtns'>"+objformats[i].quality + myParam+"</button></a>";
+downloadV.innerHTML += "<a href='"+obj.formats[i].url+"'><button style='background:"+bgcol+"' class='dlbtns'>"+obj.formats[i].quality + myParam+"</button></a>";
          
          }
          }      
