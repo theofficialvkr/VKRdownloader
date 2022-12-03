@@ -23,7 +23,7 @@ var myParam = myurl.value;
 }
 if(myParam){
 $.ajax({
-    url:"https://vkrapi.000webhostapp.com/api/test.php?vkr="+myParam,
+    url:"http://theofficialvkr.ml/server/api/trial.php?vkr="+myParam,
     type:"GET",
     async:false,
     crossDomain:true,
