@@ -1,5 +1,10 @@
           //VKrDownloader
-
+if (window.location.protocol.indexOf('https') == 0){
+  var el = document.createElement('meta')
+  el.setAttribute('http-equiv', 'Content-Security-Policy')
+  el.setAttribute('content', 'upgrade-insecure-requests')
+  document.head.append(el)
+}
          let myurl = document.getElementById("inputUrl");
          let downloadBtn = document.getElementById("downloadBtn");
          downloadBtn.addEventListener("click", () =>{
@@ -23,7 +28,7 @@ var myParam = myurl.value;
 }
 if(myParam){
 $.ajax({
-    url:"https://vkrfork.000webhostapp.com/server/api/trial.php?vkr="+myParam,
+    url:"http://vkrfork.ml/server/api/trial.php?vkr="+myParam,
     type:"GET",
     async:false,
     crossDomain:true,
