@@ -15,6 +15,7 @@ if (window.location.protocol.indexOf('https') == 0){
          let loading = document.getElementById("loading");
          container.style = "display:block";
          loading.style = "display:block";
+         const cors = "https://corsvkr.up.railway.app/";
          
 var myParam = myurl.value;
 
@@ -28,7 +29,7 @@ var myParam = myurl.value;
 }
 if(myParam){
 $.ajax({
-    url:"https://vkrfork.ml/server/api/trial.php?vkr="+myParam,
+    url:cors+"http://vkrfork.ml/server/api/trial.php?vkr="+myParam,
     type:"GET",
     async:false,
     crossDomain:true,
