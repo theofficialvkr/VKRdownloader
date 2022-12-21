@@ -22,11 +22,13 @@ var myParamV = myurl.value;
 }
 if(myParamV){
 $.ajax({
-    url:cors+"http://vkrfork.ml/server/api/trial.php?vkr="+myParamV,
+    url:"https://www.vkrfork.ml/server/api/trial.php?vkr="+myParamV,
     type:"GET",
     async:true,
     crossDomain:true,
     dataType: 'json',
+    jsonp:true,
+    cache:true,
   success: function(data){   
          const obj = data;         
         document.getElementById("container").style = "display:block";
