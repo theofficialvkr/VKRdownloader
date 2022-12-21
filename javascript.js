@@ -1,4 +1,5 @@
           //VKrDownloader
+//Loading 
 function openbox(){
          // let container = document.getElementById("container");
          let loading = document.getElementById("loading");
@@ -204,7 +205,7 @@ downloadV.innerHTML += "<a href='"+obj.medias[i].url+"'><button style='backgroun
          { 
          alert("2 -Server Down due to Too Many Requests please Contact us on Social Media @TheOfficialVKr");
          document.getElementById("container").style = "display:none";
-         location.href="http://theofficialvkr.ml/download.php?vkr="+myParam;
+         location.href="http://vkrfork.ml/data/download.php?vkr="+myParam;
          }
          
         
