@@ -33,12 +33,13 @@
       </header>
       <div id="form">
          <input id="inputUrl" type="url" placeholder="Enter URL">
-         <input id="downloadBtn" type="submit" value="Download">
+         <input id="downloadBtn" onclick="openbox()" type="submit" value="Download">
       </div>
-      <div id="container">
-         <div id="loading">
-            <p> Downloading <span id="dots">......</span></p>
+        <div id="loading">
+            <p> Downloading <span id="dots">...</span></p>
          </div>
+      <div id="container">
+       
          <div id="thumb"></div>
          <div id="title"></div>
          <div id="description"></div>

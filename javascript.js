@@ -1,24 +1,17 @@
           //VKrDownloader
-if (window.location.protocol.indexOf('https') == 0){
-  var el = document.createElement('meta')
-  el.setAttribute('http-equiv', 'Content-Security-Policy')
-  el.setAttribute('content', 'upgrade-insecure-requests')
-  document.head.append(el)
+function openbox(){
+         // let container = document.getElementById("container");
+         let loading = document.getElementById("loading");
+         console.log("click");
+         loading.style = "display:initial";
 }
          let myurl = document.getElementById("inputUrl");
          let downloadBtn = document.getElementById("downloadBtn");
-         downloadBtn.addEventListener("click", () =>{
-        
+         downloadBtn.addEventListener("click", () =>{        
  //Loading 
-
-         let container = document.getElementById("container");
-         let loading = document.getElementById("loading");
-         container.style = "display:block";
-         loading.style = "display:block";
-         const cors = "https://corsvkr.up.railway.app/";
-         
-var myParam = myurl.value;
-
+document.getElementById("loading").style = "display:initial";
+const cors = "https://corsvkr.up.railway.app/";
+var myParamV = myurl.value;
   function getParameterByName(name, url) {
     name = name.replace(/[\[\]]/g, '\\$&');
     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
@@ -27,23 +20,26 @@ var myParam = myurl.value;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
-if(myParam){
+if(myParamV){
 $.ajax({
-    url:cors+"http://vkrfork.ml/server/api/trial.php?vkr="+myParam,
+    url:cors+"http://vkrfork.ml/server/api/trial.php?vkr="+myParamV,
     type:"GET",
-    async:false,
+    async:true,
     crossDomain:true,
     dataType: 'json',
   success: function(data){   
-         const obj = data;
-         loading.style = "display:none";
+         const obj = data;         
+        document.getElementById("container").style = "display:block";
+        document.getElementById("loading").style = "display:none";
+         
         
  // Define 
 
         if (!$.trim(data)){ 
               alert("1 - Unable To Get Download Link Please Check URL and Contact us on Social Media @TheOfficialVKr");
+              document.getElementById("loading").style = "display:none";
          }else {
-           
+         document.getElementById("loading").style = "display:none";
          let vidTitle = obj.title;
          let vidId = obj.id;
          let vidThumb = obj.thumbnail;
@@ -110,37 +106,37 @@ $.ajax({
          {
 let myParam = " - " +getParameterByName('itag',obj.formats[i].url);
 let bgcol = '';
-if (myParam == 17) { 
+if (myParam == " - 17") { 
 bgcol = "green";
 } 
-if (myParam == 18) { 
+if (myParam == " - 18") { 
 bgcol = "green";
 }
-if (myParam == 22) { 
+if (myParam == " - 22") { 
 bgcol = "green";
 }    
-if (myParam == 139) { 
-bgcol = "aqua";
+if (myParam == " - 139") { 
+bgcol = "#3800ff";
 } 
-if (myParam == 140) { 
-bgcol = "aqua";
+if (myParam == " - 140") { 
+bgcol = "#3800ff";
 }
-if (myParam == 141) { 
-bgcol = "aqua";
-}if (myParam == 249) { 
-bgcol = "aqua";
+if (myParam == " - 141") { 
+bgcol = "#3800ff";
+}if (myParam == " - 249") { 
+bgcol = "#3800ff";
 } 
-if (myParam == 250) { 
-bgcol = "aqua";
+if (myParam == " - 250") { 
+bgcol = "#3800ff";
 }
-if (myParam == 251) { 
-bgcol = "aqua";
+if (myParam == " - 251") { 
+bgcol = "#3800ff";
 } 
-if (myParam == 599) { 
-bgcol = "aqua";
+if (myParam == " - 599") { 
+bgcol = "#3800ff";
 }
-if (myParam == 600) { 
-bgcol = "aqua";
+if (myParam == " - 600") { 
+bgcol = "#3800ff";
 }
 downloadV.innerHTML += "<a href='"+obj.formats[i].url+"'><button style='background:"+bgcol+"' class='dlbtns'>"+obj.formats[i].quality + myParam+"</button></a>";
          
@@ -154,37 +150,37 @@ downloadV.innerHTML += "<a href='"+obj.formats[i].url+"'><button style='backgrou
          {
 let myParam = " - " + getParameterByName('itag',obj.medias[i].url);
 let bgcol = '';
-if (myParam == 17) { 
+if (myParam == " - 17") { 
 bgcol = "green";
 } 
-if (myParam == 18) { 
+if (myParam == " - 18") { 
 bgcol = "green";
 }
-if (myParam == 22) { 
+if (myParam == " - 22") { 
 bgcol = "green";
 }    
-if (myParam == 139) { 
-bgcol = "aqua";
+if (myParam == " - 139") { 
+bgcol = "#3800ff";
 } 
-if (myParam == 140) { 
-bgcol = "aqua";
+if (myParam == " - 140") { 
+bgcol = "#3800ff";
 }
-if (myParam == 141) { 
-bgcol = "aqua";
-}if (myParam == 249) { 
-bgcol = "aqua";
+if (myParam == " - 141") { 
+bgcol = "#3800ff";
+}if (myParam == " - 249") { 
+bgcol = "#3800ff";
 } 
-if (myParam == 250) { 
-bgcol = "aqua";
+if (myParam == " - 250") { 
+bgcol = "#3800ff";
 }
-if (myParam == 251) { 
-bgcol = "aqua";
+if (myParam == " - 251") { 
+bgcol = "#3800ff";
 } 
-if (myParam == 599) { 
-bgcol = "aqua";
+if (myParam == " - 599") { 
+bgcol = "#3800ff";
 }
-if (myParam == 600) { 
-bgcol = "aqua";
+if (myParam == " - 600") { 
+bgcol = "#3800ff";
 }
 downloadV.innerHTML += "<a href='"+obj.medias[i].url+"'><button style='background:"+bgcol+"' class='dlbtns'>"+obj.medias[i].quality + myParam+"</button></a>";
          
@@ -193,7 +189,7 @@ downloadV.innerHTML += "<a href='"+obj.medias[i].url+"'><button style='backgroun
          else 
          { 
          alert("2 -Server Down due to Too Many Requests please Contact us on Social Media @TheOfficialVKr");
-         container.style = "display:none";
+         document.getElementById("container").style = "display:none";
          location.href="http://theofficialvkr.ml/download.php?vkr="+myParam;
          }
          
