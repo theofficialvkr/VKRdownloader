@@ -61,10 +61,16 @@ $.ajax({
          let downloadV = document.getElementById("download");
         
  // Checking That Object is Exist Or Not
-
+var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+var match = myParamV.match(regExp);
+if (match && match[2].length == 11) {
+  VTHUMB = "https://i.ytimg.com/vi_webp/"+match[2]+"/maxresdefault.webp";
+} else {
+  VTHUMB = vidThumb;
+}
          if(vidThumb)
          {
-         thumbV.innerHTML = "<img src='"+vidThumb+"' width='300px'>";
+         thumbV.innerHTML = "<img src='"+VTHUMB+"' width='300px'>";
          }else {
          thumbV.innerHTML = "<img src='logo.png' width='300px'>";
          }
@@ -96,13 +102,7 @@ $.ajax({
          urlV.innerHTML = "<a href='"+vidUrl+"'><button class='dlbtn'>Video</button></a>";
          if(vidThumb)
          {
-            var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-var match = myParamV.match(regExp);
-if (match && match[2].length == 11) {
-  VTHUMB = "https://i.ytimg.com/vi_webp/"+match[2]+"/maxresdefault.webp";
-} else {
-  VTHUMB = vidThumb;
-}
+
             urlV.innerHTML += "<a href='"+VTHUMB+"'><button class='dlbtn'>Download Thumbnail </button></a>";
          }
          }  
