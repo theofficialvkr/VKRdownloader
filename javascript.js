@@ -93,12 +93,24 @@ $.ajax({
          {
         urlV.innerHTML = "";
          urlV.innerHTML = "<a href='"+vidUrl+"'><button class='dlbtn'>Video</button></a>";
+         if(vidThumb)
+         {
+            var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+var match = myParamV.match(regExp);
+if (match && match[2].length == 11) {
+  VTHUMB = "https://i.ytimg.com/vi_webp/"+match[2]+"/maxresdefault.webp";
+} else {
+  VTHUMB = vidThumb;
+}
+            urlV.innerHTML += "<a href='"+VTHUMB+"'><button class='dlbtn'>Download Thumbnail </button></a>";
+         }
          }  
          
          if(obj.entries)
          {
          urlV.innerHTML = ""; 
          urlV.innerHTML += "<a href='"+obj.entries[0].url+"'><button class='dlbtn'>Download Video</button></a>";
+         
          }
          
          else if(obj.formats)
