@@ -64,7 +64,7 @@ $.ajax({
 var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|\&v=)([^#\&\?]*).*/;
 var match = myParamV.match(regExp);
 if (match && match[2].length == 11) {
-  VTHUMB = "https://i.ytimg.com/vi_webp/"+match[2]+"/maxresdefault.webp";
+  VTHUMB = "https://i.ytimg.com/vi/"+match[2]+"/sddefault.webp";
 } else {
   VTHUMB = vidThumb;
 }
