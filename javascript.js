@@ -77,6 +77,7 @@ if (match && match[2].length == 11) {
          if(vidTitle)
          {
          titleV.innerHTML = "<h1>"+vidTitle+"</h1>";
+         document.title  = "Download "+vidTitle+" VKrDownloader";
          }
          if(vidDescription)
          {
