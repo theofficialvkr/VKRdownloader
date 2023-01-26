@@ -23,7 +23,7 @@ var myParamV = myurl.value;
 }
 if(myParamV){
 $.ajax({
-    url:"https://www.vkrfork.ml/server/api/trial.php?vkr="+myParamV,
+    url:"https://vijaykumar.gq/server/api/trial.php?vkr="+myParamV,
     type:"GET",
     async:true,
     crossDomain:true,
