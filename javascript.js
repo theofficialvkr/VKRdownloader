@@ -11,7 +11,6 @@ function openbox(){
          downloadBtn.addEventListener("click", () =>{        
  //Loading 
 document.getElementById("loading").style = "display:initial";
-const cors = "https://corsvkr.up.railway.app/";
 var myParamV = myurl.value;
   function getParameterByName(name, url) {
     name = name.replace(/[\[\]]/g, '\\$&');
@@ -206,7 +205,7 @@ downloadV.innerHTML += "<a href='"+obj.medias[i].url+"'><button style='backgroun
          { 
          alert("2 -Server Down due to Too Many Requests please Contact us on Social Media @TheOfficialVKr");
          document.getElementById("container").style = "display:none";
-         location.href="http://vkrfork.ml/data/download.php?vkr="+myParam;
+         location.href="https://vkrfork.vercel.app/data/download.php?vkr="+myParam;
          }
          
         
