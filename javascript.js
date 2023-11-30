@@ -22,7 +22,7 @@ var myParamV = myurl.value;
 }
 if(myParamV){
 $.ajax({
-    url:"https://vkrfork.vercel.app/server/api/trial.php?vkr="+myParamV,
+    url:"https://theofficialvkr.xyz/api/trial.php?vkr="+myParamV,
     type:"GET",
     async:true,
     crossDomain:true,
