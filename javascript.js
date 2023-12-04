@@ -22,7 +22,7 @@ var myParamV = myurl.value;
 }
 if(myParamV){
 $.ajax({
-    url:"https://theofficialvkr.xyz/tv/trial.php?vkr="+myParamV,
+    url:"https://theofficialvkr.xyz/data/trial.php?vkr="+myParamV,
     type:"GET",
     async:true,
     crossDomain:true,
