@@ -38,7 +38,7 @@ $.ajax({
  // Define 
 
         if (!$.trim(data)){ 
-              alert("1 - Unable To Get Download Link Please Check URL and Contact us on Social Media @TheOfficialVKr");
+              alert("issue:1 - Unable To Get Download Link Please Check URL and Contact us on Social Media @TheOfficialVKr");
               document.getElementById("loading").style = "display:none";
          }else {
          document.getElementById("loading").style = "display:none";
