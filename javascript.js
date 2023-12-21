@@ -15,7 +15,7 @@ function openbox() {
 let downloadBtn = document.getElementById("downloadBtn");
 downloadBtn.addEventListener("click", () => {
     // Show loading
-    showLoading();
+    openbox();
 
     // Get input URL
     let myurl = document.getElementById("inputUrl").value;
