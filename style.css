@@ -1,333 +1,178 @@
-@import url('https://fonts.googleapis.com/css2?family=Stoke&display=swap');
-
-/* Basic CSS */
-* {
-   margin: 0;
-   padding: 0;
-   list-style: none;
-   text-decoration: none;
-   box-sizing: border-box;
-   transition: all 0.45s ease;
-   font-family: 'Stoke', serif;
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
 }
 
-/* SHADOW Class to Use anywhere */
-.shadow {
-   box-shadow: rgba(0, 0, 0, 0.79) 3px 5px 10px, rgba(0, 0, 0, 0.79) 3px 5px 10px, inset rgba(255, 255, 255, 0.49) 3px 5px 10px;
-}
-
-.shadow:active {
-   box-shadow: none;
-}
-
-/* NavBar And Header CSS */
 header {
-   z-index: 9999;
-   display: flex;
-   justify-content: space-between;
-   width: calc(100% - 0px);
-   height: auto;
-   align-items: center;
-   padding: 3px 6px 10px;
-   box-shadow: rgba(0, 0, 0, 0.29) 20px 3px 8px, rgba(0, 0, 0, 0.29) 20px 3px 8px, inset rgba(35, 35, 35, 0.29) 5px 3px 8px;
+    background-color: #333;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
 }
 
-header img {
-   width: 50px;
-   height: 50px;
-   border-radius: 50%;
-   border: 2px solid white;
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-header nav ul {
-   display: flex;
+nav li {
+    display: inline;
+    margin-right: 20px;
 }
 
-header nav ul li {
-   padding: 8px 20px;
-   background-color: red;
-   margin: 0 5px;
-   border-radius: 6px;
-   color: white;
-   font-weight: 600;
-   cursor: pointer;
-}
-
-.navMenu {
-   display: none;
-}
-
-.menu {
-   width: 50px;
-   height: 50px;
-   position: relative;
-   display: grid;
-   place-items: center;
-   cursor: pointer;
-   margin: 0 3px;
-}
-
-.menu span {
-   width: 100%;
-   height: 7px;
-   background: rgb(173, 19, 19);
-}
-
-#menu {
-   display: none;
-}
-
-#menu:checked~nav {
-   left: 0px;
-}
-
-/* Body, Footer, Download CSS */
-#wrapper {
-   width: 100vw;
-   height: auto;
-   display: flex;
-   justify-content: center;
-   flex-direction: column;
-   align-items: center;
-   position: relative;
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 #form {
-   display: flex;
-   width: calc(100% - 16px);
-   height: 40px;
-   padding: 5px;
-   margin: 15px 3px;
-   box-shadow: 12px 10px 18px #544141, 12px 10px 8px rgba(0, 0, 0, 0.28);
+    text-align: center;
+    margin: 10px 0;
 }
 
-#form #inputUrl {
-   flex: 1;
-   outline: none;
-   border: none;
-   padding: 3px 6px;
-   font-weight: 700;
-   font-size: 1rem;
+#inputUrl {
+    padding: 10px;
+   min-width:100%; /* Full width input */
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#form #downloadBtn {
-   outline: none;
-   border: none;
-   padding: 3px 6px;
-   font-weight: 700;
-   font-size: 1rem;
-   cursor: pointer;
-   background-color: red;
-   color: white;
+#downloadBtn {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    width:100%;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
 }
 
-#container {
-   text-align: center;
-   min-height: 200px;
-   display: none;
-   position: relative;
-   overflow: hidden;
-   margin: 10px 35px;
-   box-shadow: 0px 0px 28px #efd261, 0px 0px 28px rgba(0, 0, 0, 0.18);
+#downloadBtn:hover {
+    background-color: #0056b3;
 }
 
 #loading {
-   position: absolute;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   background: rgba(0, 0, 0, 0.9);
-   display: none;
-   z-index: 999999;
+    text-align: center;
+    display: none;
+    margin-top: 20px;
 }
 
 #loading p {
-   text-align: center;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   font-size: 30px;
-   font-weight: 700;
-   height: 100%;
-   color: white;
+    font-weight: bold;
+    font-size: 38px;
+    color: #333;
 }
 
-#dots {
-   animation: dots 1s infinite;
+#container {
+    display: none;
+    text-align: center;
+    margin: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
 }
 
-#thumb img {
-   width: 90vw;
-   height: 400px;
-   display: flex;
-   margin: 0 auto;
+#thumb img{
+    width: 100%;
+    height: 300px;
+}
+.dlbtns{
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    width:auto;
+    margin: 5px;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+.centerV {
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+.wave {
+  width: 5px;
+  height: 100px;
+  background: linear-gradient(45deg, red, #fff);
+  margin: 10px;
+  animation: wave 1s linear infinite;
+  border-radius: 20px;
+}
+.wave:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.wave:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.wave:nth-child(4) {
+  animation-delay: 0.3s;
+}
+.wave:nth-child(5) {
+  animation-delay: 0.4s;
+}
+.wave:nth-child(6) {
+  animation-delay: 0.5s;
+}
+.wave:nth-child(7) {
+  animation-delay: 0.6s;
+}
+.wave:nth-child(8) {
+  animation-delay: 0.7s;
+}
+.wave:nth-child(9) {
+  animation-delay: 0.8s;
+}
+.wave:nth-child(10) {
+  animation-delay: 0.9s;
 }
 
-#title h1 {
-   padding: 0 10px;
+@keyframes wave {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
 }
 
-#description h3 {
-   padding: 0 10px;
+
+
+/* Add more styling as needed */
+
+/* Responsive styles for smaller screens */
+@media only screen and (max-width: 600px) {
+    #inputUrl {
+        width: 100%;
+    }
+
+    nav {
+        display: block;
+        text-align: center;
+    }
+
+    nav li {
+        display: block;
+        margin: 10px 0;
+    }
 }
-
-#description details {
-   font-size: 25px;
-   font-weight: 400;
-}
-
-#uploader,
-#duration,
-#extractor {
-   font-size: 30px;
-   display: inline-block;
-   opacity: 0.68;
-   padding: 0 10px;
-   margin-bottom: 10px;
-}
-
-#download {
-   text-align: center;
-   display: grid;
-   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-   grid-row-gap: 10px;
-   grid-column-gap: 5px;
-   margin: 8px auto;
-}
-
-.dlbtn {
-   width: 100%;
-   padding: 15px;
-   background-color: red;
-   color: white;
-}
-
-.dlbtns {
-   color: #fff;
-   font-weight: bolder;
-   width: 95%;
-   padding: 15px;
-   margin: 0 5px;
-   box-shadow: 0px 0px 8px blue, 0px 0px 8px rgba(0, 0, 0, 0.18);
-   background: red;
-}
-
-#downloadURL {
-   margin: 0 5px;
-   box-shadow: 0px 0px 8px red, 0px 0px 8px rgba(0, 0, 0, 0.18);
-}
-
-#content {
-   padding: 10px;
-   text-align: center;
-}
-
-#content h2 {
-   font-size: 25px;
-}
-
-hr {
-   margin: 10px auto;
-   border: 4px solid red;
-}
-
-footer {
-   position: fixed;
-   bottom: 0%;
-   width: 100%;
-   display: grid;
-   place-items: center;
-   font-weight: 700;
-   font-size: 16px;
-   color: white;
-   height: 30px;
-   background: rgb(159, 89, 89);
-}
-
-/* MEDIA Queries */
-@media only screen and (max-width: 520px) {
-   .navMenu {
-      display: block;
-   }
-
-   header {
-      position: sticky;
-      top: 0%;
-      background: #fff;
-   }
-
-   header nav {
-      position: fixed;
-      top: 62px;
-      left: -500px;
-      background: white;
-      width: 80%;
-      height: calc(100% - 92px);
-      padding: 30px;
-      border-bottom-right-radius: 30px;
-      box-shadow: rgba(0, 0, 0, 0.49) 20px 3px 18px, rgba(0, 0, 0, 0.49) 20px 3px 18px, inset rgba(35, 35, 35, 0.49) 5px 3px 8px;
-   }
-
-   header nav ul {
-      flex-direction: column;
-      width: 100%;
-   }
-
-   header nav ul li {
-      margin: 15px 0;
-   }
-}
-
-@media only screen and (max-width: 390px) {
-   #form {
-      flex-direction: column;
-      margin-bottom: 40px;
-   }
-
-   #inputUrl {
-      margin: 0px auto;
-      width: 100%;
-   }
-
-   #downloadBtn {
-      margin: 10px auto;
-      width: 100%;
-   }
-
-   hr {
-      margin-top: 20px;
-   }
-}
-
-/* ANIMATION */
-@keyframes dots {
-   0% {
-      transform: translateY(10);
-      font-size: 5px;
-   }
-
-   20% {
-      transform: translateY(20);
-      font-size: 10px;
-   }
-
-   40% {
-      transform: translateY(20);
-      font-size: 15px;
-   }
-
-   60% {
-      transform: translateY(20);
-      font-size: 20px;
-   }
-
-   80% {
-      transform: translateY(20);
-      font-size: 25px;
-   }
-
-   100% {
-      transform: translateY(20);
-      font-size: 30px;
-   }
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
 }
