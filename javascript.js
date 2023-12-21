@@ -1,11 +1,15 @@
 // VKrDownloader
 
 // Loading function
-function showLoading() {
+// Example debugging in JavaScript
+function openbox() {
+    console.log("openbox function called");
     let loading = document.getElementById("loading");
-    console.log("click");
-    loading.style.display = "initial";
+    console.log("loading element:", loading);
+    loading.style = "display: initial";
 }
+
+// Add similar console.log statements in other parts of your code
 
 // Event listener for download button
 let downloadBtn = document.getElementById("downloadBtn");
