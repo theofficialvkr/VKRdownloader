@@ -42,14 +42,14 @@ $.ajax({
               document.getElementById("loading").style = "display:none";
          }else {
          document.getElementById("loading").style = "display:none";
-         let vidTitle = obj.title;
-         let vidId = obj.id;
-         let vidThumb = obj.thumbnail;
-         let vidDescription = obj.description;
-         let vidUploader = obj.uploader;
-         let vidDuration = obj.duration;
-         let vidExtractor = obj.extractor;
-         let vidUrl = obj.url;
+         let vidTitle = obj.data.title;
+         let vidId = obj.data.id;
+         let vidThumb = obj.data.thumbnail;
+         let vidDescription = obj.data.description;
+         let vidUploader = obj.data.uploader;
+         let vidDuration = obj.data.duration;
+         let vidExtractor = obj.data.extractor;
+         let vidUrl = obj.data.url;
          let thumbV = document.getElementById("thumb");
          let titleV = document.getElementById("title");
          let descriptionV = document.getElementById("description");
@@ -117,9 +117,9 @@ if (match && match[2].length == 11) {
          else if(obj.formats)
          {
         downloadV.innerHTML = ""; 
-         for (var i = 0; i< obj.formats.length; i++) 
+         for (var i = 0; i< obj.length; i++) 
          {
-let myParam = " - " +getParameterByName('itag',obj.formats[i].url);
+let myParam = " - " +getParameterByName('itag',obj.dl[i].url);
 let bgcol = '';
 if (myParam == " - 17") { 
 bgcol = "green";
@@ -153,7 +153,7 @@ bgcol = "#3800ff";
 if (myParam == " - 600") { 
 bgcol = "#3800ff";
 }
-downloadV.innerHTML += "<a href='"+obj.formats[i].url+"'><button style='background:"+bgcol+"' class='dlbtns'>"+obj.formats[i].quality + myParam+"</button></a>";
+downloadV.innerHTML += "<a href='"+obj.dl[i].url+"'><button style='background:"+bgcol+"' class='dlbtns'>"+obj.dl[i].quality + myParam+"</button></a>";
          
          }
          }      
