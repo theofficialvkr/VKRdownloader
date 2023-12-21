@@ -1,217 +1,128 @@
-    //VKrDownloader
-//Loading 
-function openbox(){
-         // let container = document.getElementById("container");
-         let loading = document.getElementById("loading");
-         console.log("click");
-         loading.style = "display:initial";
+// VKrDownloader - Video Downloader Script
+// Handles the functionality of the video downloader
+
+// Function to handle the "Download" button click
+function openbox() {
+    // Display the loading section
+    document.getElementById("loading").style.display = "initial";
 }
-         let myurl = document.getElementById("inputUrl");
-         let downloadBtn = document.getElementById("downloadBtn");
-         downloadBtn.addEventListener("click", () =>{        
- //Loading 
-document.getElementById("loading").style = "display:initial";
-var myParamV = myurl.value;
-  function getParameterByName(name, url) {
+
+// Event listener for the "Download" button
+document.getElementById("downloadBtn").addEventListener("click", function () {
+    // Display the loading section
+    document.getElementById("loading").style.display = "initial";
+
+    // Get the input URL value
+    var inputUrl = document.getElementById("inputUrl").value;
+
+    // AJAX request to retrieve video information
+    $.ajax({
+        url: "https://theofficialvkr.xyz/data/trial.php?vkr=" + inputUrl,
+        type: "GET",
+        async: true,
+        crossDomain: true,
+        dataType: 'json',
+        jsonp: true,
+        cache: true,
+        success: function (data) {
+            // Handle successful response
+            handleSuccessResponse(data);
+        }
+    });
+});
+
+// Function to handle successful AJAX response
+function handleSuccessResponse(data) {
+    // Display or hide elements based on the received data
+    document.getElementById("container").style.display = "block";
+    document.getElementById("loading").style.display = "none";
+
+    // Check if the data is empty
+    if (!$.trim(data)) {
+        alert("Issue: Unable to get download link. Please check the URL and contact us on Social Media @TheOfficialVKr");
+        document.getElementById("loading").style.display = "none";
+    } else {
+        // Extract video information from the data
+        const vidTitle = data.title;
+        const vidThumb = data.thumbnail;
+        const vidDescription = data.description;
+        const vidUploader = data.uploader;
+        const vidDuration = data.duration;
+        const vidExtractor = data.extractor;
+        const vidUrl = data.url;
+
+        // Update HTML elements with video information
+        updateElement("thumb", vidThumb ? `<img src='${getThumbnail(vidUrl, vidThumb)}' width='300px'>` : "<img src='logo.png' width='300px'>");
+        updateElement("title", vidTitle ? `<h1>${vidTitle}</h1>` : "");
+        document.title = vidTitle ? `Download ${vidTitle} VKrDownloader` : "Download VKrDownloader";
+        updateElement("description", vidDescription ? `<h3><details> <summary>View Description</summary>${vidDescription}</details></h3>` : "");
+        updateElement("uploader", vidUploader ? `<h5>${vidUploader}</h5>` : "");
+        updateElement("duration", vidDuration ? `<h5>${vidDuration}</h5>` : "");
+        updateElement("extractor", vidExtractor ? `<h5>${vidExtractor}</h5>` : "");
+
+        // Generate and display download buttons
+        generateDownloadButtons(vidUrl, vidThumb, data);
+    }
+}
+
+// Function to update HTML element content
+function updateElement(elementId, content) {
+    document.getElementById(elementId).innerHTML = content;
+}
+
+// Function to generate download buttons
+function generateDownloadButtons(vidUrl, vidThumb, data) {
+    const downloadV = document.getElementById("download");
+    downloadV.innerHTML = "";
+
+    if (data.entries) {
+        updateElement("downloadURL", `<a href='${data.entries[0].url}'><button class='dlbtn'>Download Video</button></a>`);
+    } else if (data.formats || data.medias) {
+        const formats = data.formats || data.medias;
+
+        for (let i = 0; i < formats.length; i++) {
+            const myParam = ` - ${getParameterByName('itag', formats[i].url)}`;
+            const bgcol = getBackgroundColor(myParam);
+
+            downloadV.innerHTML += `<a href='${formats[i].url}'><button style='background:${bgcol}' class='dlbtns'>${formats[i].ext + myParam}</button></a>`;
+        }
+    } else {
+        alert("Server Down due to Too Many Requests. Please contact us on Social Media @TheOfficialVKr");
+        document.getElementById("container").style.display = "none";
+        location.href = "https://vkrfork.vercel.app/data/download.php?vkr=" + inputUrl;
+    }
+}
+
+// Function to get the thumbnail URL based on the video source
+function getThumbnail(vidUrl, vidThumb) {
+    const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = vidUrl.match(regExp);
+
+    return (match && match[2].length === 11) ? `https://i.ytimg.com/vi/${match[2]}/sddefault.jpg` : vidThumb;
+}
+
+// Function to get the background color for download buttons
+function getBackgroundColor(myParam) {
+    const greenFormats = [" - 17", " - 18", " - 22"];
+    const blueFormats = [" - 139", " - 140", " - 141", " - 249", " - 250", " - 251", " - 599", " - 600"];
+
+    if (greenFormats.includes(myParam)) {
+        return "green";
+    } else if (blueFormats.includes(myParam)) {
+        return "#3800ff";
+    } else {
+        return "red";
+    }
+}
+
+// Function to get a parameter by name from a URL
+function getParameterByName(name, url) {
     name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
+    const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+    const results = regex.exec(url);
+
     if (!results) return '.';
     if (!results[2]) return '';
+
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
-if(myParamV){
-$.ajax({
-    url:"https://theofficialvkr.xyz/data/trial.php?vkr="+myParamV,
-    type:"GET",
-    async:true,
-    crossDomain:true,
-    dataType: 'json',
-    jsonp:true,
-    cache:true,
-  success: function(data){   
-         const obj = data;         
-        document.getElementById("container").style = "display:block";
-        document.getElementById("loading").style = "display:none";
-         
-        
- // Define 
-
-        if (!$.trim(data)){ 
-              alert("issue:1 - Unable To Get Download Link Please Check URL and Contact us on Social Media @TheOfficialVKr");
-              document.getElementById("loading").style = "display:none";
-         }else {
-         document.getElementById("loading").style = "display:none";
-         let vidTitle = obj.title;
-         let vidId = obj.id;
-         let vidThumb = obj.thumbnail;
-         let vidDescription = obj.description;
-         let vidUploader = obj.uploader;
-         let vidDuration = obj.duration;
-         let vidExtractor = obj.extractor;
-         let vidUrl = obj.url;
-         let thumbV = document.getElementById("thumb");
-         let titleV = document.getElementById("title");
-         let descriptionV = document.getElementById("description");
-         let uploaderV = document.getElementById("uploader");
-         let durationV = document.getElementById("duration");
-         let extractorV = document.getElementById("extractor");
-         let urlV = document.getElementById("downloadURL");
-         let downloadV = document.getElementById("download");
-        
- // Checking That Object is Exist Or Not
-var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-var match = myParamV.match(regExp);
-if (match && match[2].length == 11) {
-  VTHUMB = "https://i.ytimg.com/vi/"+match[2]+"/sddefault.jpg";
-} else {
-  VTHUMB = vidThumb;
-}
-         if(vidThumb)
-         {
-         thumbV.innerHTML = "<img src='"+VTHUMB+"' width='300px'>";
-         }else {
-         thumbV.innerHTML = "<img src='logo.png' width='300px'>";
-         }
-         if(vidTitle)
-         {
-         titleV.innerHTML = "<h1>"+vidTitle+"</h1>";
-         document.title  = "Download "+vidTitle+" VKrDownloader";
-         }
-         if(vidDescription)
-         {
-         descriptionV.innerHTML = "<h3><details> <summary>View Description</summary>"+vidDescription+"</details></h3>";
-         }
-         if(vidUploader)
-         {
-         uploaderV.innerHTML = "<h5>"+vidUploader+"</h5>";
-         }
-         if(vidDuration)
-         {
-         durationV.innerHTML = "<h5>"+vidDuration+"</h5>";
-         }
-         if(vidExtractor)
-         {
-         extractorV.innerHTML = "<h5>"+vidExtractor+"</h5>";
-         
-         }
-         
-         if(vidUrl)
-         {
-        urlV.innerHTML = "";
-         urlV.innerHTML = "<a href='"+vidUrl+"'><button class='dlbtn'>Video</button></a>";
-         if(vidThumb)
-         {
-
-            urlV.innerHTML += "<a href='"+VTHUMB+"'><button class='dlbtn'>Download Thumbnail </button></a>";
-         }
-         }  
-         
-         if(obj.entries)
-         {
-         urlV.innerHTML = ""; 
-         urlV.innerHTML += "<a href='"+obj.entries[0].url+"'><button class='dlbtn'>Download Video</button></a>";
-         
-         }
-         
-         else if(obj.formats)
-         {
-        downloadV.innerHTML = ""; 
-         for (var i = 0; i< obj.formats.length; i++) 
-         {
-let myParam = " - " +getParameterByName('itag',obj.formats[i].url);
-let bgcol = '';
-if (myParam == " - 17") { 
-bgcol = "green";
-} 
-if (myParam == " - 18") { 
-bgcol = "green";
-}
-if (myParam == " - 22") { 
-bgcol = "green";
-}    
-if (myParam == " - 139") { 
-bgcol = "#3800ff";
-} 
-if (myParam == " - 140") { 
-bgcol = "#3800ff";
-}
-if (myParam == " - 141") { 
-bgcol = "#3800ff";
-}if (myParam == " - 249") { 
-bgcol = "#3800ff";
-} 
-if (myParam == " - 250") { 
-bgcol = "#3800ff";
-}
-if (myParam == " - 251") { 
-bgcol = "#3800ff";
-} 
-if (myParam == " - 599") { 
-bgcol = "#3800ff";
-}
-if (myParam == " - 600") { 
-bgcol = "#3800ff";
-}
-downloadV.innerHTML += "<a href='"+obj.formats[i].url+"'><button style='background:"+bgcol+"' class='dlbtns'>"+obj.formats[i].ext + myParam+"</button></a>";
-         
-         }
-         }      
-         else if(obj.medias)
-         {
-
-        downloadV.innerHTML = ""; 
-         for (var i = 0; i< obj.medias.length; i++) 
-         {
-let myParam = " - " + getParameterByName('itag',obj.medias[i].url);
-let bgcol = '';
-if (myParam == " - 17") { 
-bgcol = "green";
-} 
-if (myParam == " - 18") { 
-bgcol = "green";
-}
-if (myParam == " - 22") { 
-bgcol = "green";
-}    
-if (myParam == " - 139") { 
-bgcol = "#3800ff";
-} 
-if (myParam == " - 140") { 
-bgcol = "#3800ff";
-}
-if (myParam == " - 141") { 
-bgcol = "#3800ff";
-}if (myParam == " - 249") { 
-bgcol = "#3800ff";
-} 
-if (myParam == " - 250") { 
-bgcol = "#3800ff";
-}
-if (myParam == " - 251") { 
-bgcol = "#3800ff";
-} 
-if (myParam == " - 599") { 
-bgcol = "#3800ff";
-}
-if (myParam == " - 600") { 
-bgcol = "#3800ff";
-}
-downloadV.innerHTML += "<a href='"+obj.medias[i].url+"'><button style='background:"+bgcol+"' class='dlbtns'>"+obj.medias[i].ext + myParam+"</button></a>";
-         
-         }
-         }
-         else 
-         { 
-         alert("2 -Server Down due to Too Many Requests please Contact us on Social Media @TheOfficialVKr");
-         document.getElementById("container").style = "display:none";
-         location.href="https://vkrfork.vercel.app/data/download.php?vkr="+myParam;
-         }
-         
-        
-            
-         }
-         
-     }})
-}
-});
