@@ -153,7 +153,7 @@ bgcol = "#3800ff";
 if (myParam == " - 600") { 
 bgcol = "#3800ff";
 }
-downloadV.innerHTML += "<a href='"+obj.formats[i].url+"'><button style='background:"+bgcol+"' class='dlbtns'>"+obj.formats[i].quality + myParam+"</button></a>";
+downloadV.innerHTML += "<a href='"+obj.formats[i].url+"'><button style='background:"+bgcol+"' class='dlbtns'>"+obj.formats[i].format + myParam+"</button></a>";
          
          }
          }      
@@ -197,7 +197,7 @@ bgcol = "#3800ff";
 if (myParam == " - 600") { 
 bgcol = "#3800ff";
 }
-downloadV.innerHTML += "<a href='"+obj.medias[i].url+"'><button style='background:"+bgcol+"' class='dlbtns'>"+obj.medias[i].quality + myParam+"</button></a>";
+downloadV.innerHTML += "<a href='"+obj.medias[i].url+"'><button style='background:"+bgcol+"' class='dlbtns'>"+obj.medias[i].format + myParam+"</button></a>";
          
          }
          }
