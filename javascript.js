@@ -22,7 +22,7 @@ document.getElementById("downloadBtn").addEventListener("click", function () {
 // Function to fetch video information
 function fetchVideoInformation(inputUrl) {
     // AJAX request to retrieve video information
-    fetch("/server/api/getJson.php?vkr=" + inputUrl)
+    fetch("https://vkrfork.vercel.app/server/api/getJson.php?vkr=" + inputUrl)
         .then(response => response.json())
         .then(data => handleSuccessResponse(data))
         .catch(error => {
