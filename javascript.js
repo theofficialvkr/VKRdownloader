@@ -15,22 +15,21 @@ document.getElementById("downloadBtn").addEventListener("click", function () {
     // Get the input URL value
     var inputUrl = document.getElementById("inputUrl").value;
 
-    // Fetch video information
-    fetchVideoInformation(inputUrl);
-});
-
-// Function to fetch video information
-function fetchVideoInformation(inputUrl) {
     // AJAX request to retrieve video information
-    fetch("https://vkrfork.vercel.app/server/api/getJson.php?vkr=" + inputUrl)
-        .then(response => response.json())
-        .then(data => handleSuccessResponse(data))
-        .catch(error => {
-            console.error("Error fetching video information:", error);
-            alert("Error fetching video information. Please try again.");
-            document.getElementById("loading").style.display = "none";
-        });
-}
+    $.ajax({
+        url: "https://theofficialvkr.xyz/data/trial.php?vkr=" + inputUrl,
+        type: "GET",
+        async: true,
+        crossDomain: true,
+        dataType: 'json',
+        jsonp: true,
+        cache: true,
+        success: function (data) {
+            // Handle successful response
+            handleSuccessResponse(data);
+        }
+    });
+});
 
 // Function to handle successful AJAX response
 function handleSuccessResponse(data) {
@@ -38,19 +37,22 @@ function handleSuccessResponse(data) {
     document.getElementById("container").style.display = "block";
     document.getElementById("loading").style.display = "none";
 
-    // Check if the data is empty or contains an error
-    if (data.data && data.data.status === "00") {
+    // Check if the data is empty
+    if (!$.trim(data)) {
+        alert("Issue: Unable to get download link. Please check the URL and contact us on Social Media @TheOfficialVKr");
+        document.getElementById("loading").style.display = "none";
+    } else {
         // Extract video information from the data
-        const vidTitle = decodeURIComponent(data.data.title).replace(/[^\w\s]/gi, ' ');;
-        const vidThumb = data.data.thumb;
-        const vidDescription = data.data.description;
-        const vidUploader = data.data.source;
-        const vidDuration = data.data.duration;
-        const vidExtractor = data.data.status;
-        const vidUrl = inputUrl;
+        const vidTitle = data.title;
+        const vidThumb = data.thumbnail;
+        const vidDescription = data.description;
+        const vidUploader = data.uploader;
+        const vidDuration = data.duration;
+        const vidExtractor = data.extractor;
+        const vidUrl = data.url;
 
         // Update HTML elements with video information
-        updateElement("thumb", vidThumb ? `<img src='${vidThumb}' width='300px'>` : "<img src='logo.png' width='300px'>");
+        updateElement("thumb", vidThumb ? `<img src='${getThumbnail(vidUrl, vidThumb)}' width='300px'>` : "<img src='logo.png' width='300px'>");
         updateElement("title", vidTitle ? `<h1>${vidTitle}</h1>` : "");
         document.title = vidTitle ? `Download ${vidTitle} VKrDownloader` : "Download VKrDownloader";
         updateElement("description", vidDescription ? `<h3><details> <summary>View Description</summary>${vidDescription}</details></h3>` : "");
@@ -59,28 +61,7 @@ function handleSuccessResponse(data) {
         updateElement("extractor", vidExtractor ? `<h5>${vidExtractor}</h5>` : "");
 
         // Generate and display download buttons
-        generateDownloadButtons(vidUrl, data);
-    } else {
-        alert("Issue: Unable to get download link. Please check the URL and contact us on Social Media @TheOfficialVKr");
-        document.getElementById("loading").style.display = "none";
-    }
-}
-
-// Function to generate download buttons
-function generateDownloadButtons(vidUrl, data) {
-    const downloadV = document.getElementById("download");
-    downloadV.innerHTML = "";
-
-    for (let i = 0; i < Object.keys(data).length; i++) {
-        const key = "dl" + i;
-        const dlItem = data[key];
-
-        if (dlItem && dlItem.format) {
-            const myParam = dlItem.format;
-            const bgcol = getBackgroundColor(myParam);
-console.log(dlItem.format);
-            downloadV.innerHTML += `<a href='${dlItem.url}'><button style='background:${bgcol}' class='dlbtns'>Download ${dlItem.format + ' ' + dlItem.ext}</button></a>`;
-        }
+        generateDownloadButtons(vidUrl, vidThumb, data);
     }
 }
 
@@ -89,10 +70,41 @@ function updateElement(elementId, content) {
     document.getElementById(elementId).innerHTML = content;
 }
 
+// Function to generate download buttons
+function generateDownloadButtons(vidUrl, vidThumb, data) {
+    const downloadV = document.getElementById("download");
+    downloadV.innerHTML = "";
+
+    if (data.entries) {
+        updateElement("downloadURL", `<a href='${data.entries[0].url}'><button class='dlbtn'>Download Video</button></a>`);
+    } else if (data.formats || data.medias) {
+        const formats = data.formats || data.medias;
+
+        for (let i = 0; i < formats.length; i++) {
+            const myParam = ` - ${getParameterByName('itag', formats[i].url)}`;
+            const bgcol = getBackgroundColor(myParam);
+
+            downloadV.innerHTML += `<a href='${formats[i].url}'><button style='background:${bgcol}' class='dlbtns'>${formats[i].ext + myParam}</button></a>`;
+        }
+    } else {
+        alert("Server Down due to Too Many Requests. Please contact us on Social Media @TheOfficialVKr");
+        document.getElementById("container").style.display = "none";
+        location.href = "https://vkrfork.vercel.app/data/download.php?vkr=" + inputUrl;
+    }
+}
+
+// Function to get the thumbnail URL based on the video source
+function getThumbnail(vidUrl, vidThumb) {
+    const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = vidUrl.match(regExp);
+
+    return (match && match[2].length === 11) ? `https://i.ytimg.com/vi/${match[2]}/sddefault.jpg` : vidThumb;
+}
+
 // Function to get the background color for download buttons
 function getBackgroundColor(myParam) {
-    const greenFormats = ["17", "18", "22"];
-    const blueFormats = ["139", "140", "141", "249", "250", "251", "599", "600"];
+    const greenFormats = [" - 17", " - 18", " - 22"];
+    const blueFormats = [" - 139", " - 140", " - 141", " - 249", " - 250", " - 251", " - 599", " - 600"];
 
     if (greenFormats.includes(myParam)) {
         return "green";
