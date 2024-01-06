@@ -17,7 +17,7 @@ document.getElementById("downloadBtn").addEventListener("click", function () {
 
     // AJAX request to retrieve video information
     $.ajax({
-        url: "https://vkrfork.vercel.app/server/serverVKR?vkr=" + inputUrl,
+        url: "https://theofficialvkr.xyz/data/trial.php?vkr=" + inputUrl,
         type: "GET",
         async: true,
         crossDomain: true,
