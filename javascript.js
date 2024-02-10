@@ -44,11 +44,11 @@ function handleSuccessResponse(data) {
     } else {
         // Extract video information from the data
         const vidTitle = data.data.title;
-        const vidThumb = data.data.thumbnail;
+        const vidThumb = data.data.thumb;
         const vidDescription = data.data.description;
-        const vidUploader = data.data.uploader;
+        const vidUploader = data.data.sourcr;
         const vidDuration = data.data.data.duration;
-        const vidExtractor = data.data.extractor;
+        const vidExtractor = data.data.source;
         const vidUrl = data.data.url;
 
         // Update HTML elements with video information
