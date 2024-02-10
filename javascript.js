@@ -38,7 +38,7 @@ function handleSuccessResponse(data) {
     document.getElementById("loading").style.display = "none";
 
     // Check if the data is empty
-    if (!$.trim(data)) {
+    if (!$.trim(data.data)) {
         alert("Issue: Unable to get download link. Please check the URL and contact us on Social Media @TheOfficialVKr");
         document.getElementById("loading").style.display = "none";
     } else {
@@ -77,7 +77,7 @@ function generateDownloadButtons(vidUrl, vidThumb, data) {
 
     if (data.entries) {
         updateElement("downloadURL", `<a href='${data.entries[0].url}'><button class='dlbtn'>Download Video</button></a>`);
-    } else if (data.data.formats || data.medias) {
+    } else if (data.formats || data.medias) {
         const formats = data.formats || data.medias;
 
         for (let i = 0; i < formats.length; i++) {
