@@ -61,7 +61,7 @@ function handleSuccessResponse(data) {
         updateElement("extractor", vidExtractor ? `<h5>${vidExtractor}</h5>` : "");
 
         // Generate and display download buttons
-        generateDownloadButtons(vidUrl, vidThumb, data);
+        generateDownloadButtons(vidUrl, vidThumb, data.data);
     }
 }
 
@@ -77,8 +77,8 @@ function generateDownloadButtons(vidUrl, vidThumb, data) {
 
     if (data.entries) {
         updateElement("downloadURL", `<a href='${data.entries[0].url}'><button class='dlbtn'>Download Video</button></a>`);
-    } else if (data.data.formats || data.data.medias) {
-        const formats = data.data.formats || data.data.medias;
+    } else if (data.data.formats || data.medias) {
+        const formats = data.formats || data.medias;
 
         for (let i = 0; i < formats.length; i++) {
             const myParam = ` - ${getParameterByName('itag', formats[i].url)}`;
