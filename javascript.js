@@ -72,7 +72,7 @@ function generateDownloadButtons(data) {
     for (let i = 0; i <= 40; i++) {
         if (data["dl" + i] && data["dl" + i].url) {
             const downloadUrl = data["dl" + i].url;
-            const bgColor = getBackgroundColor(downloadUrl);
+            const bgColor = getBackgroundColor(getParameterByName("itag",$downloadUrl);
             const videoTitle = data.data.title || "Video " + i;
             downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtn' style='background:${bgColor}'>${videoTitle}</button></a>`;
         }
