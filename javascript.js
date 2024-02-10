@@ -70,11 +70,11 @@ function generateDownloadButtons(data) {
     downloadV.innerHTML = "";
 
     for (let i = 0; i <= 40; i++) {
-        if (data["dl" + i] && data["dl" + i].url) {
-            const downloadUrl = data["dl" + i].url;
-            const bgColor = getBackgroundColor(getParameterByName("itag",$downloadUrl);
-            const videoTitle = data.data.title || "Video " + i;
-            downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtn' style='background:${bgColor}'>${videoTitle}</button></a>`;
+        if (data["dl" + i] && data["dl" + i]["url"]) {
+            const downloadUrl = data["dl" + i]["url"];
+            //const bgColor = getBackgroundColor(getParameterByName("itag",$downloadUrl);
+            const videoFrmt = data["dl" + i]["format"] ;
+            downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtn' style='background:${bgColor}'>${videoFrmt}</button></a>`;
         }
     }
 
@@ -87,15 +87,15 @@ function generateDownloadButtons(data) {
 }
 
 // Function to get the background color for download buttons
-function getBackgroundColor(downloadUrl) {
+function getBackgroundColor(downloadUrlItag) {
     // Logic to determine button color based on video information
     // Example: return "green"; for some conditions, return "#3800ff"; for others, etc.
 const greenFormats = ["17", "18", "22"];
     const blueFormats = ["139", "140", "141", "249", "250", "251", "599", "600"];
 
-    if (greenFormats.includes(myParam)) {
+    if (greenFormats.includes(downloadUrlItag)) {
         return "green";
-    } else if (blueFormats.includes(myParam)) {
+    } else if (blueFormats.includes(downloadUrlItag)) {
         return "#3800ff";
     } else {
         return "red";
