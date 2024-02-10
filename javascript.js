@@ -23,13 +23,13 @@ document.getElementById("downloadBtn").addEventListener("click", function () {
         cache: true,
         success: function (data) {
             // Handle successful response
-            handleSuccessResponse(data);
+            handleSuccessResponse(data, inputUrl);
         }
     });
 });
 
 // Function to handle successful AJAX response
-function handleSuccessResponse(data) {
+function handleSuccessResponse(data, inputUrl) {
     // Display or hide elements based on the received data
     document.getElementById("container").style.display = "block";
     document.getElementById("loading").style.display = "none";
@@ -48,7 +48,7 @@ function handleSuccessResponse(data) {
         updateElement("duration", videoData.duration ? `<h5>${videoData.duration}</h5>` : "");
 
         // Generate and display download buttons
-        generateDownloadButtons(data);
+        generateDownloadButtons(data, inputUrl);
     } else {
         alert("Issue: Unable to get download link. Please check the URL and contact us on Social Media @TheOfficialVKr");
         document.getElementById("loading").style.display = "none";
@@ -61,18 +61,38 @@ function updateElement(elementId, content) {
 }
 
 // Function to generate download buttons
-function generateDownloadButtons(data) {
+function generateDownloadButtons(data, inputUrl) {
     const downloadV = document.getElementById("download");
     downloadV.innerHTML = "";
 
     for (let i = 0; i <= 40; i++) {
-        if (data["dl" + i]["url"]) {
-            const myParam = ` - ${getParameterByName('itag', formats[i]["url"])}`;
-            const bgcol = getBackgroundColor(myParam);
+        if (data["dl" + i] && data["dl" + i].url) {
             const downloadUrl = data["dl" + i].url;
-            downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtn'>Download Video ${i}</button></a>`;
+            downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtn' style='background:${bgcol}>Download Video ${i}</button></a>`;
         }
     }
+
+    // If no download links found
+    if (downloadV.innerHTML === "") {
+        alert("Server Down due to Too Many Requests. Please contact us on Social Media @TheOfficialVKr");
+        document.getElementById("container").style.display = "none";
+        location.href = "https://vkrfork.vercel.app/data/download.php?vkr=" + inputUrl;
+    }
+}
+
+// Function to get a parameter by name from a URL
+function getParameterByName(name, url) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+    const results = regex.exec(url);
+
+    if (!results) return '.';
+    if (!results[2]) return '';
+
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+// Function to get the background color for download buttons
 function getBackgroundColor(myParam) {
     const greenFormats = [" - 17", " - 18", " - 22"];
     const blueFormats = [" - 139", " - 140", " - 141", " - 249", " - 250", " - 251", " - 599", " - 600"];
@@ -85,22 +105,4 @@ function getBackgroundColor(myParam) {
         return "red";
     }
 }
-// Function to get a parameter by name from a URL
-function getParameterByName(name, url) {
-    name = name.replace(/[\[\]]/g, '\\$&');
-    const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-    const results = regex.exec(url);
-
-    if (!results) return '.';
-    if (!results[2]) return '';
-
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
-    // If no download links found
-    if (downloadV.innerHTML === "") {
-        alert("Server Down due to Too Many Requests. Please contact us on Social Media @TheOfficialVKr");
-        document.getElementById("container").style.display = "none";
-        location.href = "https://vkrfork.vercel.app/data/download.php?vkr=" + inputUrl;
-    }
-                      }
     
