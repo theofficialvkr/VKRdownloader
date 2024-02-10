@@ -43,13 +43,13 @@ function handleSuccessResponse(data) {
         document.getElementById("loading").style.display = "none";
     } else {
         // Extract video information from the data
-        const vidTitle = data.title;
-        const vidThumb = data.thumbnail;
-        const vidDescription = data.description;
-        const vidUploader = data.uploader;
-        const vidDuration = data.duration;
-        const vidExtractor = data.extractor;
-        const vidUrl = data.url;
+        const vidTitle = data.data.title;
+        const vidThumb = data.data.thumbnail;
+        const vidDescription = data.data.description;
+        const vidUploader = data.data.uploader;
+        const vidDuration = data.data.data.duration;
+        const vidExtractor = data.data.extractor;
+        const vidUrl = data.data.url;
 
         // Update HTML elements with video information
         updateElement("thumb", vidThumb ? `<img src='${getThumbnail(vidUrl, vidThumb)}' width='300px'>` : "<img src='logo.png' width='300px'>");
@@ -77,8 +77,8 @@ function generateDownloadButtons(vidUrl, vidThumb, data) {
 
     if (data.entries) {
         updateElement("downloadURL", `<a href='${data.entries[0].url}'><button class='dlbtn'>Download Video</button></a>`);
-    } else if (data.formats || data.medias) {
-        const formats = data.formats || data.medias;
+    } else if (data.data.formats || data.data.medias) {
+        const formats = data.data.formats || data.data.medias;
 
         for (let i = 0; i < formats.length; i++) {
             const myParam = ` - ${getParameterByName('itag', formats[i].url)}`;
