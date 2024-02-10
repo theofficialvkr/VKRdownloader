@@ -65,8 +65,8 @@ function generateDownloadButtons(data) {
     const downloadV = document.getElementById("download");
     downloadV.innerHTML = "";
 
-    for (let i = 0; i <= 10; i++) {
-        if (data["dl" + i]) {
+    for (let i = 0; i <= 40; i++) {
+        if (data["dl" + i]["url"]) {
             const downloadUrl = data["dl" + i].url;
             downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtn'>Download Video ${i}</button></a>`;
         }
