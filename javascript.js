@@ -45,7 +45,7 @@ function handleSuccessResponse(data, inputUrl) {
 
         // Update HTML elements with video information
         updateElement("thumb", videoData.thumb ? `<img src='${videoData.thumb}' width='300px'>` : "<img src='logo.png' width='300px'>");
-        updateElement("title", videoData.title ? `<h1>${videoData.title}</h1>` : "");
+        updateElement("title", videoData.title ? `<h1>${decodeURIComponent(videoData.title)}</h1>` : "");
         document.title = videoData.title ? `Download ${videoData.title} VKrDownloader` : "Download VKrDownloader";
         updateElement("description", videoData.description ? `<h3><details> <summary>View Description</summary>${videoData.description}</details></h3>` : "");
         updateElement("uploader", videoData.source ? `<h5>${videoData.source}</h5>` : "");
