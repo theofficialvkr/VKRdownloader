@@ -1,6 +1,3 @@
-// VKrDownloader - Video Downloader Script
-// Handles the functionality of the video downloader
-
 // Function to handle the "Download" button click
 function openbox() {
     // Display the loading section
@@ -38,30 +35,23 @@ function handleSuccessResponse(data) {
     document.getElementById("loading").style.display = "none";
 
     // Check if the data is empty
-    if (!$.trim(data.data)) {
-        alert("Issue: Unable to get download link. Please check the URL and contact us on Social Media @TheOfficialVKr");
-        document.getElementById("loading").style.display = "none";
-    } else {
+    if (data.data) {
         // Extract video information from the data
-        const vidTitle = data.data.title;
-        const vidThumb = data.data.thumb;
-        const vidDescription = data.data.description;
-        const vidUploader = data.data.sourcr;
-        const vidDuration = data.data.data.duration;
-        const vidExtractor = data.data.source;
-        const vidUrl = data.data.url;
+        const videoData = data.data;
 
         // Update HTML elements with video information
-        updateElement("thumb", vidThumb ? `<img src='${getThumbnail(vidUrl, vidThumb)}' width='300px'>` : "<img src='logo.png' width='300px'>");
-        updateElement("title", vidTitle ? `<h1>${vidTitle}</h1>` : "");
-        document.title = vidTitle ? `Download ${vidTitle} VKrDownloader` : "Download VKrDownloader";
-        updateElement("description", vidDescription ? `<h3><details> <summary>View Description</summary>${vidDescription}</details></h3>` : "");
-        updateElement("uploader", vidUploader ? `<h5>${vidUploader}</h5>` : "");
-        updateElement("duration", vidDuration ? `<h5>${vidDuration}</h5>` : "");
-        updateElement("extractor", vidExtractor ? `<h5>${vidExtractor}</h5>` : "");
+        updateElement("thumb", videoData.thumb ? `<img src='${videoData.thumb}' width='300px'>` : "<img src='logo.png' width='300px'>");
+        updateElement("title", videoData.title ? `<h1>${videoData.title}</h1>` : "");
+        document.title = videoData.title ? `Download ${videoData.title} VKrDownloader` : "Download VKrDownloader";
+        updateElement("description", videoData.description ? `<h3><details> <summary>View Description</summary>${videoData.description}</details></h3>` : "");
+        updateElement("uploader", videoData.source ? `<h5>${videoData.source}</h5>` : "");
+        updateElement("duration", videoData.duration ? `<h5>${videoData.duration}</h5>` : "");
 
         // Generate and display download buttons
-        generateDownloadButtons(vidUrl, vidThumb, data.data);
+        generateDownloadButtons(data);
+    } else {
+        alert("Issue: Unable to get download link. Please check the URL and contact us on Social Media @TheOfficialVKr");
+        document.getElementById("loading").style.display = "none";
     }
 }
 
@@ -71,34 +61,18 @@ function updateElement(elementId, content) {
 }
 
 // Function to generate download buttons
-function generateDownloadButtons(vidUrl, vidThumb, data) {
+function generateDownloadButtons(data) {
     const downloadV = document.getElementById("download");
     downloadV.innerHTML = "";
 
-    if (data.entries) {
-        updateElement("downloadURL", `<a href='${data.entries[0].url}'><button class='dlbtn'>Download Video</button></a>`);
-    } else if (data.formats || data.medias) {
-        const formats = data.formats || data.medias;
-
-        for (let i = 0; i < formats.length; i++) {
-            const myParam = ` - ${getParameterByName('itag', formats[i].url)}`;
-            const bgcol = getBackgroundColor(myParam);
-
-            downloadV.innerHTML += `<a href='${formats[i].url}'><button style='background:${bgcol}' class='dlbtns'>${formats[i].ext + myParam}</button></a>`;
-        }
+    if (data.dl0 && data.dl1) {
+        updateElement("downloadURL", `<a href='${data.dl0.url}'><button class='dlbtn'>Download Video</button></a>`);
+        downloadV.innerHTML += `<a href='${data.dl1.url}'><button class='dlbtn'>Download Video</button></a>`;
     } else {
         alert("Server Down due to Too Many Requests. Please contact us on Social Media @TheOfficialVKr");
         document.getElementById("container").style.display = "none";
         location.href = "https://vkrfork.vercel.app/data/download.php?vkr=" + inputUrl;
     }
-}
-
-// Function to get the thumbnail URL based on the video source
-function getThumbnail(vidUrl, vidThumb) {
-    const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    const match = vidUrl.match(regExp);
-
-    return (match && match[2].length === 11) ? `https://i.ytimg.com/vi/${match[2]}/sddefault.jpg` : vidThumb;
 }
 
 // Function to get the background color for download buttons
@@ -113,16 +87,4 @@ function getBackgroundColor(myParam) {
     } else {
         return "red";
     }
-}
-
-// Function to get a parameter by name from a URL
-function getParameterByName(name, url) {
-    name = name.replace(/[\[\]]/g, '\\$&');
-    const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-    const results = regex.exec(url);
-
-    if (!results) return '.';
-    if (!results[2]) return '';
-
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
