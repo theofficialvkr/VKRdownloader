@@ -64,29 +64,19 @@ function updateElement(elementId, content) {
 function generateDownloadButtons(data) {
     const downloadV = document.getElementById("download");
     downloadV.innerHTML = "";
-for (let i = 0; i <= 10; i++) {
+
+    for (let i = 0; i <= 10; i++) {
         if (data["dl" + i]) {
             const downloadUrl = data["dl" + i].url;
             downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtn'>Download Video ${i}</button></a>`;
         }
-}
-    else {
+    }
+
+    // If no download links found
+    if (downloadV.innerHTML === "") {
         alert("Server Down due to Too Many Requests. Please contact us on Social Media @TheOfficialVKr");
         document.getElementById("container").style.display = "none";
         location.href = "https://vkrfork.vercel.app/data/download.php?vkr=" + inputUrl;
     }
-}
-
-// Function to get the background color for download buttons
-function getBackgroundColor(myParam) {
-    const greenFormats = [" - 17", " - 18", " - 22"];
-    const blueFormats = [" - 139", " - 140", " - 141", " - 249", " - 250", " - 251", " - 599", " - 600"];
-
-    if (greenFormats.includes(myParam)) {
-        return "green";
-    } else if (blueFormats.includes(myParam)) {
-        return "#3800ff";
-    } else {
-        return "red";
-    }
-}
+                      }
+    
