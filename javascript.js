@@ -67,7 +67,7 @@ function generateDownloadButtons(data) {
 
     for (let i = 0; i <= 40; i++) {
         if (data["dl" + i]["url"]) {
-            const myParam = ` - ${getParameterByName('itag', formats[i].url)}`;
+            const myParam = ` - ${getParameterByName('itag', formats[i]["url"])}`;
             const bgcol = getBackgroundColor(myParam);
             const downloadUrl = data["dl" + i].url;
             downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtn'>Download Video ${i}</button></a>`;
@@ -84,6 +84,17 @@ function getBackgroundColor(myParam) {
     } else {
         return "red";
     }
+}
+// Function to get a parameter by name from a URL
+function getParameterByName(name, url) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+    const results = regex.exec(url);
+
+    if (!results) return '.';
+    if (!results[2]) return '';
+
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
     // If no download links found
     if (downloadV.innerHTML === "") {
