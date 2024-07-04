@@ -42,7 +42,6 @@ function handleSuccessResponse(data, inputUrl) {
     if (data.data) {
         // Extract video information from the data
         const videoData = data.data;
-
         // Update HTML elements with video information
         updateElement("thumb", videoData.thumbnail ? `<img src='${videoData.thumbnail}' width='300px'>` : "<img src='logo.png' width='300px'>");
         // Update HTML elements with video information
@@ -66,26 +65,30 @@ function updateElement(elementId, content) {
 }
 
 // Function to generate download buttons with dynamic colors and labels
-function generateDownloadButtons(data) {
+function generateDownloadButtons(videoData) {
     const downloadV = document.getElementById("download");
     downloadV.innerHTML = "";
-
-    for (let i = 0; i < 40; i++) { // Corrected loop condition
-        if (data["download"][i] && data["download"][i]["url"]) {
-            const downloadUrl = data["download"][i]["url"];
-            const bgColor = getBackgroundColor(getParameterByName("itag", downloadUrl));
-            const videoFrmt = data["download"][i]["format"];
-            const videoExt = data["download"][i]["extention"];
-            downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtns' style='background:${bgColor}'>${videoExt} ${videoFrmt}</button></a>`;
+    if (videoData.data) {
+        const videoDataD = videoData.data.downloads;
+console.log("3");
+        for (let i = 0; i < videoDataD.length; i++) { // Ensure correct loop condition
+            if (videoDataD[i] && videoDataD[i].url) {
+                const downloadUrl = videoDataD[i].url;
+                const bgColor = getBackgroundColor(getParameterByName("itag", downloadUrl));
+                const videoFrmt = videoDataD[i].format_id;
+                const videoExt = videoDataD[i].extension;
+                downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtns' style='background:${bgColor}'>${videoExt}  ` + getParameterByName("itag", downloadUrl) +` ${videoFrmt}</button></a>`;
+            }
         }
+    } else {
+        alert("No download links found or data structure is incorrect.");
+        document.getElementById("loading").style.display = "none";
     }
-
     // If no download links found
     if (downloadV.innerHTML === "") {
         alert("Server Down due to Too Many Requests. Please contact us on Social Media @TheOfficialVKr");
         document.getElementById("container").style.display = "none";
-        // Assuming 'inputUrl' is defined in a scope accessible here
-        location.href = "https://vkrfork.vercel.app/data/download.php?vkr=" + inputUrl;
+        location.href = "https://vkrdownloader.vercel.app/download.php?vkr=" + inputUrl;
     }
 }
 
