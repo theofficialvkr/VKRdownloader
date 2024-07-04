@@ -14,7 +14,7 @@ document.getElementById("downloadBtn").addEventListener("click", function () {
 
     // AJAX request to retrieve video information
     $.ajax({
-        url: "https://theofficialvkr.xyz/data/trial.php?vkr=" + inputUrl,
+        url: "https://vkrdownloader.vercel.app/server?vkr=" + inputUrl,
         type: "GET",
         async: true,
         crossDomain: true,
@@ -44,13 +44,13 @@ function handleSuccessResponse(data, inputUrl) {
         const videoData = data.data;
 
         // Update HTML elements with video information
-        updateElement("thumb", videoData.thumb ? `<img src='${videoData.thumb}' width='300px'>` : "<img src='logo.png' width='300px'>");
+        updateElement("thumb", videoData.thumbnail ? `<img src='${videoData.thumbnail}' width='300px'>` : "<img src='logo.png' width='300px'>");
         // Update HTML elements with video information
         updateElement("title", videoData.title ? `<h1>${videoData.title.replace(/\+/g, ' ')}</h1>` : "");
         document.title = videoData.title ? `Download ${videoData.title.replace(/\+/g, ' ')} VKrDownloader` : "Download VKrDownloader";
         updateElement("description", videoData.description ? `<h3><details> <summary>View Description</summary>${videoData.description}</details></h3>` : "");
-        updateElement("uploader", videoData.source ? `<h5>${videoData.source}</h5>` : "");
-        updateElement("duration", videoData.duration ? `<h5>${videoData.duration}</h5>` : "");
+        updateElement("uploader", videoData.url ? `<h5>${videoData.url}</h5>` : "");
+        updateElement("duration", videoData.size ? `<h5>${videoData.size}</h5>` : "");
 
         // Generate and display download buttons
         generateDownloadButtons(data);
@@ -70,12 +70,12 @@ function generateDownloadButtons(data) {
     const downloadV = document.getElementById("download");
     downloadV.innerHTML = "";
 
-    for (let i = 0; i <= 40; i++) {
-        if (data["dl" + i] && data["dl" + i]["url"]) {
-            const downloadUrl = data["dl" + i]["url"];
+    for (let i = 0; i < data["download"].length; i++) { // Corrected loop condition
+        if (data["download"][i] && data["download"][i]["url"]) {
+            const downloadUrl = data["download"][i]["url"];
             const bgColor = getBackgroundColor(getParameterByName("itag", downloadUrl));
-            const videoFrmt = data["dl" + i]["format"];
-            const videoExt = data["dl" + i]["ext"];
+            const videoFrmt = data["download"][i]["format"];
+            const videoExt = data["download"][i]["extention"];
             downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtns' style='background:${bgColor}'>${videoExt} ${videoFrmt}</button></a>`;
         }
     }
@@ -84,6 +84,7 @@ function generateDownloadButtons(data) {
     if (downloadV.innerHTML === "") {
         alert("Server Down due to Too Many Requests. Please contact us on Social Media @TheOfficialVKr");
         document.getElementById("container").style.display = "none";
+        // Assuming 'inputUrl' is defined in a scope accessible here
         location.href = "https://vkrfork.vercel.app/data/download.php?vkr=" + inputUrl;
     }
 }
