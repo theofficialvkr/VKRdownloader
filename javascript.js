@@ -70,7 +70,7 @@ function generateDownloadButtons(data) {
     const downloadV = document.getElementById("download");
     downloadV.innerHTML = "";
 
-    for (let i = 0; i < data["download"].length; i++) { // Corrected loop condition
+    for (let i = 0; i < 40; i++) { // Corrected loop condition
         if (data["download"][i] && data["download"][i]["url"]) {
             const downloadUrl = data["download"][i]["url"];
             const bgColor = getBackgroundColor(getParameterByName("itag", downloadUrl));
