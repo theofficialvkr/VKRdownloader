@@ -1,9 +1,8 @@
-# VKRdownloader 
+# VKrDownloader 
 
-Video Downloader by  Vijay Kumar ....
+Video Downloader by  Vijay Kumar @TheOfficialVKr ....
 
 # Download Video From YouTube , Facebook , Twitter , Instagram (reel) , TikTok , And  1000+ Other Website in All Audio / Video Quality ...
-<a href="https://www.buymeacoffee.com/theofficialvkr"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=theofficialvkr&button_colour=BD5FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"></a>
 
 # How To Install 
 
@@ -35,3 +34,7 @@ Instagram </a>
 Twitter </a><a href="https://facebook.com/theofficialvkr"> 
 Facebook </a><a href="https://t.me/theofficialvkr"> 
 Telegram </a>
+
+
+
+<a href="https://www.buymeacoffee.com/theofficialvkr"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=theofficialvkr&button_colour=BD5FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"></a>
