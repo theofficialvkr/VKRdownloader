@@ -4,6 +4,11 @@ Video Downloader by  Vijay Kumar @TheOfficialVKr ....
 
 # Download Video From YouTube , Facebook , Twitter , Instagram (reel) , TikTok , And  1000+ Other Website in All Audio / Video Quality ...
 
+
+# Check All Updates Here: 
+[https://github.com/theofficialvkr/VKRdownloader/blob/main/updates.md](https://github.com/theofficialvkr/VKRdownloader/blob/main/updates.md)
+
+
 # How To Install 
 
 Step 1 - Upload zip Files ...
