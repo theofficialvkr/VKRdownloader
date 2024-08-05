@@ -78,7 +78,8 @@ console.log("3");
                 const videoFrmt = videoDataD[i].format_id;
                 const videoExt = videoDataD[i].extension;
                 const videoSize = videoDataD[i].size;
-                downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtns' style='background:${bgColor}'>${videoFrmt}  ` + getParameterByName("itag", downloadUrl) +` ${videoSize}</button></a>`;
+                //`getParameterByName("itag", downloadUrl) +`
+                downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtns' style='background:${bgColor}'>${videoExt}   +  ${videoSize}</button></a>`;
             }
         }
     } else {
