@@ -77,7 +77,8 @@ console.log("3");
                 const bgColor = getBackgroundColor(getParameterByName("itag", downloadUrl));
                 const videoFrmt = videoDataD[i].format_id;
                 const videoExt = videoDataD[i].extension;
-                downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtns' style='background:${bgColor}'>${videoExt}  ` + getParameterByName("itag", downloadUrl) +` ${videoFrmt}</button></a>`;
+                const videoSize = videoDataD[i].size;
+                downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtns' style='background:${bgColor}'>${videoFrmt}  ` + getParameterByName("itag", downloadUrl) +` ${videoSize}</button></a>`;
             }
         }
     } else {
