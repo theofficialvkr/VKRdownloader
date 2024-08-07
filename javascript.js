@@ -67,6 +67,7 @@ function updateElement(elementId, content) {
 // Function to generate download buttons with dynamic colors and labels
 function generateDownloadButtons(videoData) {
     const downloadV = document.getElementById("download");
+    var inputUrL = document.getElementById("inputUrl").value;
     downloadV.innerHTML = "";
     if (videoData.data) {
         const videoDataD = videoData.data.downloads;
@@ -83,7 +84,7 @@ console.log("3");
         downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtns' style='background:${bgColor}'>${videoExt}  ${videoSize}</button></a>`;
 
         // Check if the URL is from YouTube
-        if (inputUrl.includes("youtube.com") || inputUrl.includes("youtu.be")) {
+        if (inputUrL.includes("youtube.com") || inputUrL.includes("youtu.be")) {
             // Add the additional button
             downloadV.innerHTML += `<a href='#video'><button class='dlbtns' style='background:${bgColor}'>YouTube Button</button></a>`;
         }
