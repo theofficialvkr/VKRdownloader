@@ -71,18 +71,25 @@ function generateDownloadButtons(videoData) {
     if (videoData.data) {
         const videoDataD = videoData.data.downloads;
 console.log("3");
-        for (let i = 0; i < videoDataD.length; i++) { // Ensure correct loop condition
-            if (videoDataD[i] && videoDataD[i].url) {
-                const downloadUrl = videoDataD[i].url;
-                const bgColor = getBackgroundColor(getParameterByName("itag", downloadUrl));
-                const videoFrmt = videoDataD[i].format_id;
-                const videoExt = videoDataD[i].extension;
-                const videoSize = videoDataD[i].size;
-                //`getParameterByName("itag", downloadUrl) +`
-                downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtns' style='background:${bgColor}'>${videoExt}  ${videoSize}</button></a>`;
-            }
+      for (let i = 0; i < videoDataD.length; i++) { 
+    if (videoDataD[i] && videoDataD[i].url) {
+        const downloadUrl = videoDataD[i].url;
+        const bgColor = getBackgroundColor(getParameterByName("itag", downloadUrl));
+        const videoFrmt = videoDataD[i].format_id;
+        const videoExt = videoDataD[i].extension;
+        const videoSize = videoDataD[i].size;
+        
+        // Original button
+        downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtns' style='background:${bgColor}'>${videoExt}  ${videoSize}</button></a>`;
+
+        // Check if the URL is from YouTube
+        if (inputUrl.includes("youtube.com") || inputUrl.includes("youtu.be")) {
+            // Add the additional button
+            downloadV.innerHTML += `<a href='#video'><button class='dlbtns' style='background:${bgColor}'>YouTube Button</button></a>`;
         }
-    } else {
+    }
+      }  
+     else {
         alert("No download links found or data structure is incorrect.");
         document.getElementById("loading").style.display = "none";
     }
