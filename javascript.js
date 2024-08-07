@@ -72,25 +72,25 @@ function generateDownloadButtons(videoData) {
     if (videoData.data) {
         const videoDataD = videoData.data.downloads;
         const source = videoData.data.source;
-      for (let i = 0; i < videoDataD.length; i++) { 
-    if (videoDataD[i] && videoDataD[i].url) {
-        const downloadUrl = videoDataD[i].url;
-        const bgColor = getBackgroundColor(getParameterByName("itag", downloadUrl));
-        const videoFrmt = videoDataD[i].format_id;
-        const videoExt = videoDataD[i].extension;
-        const videoSize = videoDataD[i].size;
-        
-        // Original button
-        downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtns' style='background:${bgColor}'>${videoExt}  ${videoSize}</button></a>`;
+        for (let i = 0; i < videoDataD.length; i++) { 
+            if (videoDataD[i] && videoDataD[i].url) {
+                const downloadUrl = videoDataD[i].url;
+                const bgColor = getBackgroundColor(getParameterByName("itag", downloadUrl));
+                const videoFrmt = videoDataD[i].format_id;
+                const videoExt = videoDataD[i].extension;
+                const videoSize = videoDataD[i].size;
+                
+                // Original button
+                downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtns' style='background:${bgColor}'>${videoExt} ${videoSize}</button></a>`;
 
-        // Check if the URL is from YouTube
-        if (source.includes("youtube.com") || source.includes("youtu.be")) {
-            // Add the additional button
-            downloadV.innerHTML += `<a href='#video'><button class='dlbtns' style='background:${bgColor}'>YouTube Button</button></a>`;
-        }
-    }
-      }  
-     else {
+                // Check if the URL is from YouTube
+                if (source.includes("youtube.com") || source.includes("youtu.be")) {
+                    // Add the additional button
+                    downloadV.innerHTML += `<a href='#video'><button class='dlbtns' style='background:${bgColor}'>YouTube Button</button></a>`;
+                }
+            }
+        }  
+    } else {
         alert("No download links found or data structure is incorrect.");
         document.getElementById("loading").style.display = "none";
     }
