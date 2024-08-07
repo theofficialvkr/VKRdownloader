@@ -77,6 +77,12 @@ function generateDownloadButtons(videoData) {
     if (videoData.data) {
         const videoDataD = videoData.data.downloads;
         const source = videoData.data.source;
+        
+                // Check if the URL is from YouTube
+                if (source.includes("youtube.com") || source.includes("youtu.be")) {
+                    // Add the additional button
+                    downloadV.innerHTML += `<a href='https://invidious.incogniweb.net/latest_version?id=`+getYouTubeVideoId(source)+`&itag=18&local=true'><button class='dlbtns' style='background:blue'>Download Video</button></a>`;
+                }
         for (let i = 0; i < videoDataD.length; i++) { 
             if (videoDataD[i] && videoDataD[i].url) {
                 const downloadUrl = videoDataD[i].url;
@@ -85,11 +91,6 @@ function generateDownloadButtons(videoData) {
                 const videoExt = videoDataD[i].extension;
                 const videoSize = videoDataD[i].size;
 
-                // Check if the URL is from YouTube
-                if (source.includes("youtube.com") || source.includes("youtu.be")) {
-                    // Add the additional button
-                    downloadV.innerHTML += `<a href='https://invidious.incogniweb.net/latest_version?id=`+getYouTubeVideoId(source)+`&itag=18&local=true'><button class='dlbtns' style='background:${bgColor}'>Download Video</button></a>`;
-                }
                 // Original button
                 downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtns' style='background:${bgColor}'>${videoExt} ${videoSize}</button></a>`;
 
