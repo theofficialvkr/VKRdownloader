@@ -66,6 +66,11 @@ function updateElement(elementId, content) {
 
 // Function to generate download buttons with dynamic colors and labels
 function generateDownloadButtons(videoData) {
+    function getYouTubeVideoId(url) {
+    const regExp = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = url.match(regExp);
+    return (match && match[1]) ? match[1] : null;
+    }
     const downloadV = document.getElementById("download");
 
     downloadV.innerHTML = "";
@@ -79,15 +84,15 @@ function generateDownloadButtons(videoData) {
                 const videoFrmt = videoDataD[i].format_id;
                 const videoExt = videoDataD[i].extension;
                 const videoSize = videoDataD[i].size;
-                
-                // Original button
-                downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtns' style='background:${bgColor}'>${videoExt} ${videoSize}</button></a>`;
 
                 // Check if the URL is from YouTube
                 if (source.includes("youtube.com") || source.includes("youtu.be")) {
                     // Add the additional button
-                    downloadV.innerHTML += `<a href='#video'><button class='dlbtns' style='background:${bgColor}'>YouTube Button</button></a>`;
+                    downloadV.innerHTML += `<a href='https://invidious.incogniweb.net/latest_version?id=`+getYouTubeVideoId(source)+`&itag=18&local=true'><button class='dlbtns' style='background:${bgColor}'>Download Video</button></a>`;
                 }
+                // Original button
+                downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtns' style='background:${bgColor}'>${videoExt} ${videoSize}</button></a>`;
+
             }
         }  
     } else {
