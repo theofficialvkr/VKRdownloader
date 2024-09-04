@@ -1,7 +1,7 @@
 // Utility function for debouncing user actions
 function debounce(func, delay) {
     let timeout;
-    return function(...args) {
+    return function (...args) {
         clearTimeout(timeout);
         timeout = setTimeout(() => func.apply(this, args), delay);
     };
@@ -10,16 +10,20 @@ function debounce(func, delay) {
 // Function to fetch video data with retries
 async function fetchVideoData(url, retries = 3) {
     try {
+        console.log(`Fetching data for URL: ${url}`); // Debugging: log the request URL
+
         const response = await $.ajax({
-            url: `https://vkrdownloader.vercel.app/server?vkr=${url}&_=${new Date().getTime()}`,
+            url: `https://vkrdownloader.vercel.app/server?vkr=${encodeURIComponent(url)}&_=${new Date().getTime()}`,
             type: "GET",
             dataType: 'json',
             cache: false,
             async: true,
             crossDomain: true,
         });
+        console.log('Data received:', response); // Debugging: log the received data
         return response;
     } catch (error) {
+        console.error('AJAX request failed:', error); // Debugging: log the error
         if (retries > 0) {
             console.warn(`Retrying... (${retries} attempts left)`);
             return fetchVideoData(url, retries - 1);
@@ -41,6 +45,7 @@ async function onDownloadClick() {
         handleSuccessResponse(data, inputUrl);
     } catch (error) {
         alert("Failed to retrieve video data. Please try again later.");
+        console.error('Error in onDownloadClick:', error); // Debugging: log the error
     } finally {
         document.getElementById("loading").style.display = "none";
         document.getElementById("downloadBtn").disabled = false;
@@ -66,33 +71,12 @@ function handleSuccessResponse(data, inputUrl) {
     updateElement("uploader", generateUploaderHtml(videoData.url));
     updateElement("duration", generateDurationHtml(videoData.size));
 
-    generateDownloadButtons(videoData);
+    generateDownloadButtons(videoData, inputUrl);
 }
 
-// Function to generate and display download buttons
-function generateDownloadButtons(videoData) {
-    const downloadContainer = document.getElementById("download");
-    downloadContainer.innerHTML = "";
-
-    const downloads = videoData.downloads;
-    const source = videoData.source;
-
-    if (isYouTubeUrl(source)) {
-        downloadContainer.innerHTML += createYouTubeDownloadButton(getYouTubeVideoId(source));
-    }
-
-    downloads.forEach(download => {
-        if (download.url) {
-            const buttonHtml = createDownloadButtonHtml(download.url, download.extension, download.size);
-            downloadContainer.innerHTML += buttonHtml;
-        }
-    });
-
-    if (downloadContainer.innerHTML === "") {
-        alert("No download links found or the server is down. Please try again later.");
-        document.getElementById("container").style.display = "none";
-        location.href = `https://vkrdownloader.vercel.app/download.php?vkr=${source}`;
-    }
+// Function to update HTML element content
+function updateElement(elementId, content) {
+    document.getElementById(elementId).innerHTML = content;
 }
 
 // Helper functions for generating HTML content
@@ -119,6 +103,43 @@ function generateUploaderHtml(url) {
 
 function generateDurationHtml(size) {
     return size ? `<h5>${size}</h5>` : "";
+}
+
+// Function to generate and display download buttons
+function generateDownloadButtons(videoData, inputUrl) {
+    const downloadContainer = document.getElementById("download");
+    downloadContainer.innerHTML = "";
+
+    const downloads = videoData.downloads;
+    const source = videoData.source;
+
+    if (isYouTubeUrl(source)) {
+        downloadContainer.innerHTML += createYouTubeDownloadButton(getYouTubeVideoId(source));
+    }
+
+    downloads.forEach(download => {
+        if (download.url) {
+            const buttonHtml = createDownloadButtonHtml(download.url, download.extension, download.size);
+            downloadContainer.innerHTML += buttonHtml;
+        }
+    });
+
+    // Adding the iframes for additional download options
+    downloadContainer.innerHTML += generateIframeHtml("mp3", source);
+    downloadContainer.innerHTML += generateIframeHtml("360", source);
+    downloadContainer.innerHTML += generateIframeHtml("720", source);
+    downloadContainer.innerHTML += generateIframeHtml("1080", source);
+
+    if (downloadContainer.innerHTML === "") {
+        alert("No download links found or the server is down. Please try again later.");
+        document.getElementById("container").style.display = "none";
+        location.href = `https://vkrdownloader.vercel.app/download.php?vkr=${inputUrl}`;
+    }
+}
+
+// Helper function to generate iframe HTML
+function generateIframeHtml(format, source) {
+    return `<iframe style="border:0;outline:none;width:100%;max-height:45px;height:45px !important;" src="https://vkrdownloader.vercel.app/server/dlbtn.php?q=${format}&vkr=${source}"></iframe>`;
 }
 
 // Helper function to determine YouTube URLs
@@ -159,4 +180,4 @@ function getParameterByName(name, url) {
     const results = regex.exec(url);
 
     return results ? decodeURIComponent(results[2].replace(/\+/g, ' ')) : null;
-        }
+    }
