@@ -59,7 +59,7 @@ function handleSuccessResponse(data, inputUrl) {
         const videoData = data.data;
 
         // Handle thumbnail with cache busting and HTTPS check
-        const thumbnailUrl = videoData.thumbnail ? videoData.thumbnail.replace(/^http:\/\//, 'https://') + "?_=" + new Date().getTime() : "logo.png";
+        const thumbnailUrl = videoData.thumbnail;
         updateElement("thumb", `<img src='${thumbnailUrl}' width='300px' loading='lazy' alt='Thumbnail'>`);
 
         updateElement("title", videoData.title ? `<h1>${videoData.title.replace(/\+/g, ' ')}</h1>` : "");
