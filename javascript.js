@@ -7,16 +7,15 @@ function openbox() {
 function debounce(func, wait) {
     let timeout;
     return function(...args) {
-        const context = this;
         clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(context, args), wait);
+        timeout = setTimeout(() => func.apply(this, args), wait);
     };
 }
 
 // Function to make an AJAX request with retry logic
 function makeRequest(inputUrl, retries = 3) {
     $.ajax({
-        url: "https://vkrdownloader.vercel.app/server?vkr=" + encodeURIComponent(inputUrl) + "&_=" + new Date().getTime(),
+        url: `https://vkrdownloader.vercel.app/server?vkr=${encodeURIComponent(inputUrl)}&_=${new Date().getTime()}`,
         type: "GET",
         cache: false,
         async: true,
@@ -61,7 +60,7 @@ function handleSuccessResponse(data, inputUrl) {
 
         // Handle thumbnail with cache busting and HTTPS check
         let thumbnailUrl = videoData.thumbnail ? videoData.thumbnail.replace(/^http:\/\//, 'https://') : "logo.png";
-
+        
         // Special handling for Instagram URLs
         if (thumbnailUrl.includes("instagram.com")) {
             thumbnailUrl = thumbnailUrl.split("?")[0] + "?_=" + new Date().getTime();
@@ -73,7 +72,7 @@ function handleSuccessResponse(data, inputUrl) {
 
         updateElement("title", videoData.title ? `<h1>${videoData.title.replace(/\+/g, ' ')}</h1>` : "");
         document.title = videoData.title ? `Download ${videoData.title.replace(/\+/g, ' ')} VKrDownloader` : "Download VKrDownloader";
-        updateElement("description", videoData.description ? `<h3><details> <summary>View Description</summary>${videoData.description}</details></h3>` : "");
+        updateElement("description", videoData.description ? `<h3><details><summary>View Description</summary>${videoData.description}</details></h3>` : "");
         updateElement("uploader", videoData.url ? `<h5>${videoData.url}</h5>` : "");
         updateElement("duration", videoData.size ? `<h5>${videoData.size}</h5>` : "");
 
@@ -104,22 +103,30 @@ function generateDownloadButtons(videoData) {
         const videoDataD = videoData.data.downloads;
         const source = videoData.data.source;
 
+        // Add YouTube specific button if applicable
         if (source.includes("youtube.com") || source.includes("youtu.be")) {
-            downloadV.innerHTML += `<a href='https://invidious.incogniweb.net/latest_version?id=` + getYouTubeVideoId(source) + `&itag=18&local=true'><button class='dlbtns' style='background:blue'>Download Video</button></a>`;
+            downloadV.innerHTML += `<a href='https://invidious.incogniweb.net/latest_version?id=${getYouTubeVideoId(source)}&itag=18&local=true'><button class='dlbtns' style='background:blue'>Download Video</button></a>`;
         }
 
-        for (let i = 0; i < videoDataD.length; i++) {
-            if (videoDataD[i] && videoDataD[i].url) {
-                const downloadUrl = videoDataD[i].url;
+        // Generate download buttons for available formats
+        videoDataD.forEach(download => {
+            if (download && download.url) {
+                const downloadUrl = download.url;
                 const bgColor = getBackgroundColor(getParameterByName("itag", downloadUrl));
-                const videoExt = videoDataD[i].extension;
-                const videoSize = videoDataD[i].size;
+                const videoExt = download.extension;
+                const videoSize = download.size;
 
                 downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtns' style='background:${bgColor}'>${videoExt} ${videoSize}</button></a>`;
             }
-        }
+        });
 
-        downloadV.innerHTML += `<iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=mp3&vkr=${source}'></iframe><iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=360&vkr=${source}'></iframe><iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=720&vkr=${source}'></iframe><iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=1080&vkr=${source}'></iframe>`;
+        // Add iframes for additional download options
+        downloadV.innerHTML += `
+            <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=mp3&vkr=${source}'></iframe>
+            <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=360&vkr=${source}'></iframe>
+            <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=720&vkr=${source}'></iframe>
+            <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=1080&vkr=${source}'></iframe>
+        `;
     } else {
         alert("No download links found or data structure is incorrect.");
         document.getElementById("loading").style.display = "none";
@@ -128,7 +135,7 @@ function generateDownloadButtons(videoData) {
     if (downloadV.innerHTML === "") {
         alert("Server Down due to Too Many Requests. Please contact us on Social Media @TheOfficialVKr");
         document.getElementById("container").style.display = "none";
-        location.href = "https://vkrdownloader.vercel.app/download.php?vkr=" + inputUrl;
+        location.href = `https://vkrdownloader.vercel.app/download.php?vkr=${encodeURIComponent(inputUrl)}`;
     }
 }
 
@@ -151,9 +158,9 @@ function getParameterByName(name, url) {
     name = name.replace(/[]/g, '\\$&');
     const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
     const results = regex.exec(url);
-
-    if (!results) return '.';
+    
+    if (!results) return '';
     if (!results[2]) return '';
 
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
+        }
