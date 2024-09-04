@@ -16,7 +16,7 @@ function debounce(func, wait) {
 // Function to make an AJAX request with retry logic
 function makeRequest(inputUrl, retries = 3) {
     $.ajax({
-        url: "https://vkrdownloader.vercel.app/server?vkr=" + inputUrl + "&_=" + new Date().getTime(),
+        url: "https://vkrdownloader.vercel.app/server?vkr=" + encodeURIComponent(inputUrl) + "&_=" + new Date().getTime(),
         type: "GET",
         cache: false,
         async: true,
@@ -60,7 +60,7 @@ function handleSuccessResponse(data, inputUrl) {
         const videoData = data.data;
 
         // Handle thumbnail with cache busting and HTTPS check
-        const thumbnailUrl = videoData.thumbnail ? videoData.thumbnail.replace("http://", "https://") + "?_=" + new Date().getTime() : "logo.png";
+        const thumbnailUrl = videoData.thumbnail ? videoData.thumbnail.replace(/^http:\/\//, 'https://') + "?_=" + new Date().getTime() : "logo.png";
         updateElement("thumb", `<img src='${thumbnailUrl}' width='300px' loading='lazy' alt='Thumbnail'>`);
 
         updateElement("title", videoData.title ? `<h1>${videoData.title.replace(/\+/g, ' ')}</h1>` : "");
