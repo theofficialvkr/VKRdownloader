@@ -3,5 +3,5 @@
 <li> Fixed YouTube downloading </li>
 <li> Added MP3 converting Button</li>
 <li> Added More button to download videos in different format</li>
-<li> Fix API error </li>
-<li> Fix Thumbnail </li>
+<li> Fix API error by retires</li>
+<li> Fix Thumbnail error </li>
