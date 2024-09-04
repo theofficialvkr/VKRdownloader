@@ -60,7 +60,15 @@ function handleSuccessResponse(data, inputUrl) {
         const videoData = data.data;
 
         // Handle thumbnail with cache busting and HTTPS check
-        const thumbnailUrl = videoData.thumbnail ? videoData.thumbnail.replace(/^http:\/\//, 'https://') + "?_=" + new Date().getTime() : "logo.png";
+        let thumbnailUrl = videoData.thumbnail ? videoData.thumbnail.replace(/^http:\/\//, 'https://') : "logo.png";
+
+        // Special handling for Instagram URLs
+        if (thumbnailUrl.includes("instagram.com")) {
+            thumbnailUrl = thumbnailUrl.split("?")[0] + "?_=" + new Date().getTime();
+        } else {
+            thumbnailUrl += "?_=" + new Date().getTime();
+        }
+
         updateElement("thumb", `<img src='${thumbnailUrl}' width='300px' loading='lazy' alt='Thumbnail'>`);
 
         updateElement("title", videoData.title ? `<h1>${videoData.title.replace(/\+/g, ' ')}</h1>` : "");
