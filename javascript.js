@@ -15,7 +15,7 @@ function debounce(func, wait) {
 // Function to make an AJAX request with retry logic
 function makeRequest(inputUrl, retries = 4) {
     $.ajax({
-        url: `https://vkrdownloader.vercel.app/server?vkr=${decodeURIComponent(inputUrl)}`,
+        url: `https://cors-tube.vercel.app/?url=https://vkrdownloader.vercel.app/server?vkr=${decodeURIComponent(inputUrl)}`,
         type: "GET",
         cache: false,
         async: true,
@@ -68,9 +68,9 @@ function handleSuccessResponse(data, inputUrl) {
         let vd0 = videoData.downloads[0].url;
         let vd1 = videoData.downloads[1].url;
         let vdsource = videoData.source;
-        updateElement("thumb", `<video style='background: black url(${thumbnailUrl}) center center/cover no-repeat; width:100%; height:500px;' loading='lazy' alt='Video'>
+        updateElement("thumb", `<video style='background: black url(${thumbnailUrl}) center center/cover no-repeat; width:100%; height:500px;' alt='Video' autoplay>
         <source src='https://invidious.darkness.services/latest_version?id=${getYouTubeVideoIds(vdsource)}&itag=18&local=true' type='video/mp4'>
-        <source src='https://invidious.incogniweb.net/latest_version?id=${getYouTubeVideoIds(vdsource)}&itag=18&local=true' type='video/mp4'>
+        <source src='https://cors-tube.vercel.app/?url=https://invidious.incogniweb.net/latest_version?id=${getYouTubeVideoIds(vdsource)}&itag=18&local=true' type='video/mp4'>
         <source src='${vd0}' type='video/mp4'>
         <source src='${vd1}' type='video/mp4'>
         <source src='https://cors-tube.vercel.app/?url=${vd0}' type='video/mp4'>
