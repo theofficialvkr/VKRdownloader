@@ -69,9 +69,11 @@ function handleSuccessResponse(data, inputUrl) {
         }
 
         if (vidURL) {
-            updateElement("thumb", `<div style="position: relative; display: inline-block; overflow: hidden;">
-                <video poster="${thumbnailUrl}" width="100%" style="border-radius: 30px; height:300px;" controls>
+            updateElement("thumb", `<div style="outline:none; border:none; position: relative; display: inline-block; overflow: hidden;">
+                <video style="bordet-radius:50px; outline:none; border:none; background: black url(${thumbnailUrl}) center center/cover no-repeat; height:500px;">
                     <source src="${decodeURIComponent(vidURL)}" type="video/mp4">
+                    <source src="${videoData.downloads[0].url}" type="video/mp4">
+                    <source src="${videoData.downloads[1].url}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>`);
@@ -80,7 +82,7 @@ function handleSuccessResponse(data, inputUrl) {
         updateElement("title", videoData.title ? `<h3>${videoData.title.replace(/\+/g, ' ')}</h3>` : "");
         document.title = videoData.title ? `Download ${videoData.title.replace(/\+/g, ' ')} VKrDownloader` : "Download VKrDownloader";
         updateElement("description", videoData.description ? `<h4><details><summary>View Description</summary>${videoData.description}</details></h4>` : "");
-        updateElement("uploader", videoData.url ? `<h5>${vidURL}</h5>` : "");
+        //updateElement("uploader", videoData.url ? `<h5>${videoData.url}</h5>` : "");
         updateElement("duration", videoData.size ? `<h5>${videoData.size}</h5>` : "");
 
         generateDownloadButtons(data);
@@ -128,10 +130,10 @@ function generateDownloadButtons(videoData) {
         });
         // Add iframes for additional download options
         downloadV.innerHTML += `
-            <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=mp3&vkr=${source}'></iframe>
-            <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=360&vkr=${source}'></iframe>
-            <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=720&vkr=${source}'></iframe>
-            <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=1080&vkr=${source}'></iframe>
+            <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=mp3&vkr=${source}'></iframe>
+            <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1)' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=360&vkr=${source}'></iframe>
+            <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1)' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=720&vkr=${source}'></iframe>
+            <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1)' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=1080&vkr=${source}'></iframe>
         `;
     } else {
         alert("No download links found or data structure is incorrect.");
