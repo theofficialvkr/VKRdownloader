@@ -67,7 +67,7 @@ function handleSuccessResponse(data, inputUrl) {
         updateElement("title", videoData.title ? `<h3>${videoData.title.replace(/\+/g, ' ')}</h3>` : "");
         document.title = videoData.title ? `Download ${videoData.title.replace(/\+/g, ' ')} VKrDownloader` : "Download VKrDownloader";
         updateElement("description", videoData.description ? `<h4><details><summary>View Description</summary>${videoData.description}</details></h4>` : "");
-       //updateElement("uploader", videoData.url ? `<h5>${videoData.downloads[0].url}</h5>` : "");
+       updateElement("uploader", videoData.url ? `<h5>${getYouTubeVideoId(inputUrl)}</h5>` : "");
         updateElement("duration", videoData.size ? `<h5>${videoData.size}</h5>` : "");
 
         generateDownloadButtons(data);
