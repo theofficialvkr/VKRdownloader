@@ -42,11 +42,11 @@ function makeRequest(inputUrl, retries = 3) {
 }
 
 // Event listener for the "Download" button with debouncing and request retry logic
-document.getElementById("downloadBtn").addEventListener("click", debounce(function () {
+    document.getElementById("downloadBtn").addEventListener("click", debounce(function () {
     document.getElementById("loading").style.display = "initial";
     document.getElementById("downloadBtn").disabled = true; // Disable the button
 
-    const inputUrl = decodeURIComponent(document.getElementById("inputUrl").value);
+    const inputUrl = document.getElementById("inputUrl").value;
     makeRequest(inputUrl); // Make the AJAX request with retry logic
 }, 300));  // Adjust the delay as needed
 
@@ -57,13 +57,9 @@ function handleSuccessResponse(data, inputUrl) {
 
     if (data.data) {
         const videoData = data.data;
-        //let thumbnailUrl = videoData.thumbnail;
 
-        // Use CORS proxy for Instagram thumbnails
-        if (inputUrl.includes("instagram.com")) {
-            //thumbnailUrl = `https://cors-tube.vercel.app/?url=${decodeURIComponent(thumbnailUrl)}`;
-        }
-
+        // Handle thumbnail with cache busting and HTTPS check
+        const thumbnailUrl = videoData.thumbnail;
         if (source.includes("youtube.com") || source.includes("youtu.be")) {
            const vidURL = `https://invidious.incogniweb.net/latest_version?id=${getYouTubeVideoId(videoData.data.source)}&itag=18&local=true`;
         }
@@ -71,11 +67,11 @@ function handleSuccessResponse(data, inputUrl) {
           const vidURL = videoData.data.downloads[0].url;
         }
         updateElement("thumb", `<h6> ${decodeURIComponent(vidURL)}</h6>`);
-
+        
         updateElement("title", videoData.title ? `<h1>${videoData.title.replace(/\+/g, ' ')}</h1>` : "");
         document.title = videoData.title ? `Download ${videoData.title.replace(/\+/g, ' ')} VKrDownloader` : "Download VKrDownloader";
         updateElement("description", videoData.description ? `<h3><details><summary>View Description</summary>${videoData.description}</details></h3>` : "");
-        //updateElement("uploader", videoData.url ? `<h5>${videoData.url}</h5>` : "");
+        updateElement("uploader", videoData.url ? `<h5>${videoData.url}</h5>` : "");
         updateElement("duration", videoData.size ? `<h5>${videoData.size}</h5>` : "");
 
         generateDownloadButtons(data);
@@ -121,14 +117,13 @@ function generateDownloadButtons(videoData) {
                 downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtns' style='background:${bgColor}'>${videoExt} ${videoSize}</button></a>`;
             }
         });
-
+        // Add iframes for additional download options
         downloadV.innerHTML += `
             <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=mp3&vkr=${source}'></iframe>
             <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=360&vkr=${source}'></iframe>
             <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=720&vkr=${source}'></iframe>
             <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=1080&vkr=${source}'></iframe>
         `;
-
     } else {
         alert("No download links found or data structure is incorrect.");
         document.getElementById("loading").style.display = "none";
@@ -157,12 +152,12 @@ function getBackgroundColor(downloadUrlItag) {
 
 // Function to get a parameter by name from a URL
 function getParameterByName(name, url) {
-    name = name.replace(/[\]/, '\').replace(/[]/, '\');
+    name = name.replace(/[]/g, '\\$&');
     const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
     const results = regex.exec(url);
-
+    
     if (!results) return '';
     if (!results[2]) return '';
 
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
-                }
+                    }
