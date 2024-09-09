@@ -47,12 +47,6 @@ document.getElementById("downloadBtn").addEventListener("click", debounce(functi
     document.getElementById("downloadBtn").disabled = true; // Disable the button
 
     const inputUrl = document.getElementById("inputUrl").value;
-    if (!inputUrl) {
-        alert("Please enter a valid URL.");
-        document.getElementById("loading").style.display = "none";
-        document.getElementById("downloadBtn").disabled = false; // Re-enable the button
-        return;
-    }
     makeRequest(inputUrl); // Make the AJAX request with retry logic
 }, 300));  // Adjust the delay as needed
 
@@ -63,35 +57,28 @@ function handleSuccessResponse(data, inputUrl) {
 
     if (data.data) {
         const videoData = data.data;
-        let vidURL = '';
+        let sources = videoData.source;
+        if (sources.includes("youtube.com") || sources.includes("youtu.be")) {
+            videoUrl = `https://invidious.incogniweb.net/latest_version?id=${getYouTubeVideoId(sources)}&itag=18&local=true`;
+        }else{
+        let videoUrl = videoData.downloads[0].url;
+        }
+        // Handle thumbnail with cache busting and HTTPS check
         const thumbnailUrl = videoData.thumbnail;
-
-        // Determine the video URL
-        if (videoData.source && (videoData.source.includes("youtube.com") || videoData.source.includes("youtu.be"))) {
-            vidURL = `https://invidious.incogniweb.net/latest_version?id=${getYouTubeVideoId(videoData.source)}&itag=18&local=true`;
-        } else if (videoData.downloads && videoData.downloads.length > 0) {
-            vidURL = videoData.downloads[0].url;
-        }
-
-        // Update element with video if a URL is found
-        if (vidURL) {
-            updateElement("thumb", `
-                <div style="outline:none; border:none; position: relative; display: inline-block; overflow: hidden;">
-                    <video style="border-radius:10px; outline:none; border:none; background: black url(${thumbnailUrl}) center center/cover no-repeat; height:500px; width:100%;" controls>
-                        <source src="${decodeURIComponent(vidURL)}" type="video/mp4">
-                        ${videoData.downloads.map(download => `<source src="${download.url}" type="video/mp4">`).join('')}
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            `);
-        } else {
-            alert("Video URL not found");
-        }
+        updateElement("thumb", `<div style="position: relative; display: inline-block; overflow: hidden;">
+                <video poster="${thumbnailUrl}" width="100%" style="border-radius: 30px; height:500px;" controls>
+                    <source src="${decodeURIComponent(videoUrl)}" type="video/mp4">
+                    <source src="${videoData.downloads[1].url}" type="video/mp4">
+                    <source src="${videoData.downloads[2].url}" type="video/mp4">
+                    <source src="https://cors-tube.vercel.app/?url=${videoData.downloads[0].url}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>`);
 
         updateElement("title", videoData.title ? `<h1>${videoData.title.replace(/\+/g, ' ')}</h1>` : "");
         document.title = videoData.title ? `Download ${videoData.title.replace(/\+/g, ' ')} VKrDownloader` : "Download VKrDownloader";
         updateElement("description", videoData.description ? `<h3><details><summary>View Description</summary>${videoData.description}</details></h3>` : "");
-        updateElement("uploader", videoData.url ? `<h5>${videoData.url}</h5>` : "");
+       // updateElement("uploader", videoData.url ? `<h5>${videoData.url}</h5>` : "");
         updateElement("duration", videoData.size ? `<h5>${videoData.size}</h5>` : "");
 
         generateDownloadButtons(data);
@@ -173,6 +160,12 @@ function getBackgroundColor(downloadUrlItag) {
 
 // Function to get a parameter by name from a URL
 function getParameterByName(name, url) {
-    const searchParams = new URLSearchParams(new URL(url).search);
-    return searchParams.get(name) || '';
-}
+    name = name.replace(/[]/g, '\\$&');
+    const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+    const results = regex.exec(url);
+    
+    if (!results) return '';
+    if (!results[2]) return '';
+
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+                }
