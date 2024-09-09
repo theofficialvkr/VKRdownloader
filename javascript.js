@@ -81,7 +81,7 @@ function handleSuccessResponse(data, inputUrl) {
         
         updateElement(thumb, `
             <div style="position: relative; display: inline-block; overflow: hidden;">
-                <video width="100" style="border-radius: 30px;" controls>
+                <video width="100%" style="border-radius: 30px; height:300px;" controls>
                     <source src="${decodeURIComponent(videoUrl)}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
