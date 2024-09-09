@@ -68,7 +68,7 @@ function handleSuccessResponse(data, inputUrl) {
         let vd0 = videoData.downloads[0].url;
         let vd1 = videoData.downloads[1].url;
         let vdsource = videoData.source;
-        updateElement("thumb", `<video style='background: black url(${thumbnailUrl}) center center/cover no-repeat; width:100%; height:500px;' alt='Video' autoplay control>
+        updateElement("thumb", `<video style='background: black url(${thumbnailUrl}) center center/cover no-repeat; width:100%; height:500px;' poster='${thumbnailUrl}' autoplay controls>
         <source src='https://invidious.darkness.services/latest_version?id=${getYouTubeVideoIds(vdsource)}&itag=18&local=true' type='video/mp4'>
         <source src='https://cors-tube.vercel.app/?url=https://invidious.incogniweb.net/latest_version?id=${getYouTubeVideoIds(vdsource)}&itag=18&local=true' type='video/mp4'>
         <source src='${vd0}' type='video/mp4'>
