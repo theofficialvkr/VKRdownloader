@@ -1,6 +1,6 @@
 // Function to handle the "Download" button click
 function openbox() {
-    document.getElementById("loading").style.display = "initial";
+    document.getElementById("loading").style.display = "block";
 }
 
 // Function to debounce the download button click event to avoid multiple rapid requests
@@ -15,13 +15,12 @@ function debounce(func, wait) {
 // Function to make an AJAX request with retry logic
 function makeRequest(inputUrl, retries = 3) {
     $.ajax({
-        url: `https://vkrdownloader.vercel.app/server?vkr=${decodeURIComponent(inputUrl)}`,
+        url: `https://vkrdownloader.vercel.app/server?vkr=${encodeURIComponent(inputUrl)}`,
         type: "GET",
         cache: false,
         async: true,
         crossDomain: true,
         dataType: 'json',
-        jsonp: true,
         success: function (data) {
             handleSuccessResponse(data, inputUrl);
         },
@@ -43,7 +42,7 @@ function makeRequest(inputUrl, retries = 3) {
 
 // Event listener for the "Download" button with debouncing and request retry logic
 document.getElementById("downloadBtn").addEventListener("click", debounce(function () {
-    document.getElementById("loading").style.display = "initial";
+    document.getElementById("loading").style.display = "block";
     document.getElementById("downloadBtn").disabled = true; // Disable the button
 
     const inputUrl = document.getElementById("inputUrl").value;
@@ -57,7 +56,6 @@ function handleSuccessResponse(data, inputUrl) {
 
     if (data.data) {
         const videoData = data.data;
-// Handle thumbnail with cache busting and HTTPS check
         let vidURL = '';
         const thumbnailUrl = videoData.thumbnail;
 
@@ -68,23 +66,19 @@ function handleSuccessResponse(data, inputUrl) {
         }
 
         if (vidURL) {
-       const thumbnailUrl = videoData.thumbnail;
-        //updateElement("thumb", `<img src='${thumbnailUrl}' width='300px' loading='lazy' alt='Thumbnail'>`);
-        updateElement("thumb", `<div style="outline:none; border:none; position: relative; display: inline-block; overflow: hidden;">
-                <video style="border-radius:50px; outline:none; border:none; background: black url(${thumbnailUrl}) center center/cover no-repeat; height:500px; width:100%;">
-                    <source src="${decodeURIComponent(vidURL)}" type="video/mp4">
-                    <source src="${videoData.downloads[0].url}" type="video/mp4">
-                    <source src="${videoData.downloads[1].url}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>`);
-            } else {
+            updateElement("thumb", `<div style="outline:none; border:none; position: relative; display: inline-block; overflow: hidden;">
+                    <video style="border-radius:50px; outline:none; border:none; background: black url(${thumbnailUrl}) center center/cover no-repeat; height:500px; width:100%;">
+                        <source src="${decodeURIComponent(vidURL)}" type="video/mp4">
+                        ${videoData.downloads.map(download => `<source src="${download.url}" type="video/mp4">`).join('')}
+                        Your browser does not support the video tag.
+                    </video>
+                </div>`);
+        } else {
             alert("Video URL not found");
         }
         updateElement("title", videoData.title ? `<h1>${videoData.title.replace(/\+/g, ' ')}</h1>` : "");
         document.title = videoData.title ? `Download ${videoData.title.replace(/\+/g, ' ')} VKrDownloader` : "Download VKrDownloader";
         updateElement("description", videoData.description ? `<h3><details><summary>View Description</summary>${videoData.description}</details></h3>` : "");
-      //  updateElement("uploader", videoData.url ? `<h5>${videoData.url}</h5>` : "");
         updateElement("duration", videoData.size ? `<h5>${videoData.size}</h5>` : "");
 
         generateDownloadButtons(data);
@@ -165,13 +159,10 @@ function getBackgroundColor(downloadUrlItag) {
 }
 
 // Function to get a parameter by name from a URL
-function getParameterByName(name, url) {
+function getParameterByName(name, url = window.location.href) {
     name = name.replace(/[]/g, '\\$&');
     const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
     const results = regex.exec(url);
-    
     if (!results) return '';
-    if (!results[2]) return '';
-
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-        }
+    return results[2] ? decodeURIComponent(results[2].replace(/\+/g, ' ')) : '';
+                                                                               }
