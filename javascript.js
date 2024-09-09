@@ -100,7 +100,7 @@ function handleSuccessResponse(data, inputUrl) {
         const videoId = getYouTubeVideoIds(videoSource);
 
         const videoHtml = `
-            <video style='background: black url(${thumbnailUrl}) center center/cover no-repeat; width:100%; height:500px; border-radius:50px;' 
+            <video style='background: black url(${thumbnailUrl}) center center/cover no-repeat; width:100%; height:500px; border-radius:20px;' 
                    poster='${thumbnailUrl}' autoplay controls playsinline>
                 <source src='https://invidious.darkness.services/latest_version?id=${videoId}&itag=18&local=true' type='video/mp4'>
                 <source src='https://cors-tube.vercel.app/?url=https://invidious.incogniweb.net/latest_version?id=${videoId}&itag=18&local=true' type='video/mp4'>
