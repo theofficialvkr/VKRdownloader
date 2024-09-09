@@ -64,8 +64,27 @@ function handleSuccessResponse(data, inputUrl) {
             thumbnailUrl = `https://cors-tube.vercel.app/?url=${decodeURIComponent(thumbnailUrl)}`;
         }
 
-        updateElement("thumb", `<img src='${decodeURIComponent(thumbnailUrl)}' width='300px' border-radius='30px' loading='lazy' alt='Thumbnail'>`);
-
+       // updateElement("thumb", `<img src='${decodeURIComponent(thumbnailUrl)}' width='300px' border-radius='30px' loading='lazy' alt='Thumbnail'>`);
+         // Ensure this is the correct video path
+if (source.includes("youtube.com") || source.includes("youtu.be")) {
+      const videoUrl = `https://invidious.incogniweb.net/latest_version?id=${getYouTubeVideoId(videoData.data.source)}&itag=18&local=true`;      
+}else{
+    const videoUrl = videoData.data.downloads[01].url;
+}
+        
+updateElement("thumb", `
+  <div style="position: relative; display: inline-block;">
+    <video width="300px" style="border-radius: 30px;" controls>
+      <source src="${decodeURIComponent(videoUrl)}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <a href="${decodeURIComponent(videoUrl)}" download>
+      <button style="width: 100%; margin-top: 10px; background-color: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+        Download
+      </button>
+    </a>
+  </div>
+`);
         updateElement("title", videoData.title ? `<h1>${videoData.title.replace(/\+/g, ' ')}</h1>` : "");
         document.title = videoData.title ? `Download ${videoData.title.replace(/\+/g, ' ')} VKrDownloader` : "Download VKrDownloader";
         updateElement("description", videoData.description ? `<h3><details><summary>View Description</summary>${videoData.description}</details></h3>` : "");
