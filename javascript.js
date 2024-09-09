@@ -57,28 +57,31 @@ function handleSuccessResponse(data, inputUrl) {
 
     if (data.data) {
         const videoData = data.data;
-        let sources = videoData.source;
-        if (sources.includes("youtube.com") || sources.includes("youtu.be")) {
-            videoUrl = `https://invidious.incogniweb.net/latest_version?id=${getYouTubeVideoId(sources)}&itag=18&local=true`;
-        }else{
-        let videoUrl = videoData.downloads[0].url;
+        let videoUrl = '';
+
+        // Determine the video URL
+        if (videoData.source && (videoData.source.includes("youtube.com") || videoData.source.includes("youtu.be"))) {
+            videoUrl = `https://invidious.incogniweb.net/latest_version?id=${getYouTubeVideoId(videoData.source)}&itag=18&local=true`;
+        } else if (videoData.downloads && videoData.downloads.length > 0) {
+            videoUrl = videoData.downloads[0].url;
         }
+
         // Handle thumbnail with cache busting and HTTPS check
         const thumbnailUrl = videoData.thumbnail;
-        updateElement("thumb", `<div style="position: relative; display: inline-block; overflow: hidden;">
+        updateElement("thumb", `
+            <div style="position: relative; display: inline-block; overflow: hidden;">
                 <video poster="${thumbnailUrl}" width="100%" style="border-radius: 30px; height:500px;" controls>
                     <source src="${decodeURIComponent(videoUrl)}" type="video/mp4">
-                    <source src="${videoData.downloads[1].url}" type="video/mp4">
-                    <source src="${videoData.downloads[2].url}" type="video/mp4">
+                    ${videoData.downloads.map(download => `<source src="${download.url}" type="video/mp4">`).join('')}
                     <source src="https://cors-tube.vercel.app/?url=${videoData.downloads[0].url}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-            </div>`);
+            </div>
+        `);
 
         updateElement("title", videoData.title ? `<h1>${videoData.title.replace(/\+/g, ' ')}</h1>` : "");
         document.title = videoData.title ? `Download ${videoData.title.replace(/\+/g, ' ')} VKrDownloader` : "Download VKrDownloader";
         updateElement("description", videoData.description ? `<h3><details><summary>View Description</summary>${videoData.description}</details></h3>` : "");
-       // updateElement("uploader", videoData.url ? `<h5>${videoData.url}</h5>` : "");
         updateElement("duration", videoData.size ? `<h5>${videoData.size}</h5>` : "");
 
         generateDownloadButtons(data);
@@ -160,7 +163,7 @@ function getBackgroundColor(downloadUrlItag) {
 
 // Function to get a parameter by name from a URL
 function getParameterByName(name, url) {
-    name = name.replace(/[]/g, '\\$&');
+    name = name.replace(/[\\]/g, '\\$&');
     const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
     const results = regex.exec(url);
     
@@ -168,4 +171,4 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
 
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
-                }
+        }
