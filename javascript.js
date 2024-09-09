@@ -42,7 +42,7 @@ function makeRequest(inputUrl, retries = 3) {
 }
 
 // Event listener for the "Download" button with debouncing and request retry logic
-    document.getElementById("downloadBtn").addEventListener("click", debounce(function () {
+document.getElementById("downloadBtn").addEventListener("click", debounce(function () {
     document.getElementById("loading").style.display = "initial";
     document.getElementById("downloadBtn").disabled = true; // Disable the button
 
@@ -59,15 +59,24 @@ function handleSuccessResponse(data, inputUrl) {
         const videoData = data.data;
 
         // Handle thumbnail with cache busting and HTTPS check
+        let vidURL = '';
         const thumbnailUrl = videoData.thumbnail;
-        if (source.includes("youtube.com") || source.includes("youtu.be")) {
-           const vidURL = `https://invidious.incogniweb.net/latest_version?id=${getYouTubeVideoId(videoData.data.source)}&itag=18&local=true`;
+
+        if (videoData.source && (videoData.source.includes("youtube.com") || videoData.source.includes("youtu.be"))) {
+            vidURL = `https://invidious.incogniweb.net/latest_version?id=${getYouTubeVideoId(videoData.source)}&itag=18&local=true`;
+        } else if (videoData.downloads && videoData.downloads.length > 0) {
+            vidURL = videoData.downloads[0].url;
         }
-        else{
-          const vidURL = videoData.data.downloads[0].url;
+
+        if (vidURL) {
+            updateElement("thumb", `<div style="position: relative; display: inline-block; overflow: hidden;">
+                <video width="100%" style="border-radius: 30px; height:300px;" controls>
+                    <source src="${decodeURIComponent(vidURL)}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>`);
         }
-        updateElement("thumb", `<h6> ${decodeURIComponent(vidURL)}</h6>`);
-        
+
         updateElement("title", videoData.title ? `<h1>${videoData.title.replace(/\+/g, ' ')}</h1>` : "");
         document.title = videoData.title ? `Download ${videoData.title.replace(/\+/g, ' ')} VKrDownloader` : "Download VKrDownloader";
         updateElement("description", videoData.description ? `<h3><details><summary>View Description</summary>${videoData.description}</details></h3>` : "");
@@ -152,12 +161,12 @@ function getBackgroundColor(downloadUrlItag) {
 
 // Function to get a parameter by name from a URL
 function getParameterByName(name, url) {
-    name = name.replace(/[]/g, '\\$&');
+    name = name.replace(/[[]]/g, '\\$&');
     const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
     const results = regex.exec(url);
-    
+
     if (!results) return '';
     if (!results[2]) return '';
 
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
-                    }
+}
