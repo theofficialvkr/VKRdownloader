@@ -59,7 +59,7 @@ function handleSuccessResponse(data, inputUrl) {
         const videoData = data.data;
 
         // Handle thumbnail with cache busting and HTTPS check
-        const thumbnailUrl = videoData.thumbnail;
+        const thumbnailUrl = "https://cors-tube.vercel.app/?url=" + videoData.thumbnail;
         updateElement("thumb", `<img src='${decodeURIComponent(thumbnailUrl)}' width='300px' border-radius='30px' loading='lazy' alt='Thumbnail'>`);
 
         updateElement("title", videoData.title ? `<h1>${videoData.title.replace(/\+/g, ' ')}</h1>` : "");
