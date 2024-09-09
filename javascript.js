@@ -60,12 +60,14 @@ function handleSuccessResponse(data, inputUrl) {
 
         // Handle thumbnail with cache busting and HTTPS check
         const thumbnailUrl = videoData.thumbnail;
-        updateElement("thumb", `<img src='${thumbnailUrl}' style='width:300px; border-radius:40px; height:400px;' loading='lazy' alt='Thumbnail'>`);
+        let vd0 = videoData.downloads[0].url;
+        let vd1 = videoData.downloads[1].url;
+        updateElement("thumb", `<video poster='${thumbnailUrl}' style='width:100%; border-radius:40px; height:400px;' loading='lazy' alt='Thumbnail'><source src='${vd0}'><source src='${vd1}'><source src='https://cors-tube.vercel.app/?url=${vd0}'></video>`);
 
-        updateElement("title", videoData.title ? `<h1>${videoData.title.replace(/\+/g, ' ')}</h1>` : "");
+        updateElement("title", videoData.title ? `<h3>${videoData.title.replace(/\+/g, ' ')}</h3>` : "");
         document.title = videoData.title ? `Download ${videoData.title.replace(/\+/g, ' ')} VKrDownloader` : "Download VKrDownloader";
-        updateElement("description", videoData.description ? `<h3><details><summary>View Description</summary>${videoData.description}</details></h3>` : "");
-        updateElement("uploader", videoData.url ? `<h5>${videoData.downloads[0].url}</h5>` : "");
+        updateElement("description", videoData.description ? `<h4><details><summary>View Description</summary>${videoData.description}</details></h4>` : "");
+       //updateElement("uploader", videoData.url ? `<h5>${videoData.downloads[0].url}</h5>` : "");
         updateElement("duration", videoData.size ? `<h5>${videoData.size}</h5>` : "");
 
         generateDownloadButtons(data);
