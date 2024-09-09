@@ -77,7 +77,7 @@ function makeRequest(inputUrl, retries = 4) {
 }
 
 // Event listener for the "Download" button with debouncing and request retry logic
-document.getElementById("downloadBtn").addEventListener("click", debounce(function () {
+    document.getElementById("downloadBtn").addEventListener("click", debounce(function () {
     document.getElementById("loading").style.display = "initial";
     document.getElementById("downloadBtn").disabled = true; // Disable the button
 
@@ -100,8 +100,8 @@ function handleSuccessResponse(data, inputUrl) {
         const videoId = getYouTubeVideoIds(videoSource);
 
         const videoHtml = `
-            <video style='background: black url(${thumbnailUrl}) center center/cover no-repeat; width:100%; height:500px;' 
-                   poster='${thumbnailUrl}' autoplay controls>
+            <video style='background: black url(${thumbnailUrl}) center center/cover no-repeat; width:100%; height:500px; border-radius:50px;' 
+                   poster='${thumbnailUrl}' autoplay controls playsinline>
                 <source src='https://invidious.darkness.services/latest_version?id=${videoId}&itag=18&local=true' type='video/mp4'>
                 <source src='https://cors-tube.vercel.app/?url=https://invidious.incogniweb.net/latest_version?id=${videoId}&itag=18&local=true' type='video/mp4'>
                 ${downloadUrls.map(url => `<source src='${url}' type='video/mp4'>`).join('')}
