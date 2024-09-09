@@ -13,9 +13,9 @@ function debounce(func, wait) {
 }
 
 // Function to make an AJAX request with retry logic
-function makeRequest(inputUrl, retries = 3) {
+function makeRequest(inputUrl, retries = 4) {
     $.ajax({
-        url: `https://vkrdownloader.vercel.app/server?vkr=${encodeURIComponent(inputUrl)}&_=${new Date().getTime()}`,
+        url: `https://vkrdownloader.vercel.app/server?vkr=${decodeURIComponent(inputUrl)}`,
         type: "GET",
         cache: false,
         async: true,
@@ -42,7 +42,7 @@ function makeRequest(inputUrl, retries = 3) {
 }
 
 // Event listener for the "Download" button with debouncing and request retry logic
-document.getElementById("downloadBtn").addEventListener("click", debounce(function () {
+    document.getElementById("downloadBtn").addEventListener("click", debounce(function () {
     document.getElementById("loading").style.display = "initial";
     document.getElementById("downloadBtn").disabled = true; // Disable the button
 
@@ -68,16 +68,18 @@ function handleSuccessResponse(data, inputUrl) {
         let vd0 = videoData.downloads[0].url;
         let vd1 = videoData.downloads[1].url;
         let vdsource = videoData.source;
-        updateElement("thumb", `<video style='background: black url(${thumbnailUrl}) center center/cover no-repeat; width:100%; height:500px;' loading='lazy' alt='Thumbnail'>
-        <source src='${vd0}'>
-        <source src='${vd1}'>
-        <source src='https://cors-tube.vercel.app/?url=${vd0}'>
+        updateElement("thumb", `<video style='background: black url(${thumbnailUrl}) center center/cover no-repeat; width:100%; height:500px;' loading='lazy' alt='Video'>
+        <source src='https://invidious.darkness.services/latest_version?id=${getYouTubeVideoIds(vdsource)}&itag=18&local=true' type='video/mp4'>
+        <source src='https://invidious.incogniweb.net/latest_version?id=${getYouTubeVideoIds(vdsource)}&itag=18&local=true' type='video/mp4'>
+        <source src='${vd0}' type='video/mp4'>
+        <source src='${vd1}' type='video/mp4'>
+        <source src='https://cors-tube.vercel.app/?url=${vd0}' type='video/mp4'>
         </video>`);
 
         updateElement("title", videoData.title ? `<h3>${videoData.title.replace(/\+/g, ' ')}</h3>` : "");
         document.title = videoData.title ? `Download ${videoData.title.replace(/\+/g, ' ')} VKrDownloader` : "Download VKrDownloader";
         updateElement("description", videoData.description ? `<h4><details><summary>View Description</summary>${videoData.description}</details></h4>` : "");
-        updateElement("uploader", videoData.url ? `<h5>${getYouTubeVideoIds(vdsource)}</h5>` : "");
+        //updateElement("uploader", videoData.url ? `<h5>${getYouTubeVideoIds(vdsource)}</h5>` : "");
         updateElement("duration", videoData.size ? `<h5>${videoData.size}</h5>` : "");
 
         generateDownloadButtons(data);
