@@ -46,7 +46,7 @@ document.getElementById("downloadBtn").addEventListener("click", debounce(functi
     document.getElementById("loading").style.display = "initial";
     document.getElementById("downloadBtn").disabled = true; // Disable the button
 
-    const inputUrl = document.getElementById("inputUrl").value;
+    const inputUrl = decodeURIComponent(document.getElementById("inputUrl").value);
     makeRequest(inputUrl); // Make the AJAX request with retry logic
 }, 300));  // Adjust the delay as needed
 
@@ -60,7 +60,7 @@ function handleSuccessResponse(data, inputUrl) {
 
         // Handle thumbnail with cache busting and HTTPS check
         const thumbnailUrl = videoData.thumbnail;
-        updateElement("thumb", `<img src='${thumbnailUrl}' width='300px' loading='lazy' alt='Thumbnail'>`);
+        updateElement("thumb", `<img src='${decodeURIComponent(thumbnailUrl)}' width='300px' border-radius='30px' loading='lazy' alt='Thumbnail'>`);
 
         updateElement("title", videoData.title ? `<h1>${videoData.title.replace(/\+/g, ' ')}</h1>` : "");
         document.title = videoData.title ? `Download ${videoData.title.replace(/\+/g, ' ')} VKrDownloader` : "Download VKrDownloader";
