@@ -15,7 +15,7 @@ function debounce(func, wait) {
 // Function to make an AJAX request with retry logic
 function makeRequest(inputUrl, retries = 4) {
     $.ajax({
-        url: `https://cors-tube.vercel.app/?url=https://vkrdownloader.vercel.app/server?vkr=${decodeURIComponent(inputUrl)}`,
+        url: `https://vkrdownloader.vercel.app/server?vkr=${decodeURIComponent(inputUrl)}`,
         type: "GET",
         cache: false,
         async: true,
@@ -46,7 +46,7 @@ function makeRequest(inputUrl, retries = 4) {
     document.getElementById("loading").style.display = "initial";
     document.getElementById("downloadBtn").disabled = true; // Disable the button
 
-    const inputUrl = document.getElementById("inputUrl").value;
+    const inputUrl = decodeURI(document.getElementById("inputUrl").value);
     makeRequest(inputUrl); // Make the AJAX request with retry logic
 }, 300));  // Adjust the delay as needed
 
