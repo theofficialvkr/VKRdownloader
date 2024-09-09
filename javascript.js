@@ -52,6 +52,11 @@ document.getElementById("downloadBtn").addEventListener("click", debounce(functi
 
 // Function to handle successful AJAX response
 function handleSuccessResponse(data, inputUrl) {
+    function getYouTubeVideoIds(url) {
+        const regExps = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+        const matchs = url.match(regExps);
+        return (matchs && matchs[1]) ? matchs[1] : null;
+    }
     document.getElementById("container").style.display = "block";
     document.getElementById("loading").style.display = "none";
 
@@ -62,12 +67,17 @@ function handleSuccessResponse(data, inputUrl) {
         const thumbnailUrl = videoData.thumbnail;
         let vd0 = videoData.downloads[0].url;
         let vd1 = videoData.downloads[1].url;
-        updateElement("thumb", `<video poster='${thumbnailUrl}' style='width:100%; border-radius:40px; height:400px;' loading='lazy' alt='Thumbnail'><source src='${vd0}'><source src='${vd1}'><source src='https://cors-tube.vercel.app/?url=${vd0}'></video>`);
+        let vdsource = videoData.source;
+        updateElement("thumb", `<video style='background: black url(${thumbnailUrl}) center center/cover no-repeat; width:100%; height:500px;' loading='lazy' alt='Thumbnail'>
+        <source src='${vd0}'>
+        <source src='${vd1}'>
+        <source src='https://cors-tube.vercel.app/?url=${vd0}'>
+        </video>`);
 
         updateElement("title", videoData.title ? `<h3>${videoData.title.replace(/\+/g, ' ')}</h3>` : "");
         document.title = videoData.title ? `Download ${videoData.title.replace(/\+/g, ' ')} VKrDownloader` : "Download VKrDownloader";
         updateElement("description", videoData.description ? `<h4><details><summary>View Description</summary>${videoData.description}</details></h4>` : "");
-       updateElement("uploader", videoData.url ? `<h5>${getYouTubeVideoId(inputUrl)}</h5>` : "");
+        updateElement("uploader", videoData.url ? `<h5>${getYouTubeVideoIds(vdsource)}</h5>` : "");
         updateElement("duration", videoData.size ? `<h5>${videoData.size}</h5>` : "");
 
         generateDownloadButtons(data);
@@ -89,7 +99,6 @@ function generateDownloadButtons(videoData) {
         const match = url.match(regExp);
         return (match && match[1]) ? match[1] : null;
     }
-
     const downloadV = document.getElementById("download");
     downloadV.innerHTML = "";
 
