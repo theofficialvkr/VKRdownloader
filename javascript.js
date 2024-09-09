@@ -51,7 +51,9 @@ document.getElementById("downloadBtn").addEventListener("click", debounce(functi
 }, 300));  // Adjust the delay as needed
 
 // Function to handle successful AJAX response
+
 function handleSuccessResponse(data, inputUrl) {
+    console.log("Response Data:", data); // Log the data received
     document.getElementById("container").style.display = "block";
     document.getElementById("loading").style.display = "none";
 
@@ -77,6 +79,8 @@ function handleSuccessResponse(data, inputUrl) {
                     Your browser does not support the video tag.
                 </video>
             </div>`);
+        } else {
+            console.log("Video URL not found");
         }
 
         updateElement("title", videoData.title ? `<h3>${videoData.title.replace(/\+/g, ' ')}</h3>` : "");
@@ -90,6 +94,7 @@ function handleSuccessResponse(data, inputUrl) {
         document.getElementById("loading").style.display = "none";
     }
 }
+
 
 // Function to update HTML element content
 function updateElement(elementId, content) {
