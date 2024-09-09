@@ -46,13 +46,18 @@ document.getElementById("downloadBtn").addEventListener("click", debounce(functi
     document.getElementById("downloadBtn").disabled = true; // Disable the button
 
     const inputUrl = document.getElementById("inputUrl").value;
-    makeRequest(inputUrl); // Make the AJAX request with retry logic
+    if (inputUrl) {
+        makeRequest(inputUrl); // Make the AJAX request with retry logic
+    } else {
+        alert("Please enter a valid URL.");
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("downloadBtn").disabled = false;
+    }
 }, 300));  // Adjust the delay as needed
 
 // Function to handle successful AJAX response
 function handleSuccessResponse(data, inputUrl) {
     console.log("Response Data:", data); // Log the data received
-    document.getElementById("container").style.display = "block";
     document.getElementById("loading").style.display = "none";
 
     if (data.data) {
@@ -89,7 +94,7 @@ function handleSuccessResponse(data, inputUrl) {
         generateDownloadButtons(data);
     } else {
         alert("Issue: Unable to get download link. Please check the URL and contact us on Social Media @TheOfficialVKr");
-        document.getElementById("loading").style.display = "none";
+        document.getElementById("container").style.display = "none";
     }
 }
 
@@ -98,6 +103,7 @@ function updateElement(elementId, content) {
     const element = document.getElementById(elementId);
     if (element) {
         element.innerHTML = content;
+        element.style.display = content ? "block" : "none"; // Ensure visibility if content is set
     } else {
         console.error(`Element with ID ${elementId} not found.`);
     }
@@ -172,7 +178,6 @@ function getBackgroundColor(downloadUrlItag) {
     }
 }
 
-
 // Function to get a parameter by name from a URL
 function getParameterByName(name, url) {
     name = name.replace(/[[]]/g, '\\$&');
@@ -183,47 +188,4 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
 
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
-
-// Helper function to ensure valid URL encoding
-function encodeURIComponentSafe(uri) {
-    try {
-        return encodeURIComponent(uri);
-    } catch (e) {
-        console.error("Encoding URI failed: ", e);
-        return uri;
-    }
-}
-
-// Improved error handling and debugging
-function handleRequestError(xhr, status, error, retries) {
-    console.error(`Error Details: Status - ${status}, Error - ${error}, XHR Status - ${xhr.status}`);
-    if (retries > 0) {
-        console.log(`Retrying... (${retries} attempts left)`);
-        makeRequest(decodeURIComponentSafe(inputUrl), retries - 1);
-    } else {
-        alert("Failed after multiple attempts. Please try again later.");
-        document.getElementById("loading").style.display = "none";
-    }
-}
-
-// Updating AJAX call with improved error handling
-function makeRequest(inputUrl, retries = 3) {
-    $.ajax({
-        url: `https://vkrdownloader.vercel.app/server?vkr=${encodeURIComponentSafe(inputUrl)}`,
-        type: "GET",
-        cache: false,
-        async: true,
-        crossDomain: true,
-        dataType: 'json',
-        success: function (data) {
-            handleSuccessResponse(data, inputUrl);
-        },
-        error: function(xhr, status, error) {
-            handleRequestError(xhr, status, error, retries);
-        },
-        complete: function () {
-            document.getElementById("downloadBtn").disabled = false; // Re-enable the button
-        }
-    });
 }
