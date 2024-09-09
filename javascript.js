@@ -39,14 +39,12 @@ function getYouTubeVideoIds(url) {
 
 // Function to sanitize HTML content before injecting into the DOM
 function sanitizeContent(content) {
-    const tempDiv = document.createElement("div");
-    tempDiv.textContent = content;
-    return tempDiv.innerHTML;
+    return DOMPurify.sanitize(content); // Use DOMPurify to sanitize HTML
 }
 
 // Function to update HTML element content with sanitized input
 function updateElement(elementId, content) {
-    document.getElementById(elementId).innerHTML = sanitizeContent(content);
+    document.getElementById(elementId).innerHTML = content;
 }
 
 // Function to make an AJAX request with retry logic
@@ -101,17 +99,21 @@ function handleSuccessResponse(data, inputUrl) {
         const videoSource = videoData.source;
         const videoId = getYouTubeVideoIds(videoSource);
 
-        updateElement("thumb", `
-            <video style='background: black url(${thumbnailUrl}) center center/cover no-repeat; width:100%; height:500px;' poster='${thumbnailUrl}' autoplay controls>
+        const videoHtml = `
+            <video style='background: black url(${thumbnailUrl}) center center/cover no-repeat; width:100%; height:500px;' 
+                   poster='${thumbnailUrl}' autoplay controls>
                 <source src='https://invidious.darkness.services/latest_version?id=${videoId}&itag=18&local=true' type='video/mp4'>
                 <source src='https://cors-tube.vercel.app/?url=https://invidious.incogniweb.net/latest_version?id=${videoId}&itag=18&local=true' type='video/mp4'>
                 ${downloadUrls.map(url => `<source src='${url}' type='video/mp4'>`).join('')}
-            </video>`);
+            </video>`;
+        const titleHtml = videoData.title ? `<h3>${sanitizeContent(videoData.title)}</h3>` : "";
+        const descriptionHtml = videoData.description ? `<h4><details><summary>View Description</summary>${sanitizeContent(videoData.description)}</details></h4>` : "";
+        const durationHtml = videoData.size ? `<h5>${sanitizeContent(videoData.size)}</h5>` : "";
 
-        updateElement("title", videoData.title ? `<h3>${sanitizeContent(videoData.title.replace(/\+/g, ' '))}</h3>` : "");
-        document.title = videoData.title ? `Download ${sanitizeContent(videoData.title.replace(/\+/g, ' '))} VKrDownloader` : "Download VKrDownloader";
-        updateElement("description", videoData.description ? `<h4><details><summary>View Description</summary>${sanitizeContent(videoData.description)}</details></h4>` : "");
-        updateElement("duration", videoData.size ? `<h5>${sanitizeContent(videoData.size)}</h5>` : "");
+        updateElement("thumb", videoHtml);
+        updateElement("title", titleHtml);
+        updateElement("description", descriptionHtml);
+        updateElement("duration", durationHtml);
 
         generateDownloadButtons(data);
     } else {
@@ -175,7 +177,7 @@ function generateDownloadButtons(videoData) {
 
 // Function to get a parameter by name from a URL
 function getParameterByName(name, url) {
-    name = name.replace(/[\\]/g, '\\$&');
+    name = name.replace(/[]/g, '\\$&');
     const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`);
     const results = regex.exec(url);
     
@@ -183,4 +185,4 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
     
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
-                    }
+                                   }
