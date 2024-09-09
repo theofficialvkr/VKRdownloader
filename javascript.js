@@ -78,17 +78,13 @@ function handleSuccessResponse(data, inputUrl) {
 
         const videoUrl = getVideoUrl(videoData, inputUrl);
 
+        
         updateElement(thumb, `
-            <div style="position: relative; display: inline-block;">
-                <video width="300px" style="border-radius: 30px;" controls>
-                    <source src="${encodeURIComponent(videoUrl)}" type="video/mp4">
+            <div style="position: relative; display: inline-block; overflow: hidden;">
+                <video width="100" style="border-radius: 30px;" controls>
+                    <source src="${decodeURIComponent(videoUrl)}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <a href="${encodeURIComponent(videoUrl)}" download>
-                    <button style="width: 100%; margin-top: 10px; background-color: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
-                        Download
-                    </button>
-                </a>
             </div>
         `);
 
