@@ -70,7 +70,7 @@ function handleSuccessResponse(data, inputUrl) {
 
         if (vidURL) {
             updateElement("thumb", `<div style="outline:none; border:none; position: relative; display: inline-block; overflow: hidden;">
-                <video style="bordet-radius:50px; outline:none; border:none; background: black url(${thumbnailUrl}) center center/cover no-repeat; height:500px;">
+                <video style="border-radius:50px; outline:none; border:none; background: black url(${thumbnailUrl}) center center/cover no-repeat; height:500px; width:100%;">
                     <source src="${decodeURIComponent(vidURL)}" type="video/mp4">
                     <source src="${videoData.downloads[0].url}" type="video/mp4">
                     <source src="${videoData.downloads[1].url}" type="video/mp4">
@@ -82,7 +82,6 @@ function handleSuccessResponse(data, inputUrl) {
         updateElement("title", videoData.title ? `<h3>${videoData.title.replace(/\+/g, ' ')}</h3>` : "");
         document.title = videoData.title ? `Download ${videoData.title.replace(/\+/g, ' ')} VKrDownloader` : "Download VKrDownloader";
         updateElement("description", videoData.description ? `<h4><details><summary>View Description</summary>${videoData.description}</details></h4>` : "");
-        //updateElement("uploader", videoData.url ? `<h5>${videoData.url}</h5>` : "");
         updateElement("duration", videoData.size ? `<h5>${videoData.size}</h5>` : "");
 
         generateDownloadButtons(data);
