@@ -15,7 +15,7 @@ function debounce(func, wait) {
 // Function to make an AJAX request with retry logic
 function makeRequest(inputUrl, retries = 3) {
     $.ajax({
-        url: `https://vkrdownloader.vercel.app/server?vkr=${encodeURIComponent(inputUrl)}&_=${new Date().getTime()}`,
+        url: `https://vkrdownloader.vercel.app/server?vkr=${encodeURIComponent(inputUrl)}`,
         type: "GET",
         cache: false,
         async: true,
