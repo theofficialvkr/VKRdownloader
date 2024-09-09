@@ -88,14 +88,16 @@ nav a {
     height: 300px;
 }
 .dlbtns{
-    padding: 10px;
-    cursor: pointer;
-    border: none;
-    width:auto;
+    display: inline-block;
+    padding: 10px 20px;
     margin: 5px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 14px;
     font-weight: bold;
     color: white;
-    border-radius: 5px;
+    cursor: pointer;
+    width: 150px;  /* Fixed width */
     transition: background-color 0.3s;
 }
 .centerV {
