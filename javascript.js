@@ -21,7 +21,6 @@ function makeRequest(inputUrl, retries = 3) {
         async: true,
         crossDomain: true,
         dataType: 'json',
-        jsonp: true,
         success: function (data) {
             handleSuccessResponse(data, inputUrl);
         },
@@ -51,7 +50,6 @@ document.getElementById("downloadBtn").addEventListener("click", debounce(functi
 }, 300));  // Adjust the delay as needed
 
 // Function to handle successful AJAX response
-
 function handleSuccessResponse(data, inputUrl) {
     console.log("Response Data:", data); // Log the data received
     document.getElementById("container").style.display = "block";
@@ -95,10 +93,14 @@ function handleSuccessResponse(data, inputUrl) {
     }
 }
 
-
 // Function to update HTML element content
 function updateElement(elementId, content) {
-    document.getElementById(elementId).innerHTML = content;
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.innerHTML = content;
+    } else {
+        console.error(`Element with ID ${elementId} not found.`);
+    }
 }
 
 // Function to generate download buttons with dynamic colors and labels
@@ -110,44 +112,49 @@ function generateDownloadButtons(videoData) {
     }
 
     const downloadV = document.getElementById("download");
-    downloadV.innerHTML = "";
+    if (downloadV) {
+        downloadV.innerHTML = "";
 
-    if (videoData.data) {
-        const videoDataD = videoData.data.downloads;
-        const source = videoData.data.source;
+        if (videoData.data) {
+            const videoDataD = videoData.data.downloads;
+            const source = videoData.data.source;
 
-        // Add YouTube specific button if applicable
-        if (source.includes("youtube.com") || source.includes("youtu.be")) {
-            downloadV.innerHTML += `<a href='https://invidious.incogniweb.net/latest_version?id=${getYouTubeVideoId(source)}&itag=18&local=true'><button class='dlbtns' style='background:blue'>Download Video</button></a>`;
+            // Add YouTube specific button if applicable
+            if (source.includes("youtube.com") || source.includes("youtu.be")) {
+                downloadV.innerHTML += `<a href='https://invidious.incogniweb.net/latest_version?id=${getYouTubeVideoId(source)}&itag=18&local=true'><button class='dlbtns' style='background:blue'>Download Video</button></a>`;
+            }
+
+            // Generate download buttons for available formats
+            videoDataD.forEach(download => {
+                if (download && download.url) {
+                    const downloadUrl = download.url;
+                    const bgColor = getBackgroundColor(getParameterByName("itag", downloadUrl));
+                    const videoExt = download.extension;
+                    const videoSize = download.size;
+
+                    downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtns' style='background:${bgColor}'>${videoExt} ${videoSize}</button></a>`;
+                }
+            });
+
+            // Add iframes for additional download options
+            downloadV.innerHTML += `
+                <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=mp3&vkr=${source}'></iframe>
+                <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1)' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=360&vkr=${source}'></iframe>
+                <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1)' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=720&vkr=${source}'></iframe>
+                <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1)' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=1080&vkr=${source}'></iframe>
+            `;
+        } else {
+            alert("No download links found or data structure is incorrect.");
+            document.getElementById("loading").style.display = "none";
         }
 
-        // Generate download buttons for available formats
-        videoDataD.forEach(download => {
-            if (download && download.url) {
-                const downloadUrl = download.url;
-                const bgColor = getBackgroundColor(getParameterByName("itag", downloadUrl));
-                const videoExt = download.extension;
-                const videoSize = download.size;
-
-                downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtns' style='background:${bgColor}'>${videoExt} ${videoSize}</button></a>`;
-            }
-        });
-        // Add iframes for additional download options
-        downloadV.innerHTML += `
-            <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=mp3&vkr=${source}'></iframe>
-            <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1)' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=360&vkr=${source}'></iframe>
-            <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1)' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=720&vkr=${source}'></iframe>
-            <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1)' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=1080&vkr=${source}'></iframe>
-        `;
+        if (downloadV.innerHTML === "") {
+            alert("Server Down due to Too Many Requests. Please contact us on Social Media @TheOfficialVKr");
+            document.getElementById("container").style.display = "none";
+            location.href = `https://vkrdownloader.vercel.app/download.php?vkr=${encodeURIComponent(inputUrl)}`;
+        }
     } else {
-        alert("No download links found or data structure is incorrect.");
-        document.getElementById("loading").style.display = "none";
-    }
-
-    if (downloadV.innerHTML === "") {
-        alert("Server Down due to Too Many Requests. Please contact us on Social Media @TheOfficialVKr");
-        document.getElementById("container").style.display = "none";
-        location.href = `https://vkrdownloader.vercel.app/download.php?vkr=${encodeURIComponent(inputUrl)}`;
+        console.error("Download element not found.");
     }
 }
 
@@ -165,6 +172,7 @@ function getBackgroundColor(downloadUrlItag) {
     }
 }
 
+
 // Function to get a parameter by name from a URL
 function getParameterByName(name, url) {
     name = name.replace(/[[]]/g, '\\$&');
@@ -175,4 +183,47 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
 
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+// Helper function to ensure valid URL encoding
+function encodeURIComponentSafe(uri) {
+    try {
+        return encodeURIComponent(uri);
+    } catch (e) {
+        console.error("Encoding URI failed: ", e);
+        return uri;
+    }
+}
+
+// Improved error handling and debugging
+function handleRequestError(xhr, status, error, retries) {
+    console.error(`Error Details: Status - ${status}, Error - ${error}, XHR Status - ${xhr.status}`);
+    if (retries > 0) {
+        console.log(`Retrying... (${retries} attempts left)`);
+        makeRequest(decodeURIComponentSafe(inputUrl), retries - 1);
+    } else {
+        alert("Failed after multiple attempts. Please try again later.");
+        document.getElementById("loading").style.display = "none";
+    }
+}
+
+// Updating AJAX call with improved error handling
+function makeRequest(inputUrl, retries = 3) {
+    $.ajax({
+        url: `https://vkrdownloader.vercel.app/server?vkr=${encodeURIComponentSafe(inputUrl)}`,
+        type: "GET",
+        cache: false,
+        async: true,
+        crossDomain: true,
+        dataType: 'json',
+        success: function (data) {
+            handleSuccessResponse(data, inputUrl);
+        },
+        error: function(xhr, status, error) {
+            handleRequestError(xhr, status, error, retries);
+        },
+        complete: function () {
+            document.getElementById("downloadBtn").disabled = false; // Re-enable the button
+        }
+    });
 }
