@@ -57,9 +57,13 @@ function handleSuccessResponse(data, inputUrl) {
 
     if (data.data) {
         const videoData = data.data;
+        let thumbnailUrl = videoData.thumbnail;
 
-        // Handle thumbnail with cache busting and HTTPS check
-        const thumbnailUrl = "https://cors-tube.vercel.app/?url=" + videoData.thumbnail;
+        // Use CORS proxy for Instagram thumbnails
+        if (inputUrl.includes("instagram.com")) {
+            thumbnailUrl = `https://cors-tube.vercel.app/?url=${encodeURIComponent(thumbnailUrl)}`;
+        }
+
         updateElement("thumb", `<img src='${decodeURIComponent(thumbnailUrl)}' width='300px' border-radius='30px' loading='lazy' alt='Thumbnail'>`);
 
         updateElement("title", videoData.title ? `<h1>${videoData.title.replace(/\+/g, ' ')}</h1>` : "");
@@ -98,7 +102,7 @@ function generateDownloadButtons(videoData) {
         // Add YouTube specific button if applicable
         if (source.includes("youtube.com") || source.includes("youtu.be")) {
             downloadV.innerHTML += `<a href='https://invidious.incogniweb.net/latest_version?id=${getYouTubeVideoId(source)}&itag=18&local=true'><button class='dlbtns' style='background:blue'>Download Video</button></a>`;
-      }
+        }
 
         // Generate download buttons for available formats
         videoDataD.forEach(download => {
@@ -147,12 +151,12 @@ function getBackgroundColor(downloadUrlItag) {
 
 // Function to get a parameter by name from a URL
 function getParameterByName(name, url) {
-    name = name.replace(/[]/g, '\\$&');
+    name = name.replace(/[\]/, '\').replace(/[]/, '\');
     const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
     const results = regex.exec(url);
-    
+
     if (!results) return '';
     if (!results[2]) return '';
 
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
+        }
