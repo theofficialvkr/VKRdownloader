@@ -61,7 +61,7 @@ function handleSuccessResponse(data, inputUrl) {
 
         // Use CORS proxy for Instagram thumbnails
         if (inputUrl.includes("instagram.com")) {
-            thumbnailUrl = `https://cors-tube.vercel.app/?url=${encodeURIComponent(thumbnailUrl)}`;
+            thumbnailUrl = `https://cors-tube.vercel.app/?url=${decodeURIComponent(thumbnailUrl)}`;
         }
 
         updateElement("thumb", `<img src='${decodeURIComponent(thumbnailUrl)}' width='300px' border-radius='30px' loading='lazy' alt='Thumbnail'>`);
