@@ -57,15 +57,30 @@ function handleSuccessResponse(data, inputUrl) {
 
     if (data.data) {
         const videoData = data.data;
-
-        // Handle thumbnail with cache busting and HTTPS check
+        let vidURL = '';
         const thumbnailUrl = videoData.thumbnail;
-        updateElement("thumb", `<img src='${thumbnailUrl}' width='300px' loading='lazy' alt='Thumbnail'>`);
 
+        if (videoData.source && (videoData.source.includes("youtube.com") || videoData.source.includes("youtu.be"))) {
+            vidURL = `https://invidious.incogniweb.net/latest_version?id=${getYouTubeVideoId(videoData.source)}&itag=18&local=true`;
+        } else if (videoData.downloads && videoData.downloads.length > 0) {
+            vidURL = videoData.downloads[0].url;
+        }
+
+        if (vidURL) {
+            updateElement("thumb", `<div style="outline:none; border:none; position: relative; display: inline-block; overflow: hidden;">
+                    <video style="border-radius:50px; outline:none; border:none; background: black url(${thumbnailUrl}) center center/cover no-repeat; height:500px; width:100%;">
+                        <source src="${decodeURIComponent(vidURL)}" type="video/mp4">
+                        ${videoData.downloads.map(download => `<source src="${download.url}" type="video/mp4">`).join('')}
+                        Your browser does not support the video tag.
+                    </video>
+                </div>`);
+        } else {
+            alert("Video URL not found");
+        }
         updateElement("title", videoData.title ? `<h1>${videoData.title.replace(/\+/g, ' ')}</h1>` : "");
         document.title = videoData.title ? `Download ${videoData.title.replace(/\+/g, ' ')} VKrDownloader` : "Download VKrDownloader";
         updateElement("description", videoData.description ? `<h3><details><summary>View Description</summary>${videoData.description}</details></h3>` : "");
-        updateElement("uploader", videoData.url ? `<h5>${videoData.url}</h5>` : "");
+        //updateElement("uploader", videoData.url ? `<h5>${videoData.url}</h5>` : "");
         updateElement("duration", videoData.size ? `<h5>${videoData.size}</h5>` : "");
 
         generateDownloadButtons(data);
