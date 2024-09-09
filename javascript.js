@@ -70,17 +70,17 @@ function handleSuccessResponse(data, inputUrl) {
 
         if (vidURL) {
             updateElement("thumb", `<div style="position: relative; display: inline-block; overflow: hidden;">
-                <video width="100%" style="border-radius: 30px; height:300px;" controls>
+                <video poster="${thumbnailUrl}" width="100%" style="border-radius: 30px; height:300px;" controls>
                     <source src="${decodeURIComponent(vidURL)}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>`);
         }
 
-        updateElement("title", videoData.title ? `<h1>${videoData.title.replace(/\+/g, ' ')}</h1>` : "");
+        updateElement("title", videoData.title ? `<h3>${videoData.title.replace(/\+/g, ' ')}</h3>` : "");
         document.title = videoData.title ? `Download ${videoData.title.replace(/\+/g, ' ')} VKrDownloader` : "Download VKrDownloader";
-        updateElement("description", videoData.description ? `<h3><details><summary>View Description</summary>${videoData.description}</details></h3>` : "");
-        updateElement("uploader", videoData.url ? `<h5>${videoData.url}</h5>` : "");
+        updateElement("description", videoData.description ? `<h4><details><summary>View Description</summary>${videoData.description}</details></h4>` : "");
+        updateElement("uploader", videoData.url ? `<h5>${vidURL}</h5>` : "");
         updateElement("duration", videoData.size ? `<h5>${videoData.size}</h5>` : "");
 
         generateDownloadButtons(data);
