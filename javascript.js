@@ -15,21 +15,22 @@ function debounce(func, wait) {
 // Function to make an AJAX request with retry logic
 function makeRequest(inputUrl, retries = 3) {
     $.ajax({
-        url: `https://vkrdownloader.vercel.app/server?vkr=${encodeURIComponent(inputUrl)}`,
+        url: `https://vkrdownloader.vercel.app/server?vkr=${decodeURIComponent(inputUrl)}`,
         type: "GET",
         cache: false,
         async: true,
         crossDomain: true,
         dataType: 'json',
         success: function (data) {
+            console.log("AJAX Success:", data);
             handleSuccessResponse(data, inputUrl);
         },
         error: function(xhr, status, error) {
+            console.error(`AJAX Error: Status - ${status}, Error - ${error}, XHR Status - ${xhr.status}`);
             if (retries > 0) {
                 console.log(`Retrying... (${retries} attempts left)`);
                 makeRequest(inputUrl, retries - 1);
             } else {
-                console.error(`Error Details: Status - ${status}, Error - ${error}, XHR Status - ${xhr.status}`);
                 alert("Failed after multiple attempts. Please try again later.");
                 document.getElementById("loading").style.display = "none";
             }
@@ -46,11 +47,13 @@ document.getElementById("downloadBtn").addEventListener("click", debounce(functi
     document.getElementById("downloadBtn").disabled = true; // Disable the button
 
     const inputUrl = document.getElementById("inputUrl").value;
+    console.log("Button Clicked with URL:", inputUrl);
     makeRequest(inputUrl); // Make the AJAX request with retry logic
 }, 300));  // Adjust the delay as needed
 
 // Function to handle successful AJAX response
 function handleSuccessResponse(data, inputUrl) {
+    console.log("Handling Success Response:", data);
     document.getElementById("container").style.display = "block";
     document.getElementById("loading").style.display = "none";
 
@@ -90,7 +93,12 @@ function handleSuccessResponse(data, inputUrl) {
 
 // Function to update HTML element content
 function updateElement(elementId, content) {
-    document.getElementById(elementId).innerHTML = content;
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.innerHTML = content;
+    } else {
+        console.error(`Element with ID ${elementId} not found.`);
+    }
 }
 
 // Function to generate download buttons with dynamic colors and labels
@@ -102,45 +110,50 @@ function generateDownloadButtons(videoData) {
     }
 
     const downloadV = document.getElementById("download");
-    downloadV.innerHTML = "";
+    if (downloadV) {
+        downloadV.innerHTML = "";
 
-    if (videoData.data) {
-        const videoDataD = videoData.data.downloads;
-        const source = videoData.data.source;
+        if (videoData.data) {
+            const videoDataD = videoData.data.downloads;
+            const source = videoData.data.source;
 
-        // Add YouTube specific button if applicable
-        if (source.includes("youtube.com") || source.includes("youtu.be")) {
-            downloadV.innerHTML += `<a href='https://invidious.incogniweb.net/latest_version?id=${getYouTubeVideoId(source)}&itag=18&local=true'><button class='dlbtns' style='background:blue'>Download Video</button></a>`;
+            // Add YouTube specific button if applicable
+            if (source.includes("youtube.com") || source.includes("youtu.be")) {
+                downloadV.innerHTML += `<a href='https://invidious.incogniweb.net/latest_version?id=${getYouTubeVideoId(source)}&itag=18&local=true'><button class='dlbtns' style='background:blue'>Download Video</button></a>`;
+            }
+
+            // Generate download buttons for available formats
+            videoDataD.forEach(download => {
+                if (download && download.url) {
+                    const downloadUrl = download.url;
+                    const bgColor = getBackgroundColor(getParameterByName("itag", downloadUrl));
+                    const videoExt = download.extension;
+                    const videoSize = download.size;
+
+                    downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtns' style='background:${bgColor}'>${videoExt} ${videoSize}</button></a>`;
+                }
+            });
+
+            // Add iframes for additional download options
+            downloadV.innerHTML += `
+                <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=mp3&vkr=${source}'></iframe>
+                <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=360&vkr=${source}'></iframe>
+                <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=720&vkr=${source}'></iframe>
+                <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=1080&vkr=${source}'></iframe>
+            `;
+        } else {
+            alert("No download links found or data structure is incorrect.");
+            document.getElementById("loading").style.display = "none";
         }
 
-        // Generate download buttons for available formats
-        videoDataD.forEach(download => {
-            if (download && download.url) {
-                const downloadUrl = download.url;
-                const bgColor = getBackgroundColor(getParameterByName("itag", downloadUrl));
-                const videoExt = download.extension;
-                const videoSize = download.size;
-
-                downloadV.innerHTML += `<a href='${downloadUrl}'><button class='dlbtns' style='background:${bgColor}'>${videoExt} ${videoSize}</button></a>`;
-            }
-        });
-
-        // Add iframes for additional download options
-        downloadV.innerHTML += `
-            <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=mp3&vkr=${source}'></iframe>
-            <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=360&vkr=${source}'></iframe>
-            <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=720&vkr=${source}'></iframe>
-            <iframe style='border:0;outline:none;width:100%;max-height:45px;height:45px !important;' src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=1080&vkr=${source}'></iframe>
-        `;
-    } else {
-        alert("No download links found or data structure is incorrect.");
-        document.getElementById("loading").style.display = "none";
-    }
-
-    if (downloadV.innerHTML === "") {
-        alert("Server Down due to Too Many Requests. Please contact us on Social Media @TheOfficialVKr");
-        document.getElementById("container").style.display = "none";
-        location.href = `https://vkrdownloader.vercel.app/download.php?vkr=${encodeURIComponent(inputUrl)}`;
+        if (downloadV.innerHTML === "") {
+            alert("Server Down due to Too Many Requests. Please contact us on Social Media @TheOfficialVKr");
+            document.getElementById("container").style.display = "none";
+            location.href = `https://vkrdownloader.vercel.app/download.php?vkr=${encodeURIComponent(inputUrl)}`;
+        }
+    } 
+    else {
+        console.error("Download container element not found.");
     }
 }
 
@@ -159,10 +172,13 @@ function getBackgroundColor(downloadUrlItag) {
 }
 
 // Function to get a parameter by name from a URL
-function getParameterByName(name, url = window.location.href) {
+function getParameterByName(name, url) {
     name = name.replace(/[]/g, '\\$&');
     const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
     const results = regex.exec(url);
+    
     if (!results) return '';
-    return results[2] ? decodeURIComponent(results[2].replace(/\+/g, ' ')) : '';
-                                                                               }
+    if (!results[2]) return '';
+
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
