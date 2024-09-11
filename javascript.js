@@ -102,8 +102,8 @@ function handleSuccessResponse(data, inputUrl) {
         const videoHtml = `
             <video style='background: black url(${thumbnailUrl}) center center/cover no-repeat; width:100%; height:500px; border-radius:20px;' 
                    poster='${thumbnailUrl}' autoplay controls playsinline>
-                <source src='https://invidious.darkness.services/latest_version?id=${videoId}&itag=18&local=true' type='video/mp4'>
-                <source src='https://cors-tube.vercel.app/?url=https://invidious.incogniweb.net/latest_version?id=${videoId}&itag=18&local=true' type='video/mp4'>
+                <source src='https://invidious.jing.rocks/latest_version?id=${videoId}&itag=18&local=true' type='video/mp4'>
+                <source src='https://cors-tube.vercel.app/?url=https://inv.nadeko.net/latest_version?id=${videoId}&itag=18&local=true' type='video/mp4'>
                 ${downloadUrls.map(url => `<source src='${url}' type='video/mp4'>`).join('')}
             </video>`;
         const titleHtml = videoData.title ? `<h3>${sanitizeContent(videoData.title)}</h3>` : "";
@@ -135,7 +135,7 @@ function generateDownloadButtons(videoData) {
         const videoId = getYouTubeVideoIds(videoSource);
         if (videoId) {
             downloadContainer.innerHTML += `
-                <a href='https://invidious.incogniweb.net/latest_version?id=${videoId}&itag=18&local=true'>
+                <a href='https://invidious.jing.rocks/latest_version?id=${videoId}&itag=18&local=true'>
                     <button class='dlbtns' style='background:blue'>Download Video</button>
                 </a>`;
         }
