@@ -6,3 +6,6 @@
 <li> Fix API error by retires</li>
 <li> Fix Thumbnail error </li>
 <li> Add Video instead of thumbnail image</li>
+<li>
+  <a href="https://ytdl-org.github.io/youtube-dl/supportedsites.html"> List Of All Supported Sites</a>
+</li>
