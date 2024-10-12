@@ -102,7 +102,7 @@ function handleSuccessResponse(data, inputUrl) {
         const videoHtml = `
             <video style='background: black url(${thumbnailUrl}) center center/cover no-repeat; width:100%; height:500px; border-radius:20px;' 
                    poster='${thumbnailUrl}' autoplay controls playsinline>
-                <source src='https://eu-proxy.poketube.fun/latest_version?id=${videoId}&itag=18&local=true' type='video/mp4'>
+                <source src='https://inv.nadeko.net/latest_version?id=${videoId}&itag=18&local=true' type='video/mp4'>
                 <source src='https://cors-tube.vercel.app/?url=https://invidious.jing.rocks/latest_version?id=${videoId}&itag=18&local=true' type='video/mp4'>
                 ${downloadUrls.map(url => `<source src='${url}' type='video/mp4'>`).join('')}
             </video>`;
@@ -135,7 +135,7 @@ function generateDownloadButtons(videoData) {
         const videoId = getYouTubeVideoIds(videoSource);
         if (videoId) {
             downloadContainer.innerHTML += `
-                <a href='https://eu-proxy.poketube.fun/latest_version?id=${videoId}&itag=18&local=true'>
+                <a href='https://inv.nadeko.net/latest_version?id=${videoId}&itag=18&local=true'>
                     <button class='dlbtns' style='background:blue'>Download Video</button>
                 </a>`;
         }
