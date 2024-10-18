@@ -4,7 +4,7 @@
 const formatColors = {
     greenFormats: ["17", "18", "22"],
     blueFormats: ["139", "140", "141", "249", "250", "251", "599", "600"],
-    defaultColor: "red"
+    defaultColor: "#9e0cf2"
 };
 
 /*******************************
@@ -248,7 +248,7 @@ function generateDownloadButtons(videoData, inputUrl) {
                 downloadContainer.innerHTML += `
                     <a href='${downloadUrl}' target='_blank' rel='noopener noreferrer'>
                         <button class='dlbtns' style='background:${bgColor}'>
-                            ${videoExt} - ${sanitizeContent(videoSize)}
+                            ${sanitizeContent(videoExt)} - ${sanitizeContent(videoSize)}
                         </button>
                     </a>`;
             }
