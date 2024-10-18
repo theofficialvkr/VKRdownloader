@@ -232,7 +232,7 @@ function generateDownloadButtons(videoData, inputUrl) {
         if (videoId) {
             downloadContainer.innerHTML += `
                 <a href='https://inv.nadeko.net/latest_version?id=${videoId}&itag=18&local=true' target='_blank' rel='noopener noreferrer'>
-                    <button class='dlbtns style='background: green'>Download Video (YouTube)</button>
+                    <button class='dlbtns' style='background: green'>Download Video (YouTube)</button>
                 </a>`;
         }
 
@@ -248,7 +248,7 @@ function generateDownloadButtons(videoData, inputUrl) {
                 downloadContainer.innerHTML += `
                     <a href='${downloadUrl}' target='_blank' rel='noopener noreferrer'>
                         <button class='dlbtns' style='background:${bgColor}'>
-                            ${sanitizeContent(videoExt)} ${sanitizeContent(videoSize)}
+                            ${videoExt} - ${sanitizeContent(videoSize)}
                         </button>
                     </a>`;
             }
