@@ -242,7 +242,7 @@ function generateDownloadButtons(videoData, inputUrl) {
                 const downloadUrl = download.url;
                 const itag = getParameterByName("itag", downloadUrl);
                 const bgColor = getBackgroundColor(itag);
-                const videoExt = download.extension;
+                const videoExt = download.format_id;
                 const videoSize = download.size;
 
                 downloadContainer.innerHTML += `
