@@ -104,7 +104,7 @@ function getParameterByName(name, url) {
  */
 function makeRequest(inputUrl, retries = 4) {
     $.ajax({
-        url: `https://vkrdownloader.vercel.app/server?vkr=${encodeURIComponent(inputUrl)}&api_key=vkrdownloader`,
+        url: `https://vkrdownloader.vercel.app/server?api_key=vkrdownloader&vkr=${encodeURIComponent(inputUrl)}`,
         type: "GET",
         cache: true,
         async: true,
