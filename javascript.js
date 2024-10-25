@@ -103,23 +103,26 @@ function getParameterByName(name, url) {
  * @param {number} retries - Number of retry attempts remaining.
  */
 function makeRequest(inputUrl, retries = 4) {
+    const requestUrl = `https://vkrdownloader.vercel.app/server?api_key=vkrdownloader&vkr=${encodeURIComponent(inputUrl)}`;
+    
     $.ajax({
-        url: `https://vkrdownloader.vercel.app/server?api_key=vkrdownloader&vkr=${encodeURIComponent(inputUrl)}`,
+        url: requestUrl,
         type: "GET",
         cache: true,
         async: true,
-        jsonp:true,
         crossDomain: true,
         dataType: 'json', // Assuming server supports CORS
+        timeout: 10000, // Set a timeout for the request
         success: function (data) {
             handleSuccessResponse(data, inputUrl);
         },
         error: function(xhr, status, error) {
             if (retries > 0) {
                 console.log(`Retrying... (${retries} attempts left)`);
-                makeRequest(inputUrl, retries - 1);
+                setTimeout(() => makeRequest(inputUrl, retries - 1), 2000); // Adding a delay before retrying
             } else {
-                console.error(`Error Details: Status - ${status}, Error - ${error}, XHR Status - ${xhr.status}`);
+                const errorMessage = getErrorMessage(xhr, status, error);
+                console.error(`Error Details: ${errorMessage}`);
                 displayError("Unable to fetch the download link after several attempts. Please check the URL or try again later.");
                 document.getElementById("loading").style.display = "none";
             }
@@ -128,6 +131,30 @@ function makeRequest(inputUrl, retries = 4) {
             document.getElementById("downloadBtn").disabled = false; // Re-enable the button
         }
     });
+}
+
+/**
+ * Generate a detailed error message based on the XHR response.
+ * @param {Object} xhr - The XMLHttpRequest object.
+ * @param {string} status - The status string.
+ * @param {string} error - The error message.
+ * @returns {string} - The formatted error message.
+ */
+function getErrorMessage(xhr, status, error) {
+    let message = `Status: ${status}, Error: ${error}`;
+    
+    if (xhr.status) {
+        message += `, XHR Status: ${xhr.status}`;
+    }
+    
+    if (xhr.responseText) {
+        const response = JSON.parse(xhr.responseText);
+        if (response && response.error) {
+            message += `, Server Error: ${response.error}`;
+        }
+    }
+    
+    return message;
 }
 
 /*******************************
