@@ -108,6 +108,7 @@ function makeRequest(inputUrl, retries = 4) {
         type: "GET",
         cache: true,
         async: true,
+        jsonp:true,
         crossDomain: true,
         dataType: 'json', // Assuming server supports CORS
         success: function (data) {
