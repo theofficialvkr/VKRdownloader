@@ -23,16 +23,48 @@
     <li>1000+ other websites in all audio/video quality options</li>
 </ul>
 
+
+
+<h2>Support Me</h2>
+
+### Notice: Support Needed to Keep VKrDownloader Alive
+
+### Dear VKrDownloader Users,
+
+I'm reaching out to let you know that VKrDownloader has hit the free-tier limit on Vercel, which means they've temporarily suspended my account and the server. Since VKrDownloader is a free tool, covering the costs for premium hosting has become challenging. I want to keep VKrDownloader available to everyone, but without support, it’s difficult to continue.
+
+I’m actively working to find a solution, and I’ll keep you updated. If you appreciate VKrDownloader and find it useful, please consider supporting the project. With your help, I can ensure VKrDownloader stays up and running for everyone to use.
+
+Thank you for your understanding and support!
+
+Best,
+Vijay Kumar
+
+<hr>
+
+<li>It will Live in 24 hrs</li>
+
+<br>
+<a href="https://www.paypal.com/ncp/payment/4C9YTYAMKYVZS">
+    <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg">
+</a>
+<br>
+<a href="https://www.buymeacoffee.com/theofficialvkr">
+    <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=theofficialvkr&button_colour=BD5FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00">
+</a>
+
+
 <h2>API Documentation</h2>
 
 <p>With the VKrDownloader API, you can programmatically download videos from supported sites.</p>
 
 <h3>API Endpoint</h3>
-<pre><code>GET https://vkrdownloader.vercel.app/server/?vkr=VIDEO_URL</code></pre>
+<pre><code>GET https://vkrdownloader.vercel.app/server/?api_key=API-KEY&vkr=VIDEO_URL</code></pre>
 
 <h3>Request Parameters</h3>
 <ul>
     <li><strong>vkr</strong> (string) - <em>Required</em>. The URL of the video you want to download.</li>
+    <li><strong>api_key</strong> (string) - <em>Required</em>. The API KEY which is <b>vkrdownloader</b>. use this key to fetch video data.</li>
 </ul>
 
 <h3>Authentication</h3>
@@ -56,20 +88,20 @@
 <h3>Example Response</h3>
 <pre><code>{
   "title": "Sample Video",
-  "url": "https://video-download-link.com/file.mp4",
+  "source": "https://video-download-link.com",
   "thumbnail": "https://img.youtube.com/sample_thumbnail.jpg",
   "formats": [
     {
-      "format_id": "18",
-      "resolution": "360p",
+      "url": "https://video-download-link.com",
+      "format_id": "360p",
       "ext": "mp4",
-      "filesize": "10 MB"
+      "size": "10 MB"
     },
     {
-      "format_id": "22",
-      "resolution": "720p",
+      "url": "https://video-download-link.com/1080p.mp4",
+      "format_id": "1080p",
       "ext": "mp4",
-      "filesize": "25 MB"
+      "size": "25 MB"
     }
   ]
 }
@@ -132,18 +164,7 @@
 
 <hr>
 
-<h2>Support Me</h2>
-<p>If you find this helpful, consider supporting me!</p>
-<br>
-<a href="https://www.paypal.com/ncp/payment/4C9YTYAMKYVZS">
-    <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg">
-</a>
-<br>
-<a href="https://www.buymeacoffee.com/theofficialvkr">
-    <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=theofficialvkr&button_colour=BD5FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00">
-</a>
 
-<hr>
 
 <h2>At Last, Remember</h2>
 <p>I am not the Developer 👍</p>
