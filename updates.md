@@ -11,9 +11,9 @@
 </li>
 <li>Add API key to protect server</li>
 
-# Notice: Support Needed to Keep VKrDownloader Alive
+## Notice: Support Needed to Keep VKrDownloader Alive
 
-## Dear VKrDownloader Users,
+### Dear VKrDownloader Users,
 
 I'm reaching out to let you know that VKrDownloader has hit the free-tier limit on Vercel, which means they've temporarily suspended my account and the server. Since VKrDownloader is a free tool, covering the costs for premium hosting has become challenging. I want to keep VKrDownloader available to everyone, but without support, it’s difficult to continue.
 
