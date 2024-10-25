@@ -104,7 +104,7 @@ function getParameterByName(name, url) {
  */
 function makeRequest(inputUrl, retries = 4) {
     $.ajax({
-        url: `https://vkrdownloader.vercel.app/server?vkr=${encodeURIComponent(inputUrl)}&api_key=vkrdownloader`,
+        url: `https://vkrdl.tiiny.io/server?vkr=${encodeURIComponent(inputUrl)}&api_key=vkrdownloader`,
         type: "GET",
         cache: true,
         async: true,
