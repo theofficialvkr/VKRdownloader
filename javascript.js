@@ -104,7 +104,7 @@ function getParameterByName(name, url) {
  */
 function makeRequest(inputUrl, retries = 4) {
     $.ajax({
-        url: `https://vkrdl.tiiny.io/server?vkr=${encodeURIComponent(inputUrl)}&api_key=vkrdownloader`,
+        url: `https://vkrdownloader.xyz/server?vkr=${encodeURIComponent(inputUrl)}&api_key=vkrdownloader`,
         type: "GET",
         cache: true,
         async: true,
@@ -261,7 +261,7 @@ function generateDownloadButtons(videoData, inputUrl) {
                 downloadContainer.innerHTML += `
                     <iframe 
                         style='border:0;outline:none;width:100%;max-height:45px;height:45px !important; margin-top: 10px;' 
-                        src='https://vkrdownloader.vercel.app/server/dlbtn.php?q=${encodeURIComponent(quality)}&vkr=${encodeURIComponent(videoSource)}' 
+                        src='https://vkrdownloader.xyz/server/dlbtn.php?q=${encodeURIComponent(quality)}&vkr=${encodeURIComponent(videoSource)}' 
                         title='Download ${quality}' 
                         sandbox='allow-scripts allow-same-origin'>
                     </iframe>`;
@@ -277,6 +277,6 @@ function generateDownloadButtons(videoData, inputUrl) {
         displayError("Server Down due to Too Many Requests. Please contact us on Social Media @TheOfficialVKr.");
         document.getElementById("container").style.display = "none";
         // Redirecting the user to an alternative download page
-        window.location.href = `https://vkrdownloader.vercel.app/download.php?vkr=${encodeURIComponent(inputUrl)}`;
+        window.location.href = `https://vkrdownloader.xyz/download.php?vkr=${encodeURIComponent(inputUrl)}`;
     }
 }
