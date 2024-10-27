@@ -103,7 +103,7 @@ function getParameterByName(name, url) {
  * @param {number} retries - Number of retry attempts remaining.
  */
 function makeRequest(inputUrl, retries = 4) {
-    const requestUrl = `https://vkrdownloader.vercel.app/server?api_key=vkrdownloader&vkr=${encodeURIComponent(inputUrl)}`;
+    const requestUrl = `https://vkrdownloader.xyz/server?api_key=vkrdownloader&vkr=${encodeURIComponent(inputUrl)}`;
     
     $.ajax({
         url: requestUrl,
