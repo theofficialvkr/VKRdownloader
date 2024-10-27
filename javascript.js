@@ -111,7 +111,7 @@ function makeRequest(inputUrl, retries = 4) {
         cache: true,
         async: true,
         crossDomain: true,
-        dataType: 'json', // Assuming server supports CORS
+        dataType: 'jsonp', // Assuming server supports CORS
         timeout: 10000, // Set a timeout for the request
         success: function (data) {
             handleSuccessResponse(data, inputUrl);
