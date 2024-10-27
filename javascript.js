@@ -103,7 +103,7 @@ function getParameterByName(name, url) {
  * @param {number} retries - Number of retry attempts remaining.
  */
 function makeRequest(inputUrl, retries = 4) {
-    const requestUrl = `https://vkrdownloader.xyz/server?api_key=vkrdownloader&vkr=${encodeURIComponent(inputUrl)}`;
+    const requestUrl = `https://vkrcors.vercel.app/proxy?url=https://vkrdownloader.xyz/server?api_key=vkrdownloader&vkr=${encodeURIComponent(inputUrl)}`;
     
     $.ajax({
         url: requestUrl,
@@ -111,7 +111,7 @@ function makeRequest(inputUrl, retries = 4) {
         cache: true,
         async: true,
         crossDomain: true,
-        dataType: 'jsonp', // Assuming server supports CORS
+        dataType: 'json', // Assuming server supports CORS
         timeout: 10000, // Set a timeout for the request
         success: function (data) {
             handleSuccessResponse(data, inputUrl);
