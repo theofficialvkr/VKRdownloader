@@ -29,4 +29,26 @@ Vijay Kumar
 <li>Fixed URL detection logic </li>
 <li> Update API logic </li>
 <li> Move server to premium hosting  </li>
+<h2>
+  Download VKrDownloader APP
+</h2>
+<b>VKrDownloader</b> is a powerful and user-friendly web app designed to make video downloading easier than ever. With VKrDownloader, you can directly share videos from apps like YouTube and instantly access all available download links, allowing you to save videos for offline viewing with just a few taps.
 
+<h3>Key Features:</h3>
+
+One-Tap Sharing: While watching a video on YouTube or other compatible platforms, simply tap the share button, select <b>VKrDownloader</b> from your share list, and instantly receive a list of download links.
+
+Copy & Paste URL Option: Alternatively, copy the video URL and paste it directly into <b>VKrDownloader</b>, which will retrieve all download options for you.
+
+Fast & Convenient: No need to switch between apps or copy links repeatedly; <b>VKrDownloader</b> streamlines the download process, saving you time and effort.
+
+Flexible Format & Quality Options: Get download links in various resolutions and formats to suit your storage and quality preferences.
+
+
+<b>VKrDownloader</b> is a hassle-free solution for anyone looking to download videos with ease, perfect for enjoying content offline anytime, anywhere.
+<hr>
+
+<a href="https://github.com/theofficialvkr/VKRdownloader/releases/download/VKrDownloader.V1.0/VKrDownloader.apk">
+<button> Click here to Download VKrDownloader App</button>
+</a>
+<hr>
