@@ -26,4 +26,7 @@ Vijay Kumar
 
 <hr>
 
-<li>It will Live in 24 hrs</li>
+<li>Fixed URL detection logic </li>
+<li> Update API logic </li>
+<li> Move server to premium hosting  </li>
+
