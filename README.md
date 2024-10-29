@@ -12,8 +12,10 @@
     Video Downloader by Vijay Kumar 
     <a href="https://instagram.com/theofficialvkr">@TheOfficialVKr</a> 
 </p>
+    <li><strong>Telegram</strong>: <a href="https://t.me/vkrdownloader">join telegram @vkrdownloader</a></li>
 
-<p>Download videos from:</p>
+    
+<p><h3>Download videos from:</h3></p>
 <ul>
     <li>YouTube</li>
     <li>Facebook</li>
@@ -160,6 +162,7 @@ Vijay Kumar
     <li><strong>Twitter</strong>: <a href="https://twitter.com/theofficialvkr">@theofficialvkr</a></li>
     <li><strong>Facebook</strong>: <a href="https://facebook.com/theofficialvkr">@theofficialvkr</a></li>
     <li><strong>Telegram</strong>: <a href="https://t.me/theofficialvkr">@theofficialvkr</a></li>
+        <li><strong>Telegram</strong>: <a href="https://t.me/vkrdownloader">@vkrdownloader</a></li>
 </ul>
 
 <hr>
