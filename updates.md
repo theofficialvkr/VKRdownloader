@@ -52,3 +52,6 @@ Flexible Format & Quality Options: Get download links in various resolutions and
 <button> Click here to Download VKrDownloader App</button>
 </a>
 <hr>
+<li> Fixed support for pornhub </li>
+
+
