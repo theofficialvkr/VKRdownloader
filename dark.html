@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+  <title>VKrDownloader : Online Video Downloader Tool</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    #loading {
+      text-align: center;
+      display: none;
+      margin-top: 20px;
+    }
+
+    #loading p {
+      font-weight: bold;
+      font-size: 38px;
+      color: #333;
+    }
+
+    #container {
+      display: none;
+      text-align: center;
+      margin: 20px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      background-color: #0c1013;
+      border-radius: 10px;
+    }
+
+    #inputUrl {
+      outline: none !important;
+    }
+
+    #thumb img {
+      width: 100%;
+      height: 300px;
+    }
+
+    .dlbtns {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 5px;
+      text-align: center;
+      border-radius: 5px;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      width: 150px;
+      /* Fixed width */
+      transition: background-color 0.3s;
+    }
+
+    .centerV {
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: transparent;
+    }
+
+    .wave {
+      width: 5px;
+      height: 100px;
+      background: linear-gradient(45deg, red, #fff);
+      margin: 10px;
+      animation: wave 1s linear infinite;
+      border-radius: 20px;
+    }
+
+    .wave:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+
+    .wave:nth-child(3) {
+      animation-delay: 0.2s;
+    }
+
+    .wave:nth-child(4) {
+      animation-delay: 0.3s;
+    }
+
+    .wave:nth-child(5) {
+      animation-delay: 0.4s;
+    }
+
+    .wave:nth-child(6) {
+      animation-delay: 0.5s;
+    }
+
+    .wave:nth-child(7) {
+      animation-delay: 0.6s;
+    }
+
+    .wave:nth-child(8) {
+      animation-delay: 0.7s;
+    }
+
+    .wave:nth-child(9) {
+      animation-delay: 0.8s;
+    }
+
+    .wave:nth-child(10) {
+      animation-delay: 0.9s;
+    }
+
+    @keyframes wave {
+      0% {
+        transform: scale(0);
+      }
+
+      50% {
+        transform: scale(1);
+      }
+
+      100% {
+        transform: scale(0);
+      }
+    }
+
+
+
+
+
+    .mt-5,
+    .my-5 {
+      margin-top: 0.5rem !important;
+    }
+
+
+
+    .custom-shape-divider-bottom-1610026357 {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      transform: rotate(0deg);
+    }
+
+    .custom-shape-divider-bottom-1610026357 svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 15.3px);
+      height: 0px;
+    }
+
+    .custom-shape-divider-bottom-1610026357 .shape-fill {
+      fill: #ffff00;
+    }
+
+    .herosec {
+      min-height: calc(100vh - 0px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-flow: column;
+    }
+
+    .download-video iframe {
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .download-video {
+      position: relative;
+    }
+
+    .download-video iframe::after {
+      content: "";
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: red;
+      z-index: 5;
+    }
+
+
+    .myselect {
+      display: flex;
+      width: 100%;
+      justify-content: end;
+    }
+
+    .searchsec {
+      background: white;
+    }
+
+    @media(max-width:500px) {
+      .searchsec {
+        flex-wrap: wrap;
+        display: flex;
+      }
+
+
+      .searchsec {
+        border: none;
+        background: transparent;
+      }
+
+      .searchsec input {
+        border: 1px solid black;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+
+      .myselect {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+      }
+
+    }
+  </style>
+  <link rel="me" href="https://www.blogger.com/profile/08587174426783809034" />
+  <meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109' />
+  <meta name='google-adsense-platform-domain' content='blogspot.com' />
+</head>
+
+<body>
+  <nav class="fixed top-0 z-20 w-full bg-white border-b border-gray-200 :bg-gray-900 start-0 :border-gray-600">
+    <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
+      <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse"><span class="text-4xl font-bold">VKrDL</span></a>
+      <div class="flex space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse">
+        <button style="background: #6d28d9 !important" type="button" class="px-5 py-3 text-sm font-medium text-center text-white rounded-full g focus:ring-4 focus:outline-none focus:ring-blue-300">
+          <a href="#about"> Get started </a>
+        </button>
+
+        <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200  :text-gray-400  :hover:bg-gray-700  :focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+          </svg>
+        </button>
+
+        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+
+        </div>
+      </div>
+      <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+        <ul class="flex flex-col p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white :bg-gray-800 md: :bg-gray-900 :border-gray-700">
+          <li>
+            <a aria-current="page" href="/" class="router-link-active router-link-exact-active block px-3 py-2 text-black rounded md:bg-transparent md:text-black md:p-0 md: :text-blue-500">Home</a>
+          </li>
+          <li>
+            <a href="#about" class="router-link-active router-link-exact-active block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md: :hover:text-blue-500 :text-white :hover:bg-gray-700 :hover:text-white :hover:bg-transparent :border-gray-700" aria-current="page">About</a>
+          </li>
+          <li>
+            <a href="/" class="router-link-active router-link-exact-active block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md: :hover:text-blue-500 :text-white :hover:bg-gray-700 :hover:text-white :hover:bg-transparent :border-gray-700" aria-current="page">Contact</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="min-h-screen flex flex-col bg-[#0c1013] herosec">
+    <div class=" :bg-transparent mt-20">
+      <div class="mx-auto flex flex-col items-center py-12 sm:py-24">
+        <div class="w-11/12 sm:w-2/3 lg:flex justify-center items-center flex-col mb-5 sm:mb-10">
+          <h1 class="text-4xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl text-center text-gray-50  :text-white font-black leading-10">
+            All Format YouTube HD
+            <span class="text-violet-800  :text-violet-500">Video</span>
+            Downloader.
+          </h1>
+          <p class="mt-5 sm:mt-10 lg:w-10/12 text-gray-300  :text-gray-300 font-normal text-center text-xl">
+            Our YouTube Downloader tool offers fast and easy video downloads in multiple formats. Built with Express, VKrDownloader and Tailwind CSS for a seamless experience.
+          </p>
+        </div>
+        <div class="flex w-11/12 md:w-8/12 xl:w-6/12">
+          <div class="flex rounded-md w-full border border-gray-300 searchsec">
+            <input name="link" required="" type="txt" id="inputUrl" class="w-full p-3 form-control link rounded-md rounded-r-none  placeholder-current  :bg-gray-500   :text-gray-300  :border-none " placeholder="Enter Youtube Videos Link" />
+            <div class="myselect">
+              <button id="downloadBtn" class="inline-flex items-center gap-2 bg-violet-700 text-white text-lg font-semibold py-3 px-6 rounded-md click-btn-down">
+                <span>Download</span>
+                <svg class="text-gray-200 h-5 w-5 p-0 fill-current" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve">
+                  <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+
+        </div>
+
+
+        <div id="loading" class="text-center mt-3" style="display: none;">
+
+
+
+          <div class="centerV">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+          </div>
+
+
+
+
+
+        </div>
+
+        <div id="container" class="text-center mt-3" style="display: none;">
+          <div id="thumb" class="mb-3"></div>
+          <div id="title"></div>
+          <div id="description" class="mt-3"></div>
+          <div id="uploader"></div>
+          <div id="duration"></div>
+          <div id="extractor"></div>
+          <div id="downloadURL"></div>
+          <div id="download"></div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div id="about" class="w-11/12 sm:w-2/3 flex lg:flex justify-center items-center mb-5 sm:mb-10 flex-grow">
+
+      <p class="mt-5 sm:mt-10 lg:w-10/12 text-gray-300  :text-gray-300 font-normal text-center text-xl">
+          <br>
+        <bold style="color: rgb(109 40 217);text-transform: uppercase;">
+            
+            About VKrDownloader
+            </bold>
+<br>
+Welcome to VKrDownloader! Our mission is to provide a fast, user-friendly tool for downloading online videos from platforms like YouTube, Instagram, and more. Developed by Vijay Kumar, VKrDownloader is designed to offer a seamless experience that respects user privacy and prioritizes efficiency.
+<br>
+  <bold style="color: rgb(109 40 217);text-transform: uppercase;">
+      Our Vision</bold>
+<br>
+To make video content more accessible by offering a reliable downloader that meets the highest standards for speed and ease of use.
+<br>
+  <bold style="color: rgb(109 40 217);text-transform: uppercase;">
+      Why Choose Us?
+      </bold>
+<br>
+Ease of Use: Our interface is simple, allowing users to download videos without complex steps. Privacy Focus: We value your privacy and only collect minimal information necessary for site performance. Constant Improvement: We regularly update VKrDownloader with the latest features and improvements to maintain a smooth experience.
+<br>
+  <bold style="color: rgb(109 40 217);text-transform: uppercase;">
+      Contact Information</bold>
+<br>
+For any inquiries, suggestions, or feedback, please reach out to us at telegram as <a style="color: rgb(109 40 200);text-transform: uppercase;" href="https://t.me/VKrDownloader">@vkrdownloader
+    </a>  </p>
+
+    </div>
+    
+     <!-- Footer -->
+    <hr class="w-full bg-[#0c1013] border-t border-gray-700">
+    <p class="w-full bg-[#0c1013] mt-5 sm:mt-10 lg:w-10/12 text-gray-300 font-normal text-center text-xl sticky bottom-0">
+        Made with ♥️ by 
+        <a href="https://instagram.com/theofficialvkr" class="font-bold text-purple-600 uppercase">Vijay Kumar</a>
+    </p>
+ </div>   
+ 
+
+  </div>
+
+
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript">
+    /*******************************
+     * Configuration for Colors
+     *******************************/
+    const formatColors = {
+    greenFormats: ["17", "18", "22"],
+    blueFormats: ["139", "140", "141", "249", "250", "251", "599", "600"],
+    defaultColor: "#9e0cf2"
+    };
+    
+    /*******************************
+     * Utility Functions
+     *******************************/
+    
+    /**
+     * Get the background color based on the format itag.
+     * @param {string} downloadUrlItag - The itag parameter from the download URL.
+     * @returns {string} - The corresponding background color.
+     */
+    function getBackgroundColor(downloadUrlItag) {
+    if (formatColors.greenFormats.includes(downloadUrlItag)) {
+        return "green";
+    } else if (formatColors.blueFormats.includes(downloadUrlItag)) {
+        return "#3800ff";
+    } else {
+        return formatColors.defaultColor;
+    }
+    }
+    
+    /**
+     * Debounce function to limit the rate at which a function can fire.
+     * @param {Function} func - The function to debounce.
+     * @param {number} wait - The delay in milliseconds.
+     * @returns {Function} - The debounced function.
+     */
+    function debounce(func, wait) {
+    let timeout;
+    return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+    }
+    
+    /**
+     * Extract YouTube video ID from a given URL.
+     * @param {string} url - The YouTube URL.
+     * @returns {string|null} - The video ID or null if not found.
+     */
+    // Function to get YouTube video IDs from a URL, including Shorts URLs
+    function getYouTubeVideoIds(url) {
+    const regExp = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:shorts\/|[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = url.match(regExp);
+    return (match && match[1]) ? match[1] : null;
+    }
+    
+    /**
+     * Sanitize HTML content using DOMPurify.
+     * @param {string} content - The HTML content to sanitize.
+     * @returns {string} - The sanitized HTML.
+     */
+    function sanitizeContent(content) {
+    return DOMPurify.sanitize(content);
+    }
+    
+    /**
+     * Update the inner HTML of a specified element with sanitized content.
+     * @param {string} elementId - The ID of the HTML element.
+     * @param {string} content - The content to inject.
+     */
+    function updateElement(elementId, content) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.innerHTML = content;
+    } else {
+        console.warn(`Element with ID "${elementId}" not found.`);
+    }
+    }
+    
+    /**
+     * Retrieve a query parameter value by name from a URL.
+     * @param {string} name - The name of the parameter.
+     * @param {string} url - The URL to extract the parameter from.
+     * @returns {string} - The parameter value or an empty string if not found.
+     */
+    function getParameterByName(name, url) {
+    // Properly escape regex special characters
+    name = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`);
+    const results = regex.exec(url);
+    
+    if (!results) return '';
+    if (!results[2]) return '';
+    
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+    
+    /*******************************
+     * AJAX Request with Retry Logic
+     *******************************/
+    
+    /**
+     * Make an AJAX GET request with retry capability.
+     * @param {string} inputUrl - The input URL for the request.
+     * @param {number} retries - Number of retry attempts remaining.
+     */
+    function makeRequest(inputUrl, retries = 4) {
+    const requestUrl = `https://vkrdownloader.xyz/server?api_key=vkrdownloader&vkr=${encodeURIComponent(inputUrl)}`;
+    
+    $.ajax({
+        url: requestUrl,
+        type: "GET",
+        cache: true,
+        async: true,
+        crossDomain: true,
+        dataType: 'json', // Assuming server supports CORS
+        timeout: 10000, // Set a timeout for the request
+        success: function (data) {
+            handleSuccessResponse(data, inputUrl);
+        },
+        error: function(xhr, status, error) {
+            if (retries > 0) {
+                console.log(`Retrying... (${retries} attempts left)`);
+                setTimeout(() => makeRequest(inputUrl, retries - 1), 2000); // Adding a delay before retrying
+            } else {
+                const errorMessage = getErrorMessage(xhr, status, error);
+                console.error(`Error Details: ${errorMessage}`);
+                displayError("Unable to fetch the download link after several attempts. Please check the URL or try again later.");
+                document.getElementById("loading").style.display = "none";
+            }
+        },
+        complete: function () {
+            document.getElementById("downloadBtn").disabled = false; // Re-enable the button
+        }
+    });
+    }
+    
+    /**
+     * Generate a detailed error message based on the XHR response.
+     * @param {Object} xhr - The XMLHttpRequest object.
+     * @param {string} status - The status string.
+     * @param {string} error - The error message.
+     * @returns {string} - The formatted error message.
+     */
+    function getErrorMessage(xhr, status, error) {
+    let message = `Status: ${status}, Error: ${error}`;
+    
+    if (xhr.status) {
+        message += `, XHR Status: ${xhr.status}`;
+    }
+    
+    if (xhr.responseText) {
+        const response = JSON.parse(xhr.responseText);
+        if (response && response.error) {
+            message += `, Server Error: ${response.error}`;
+        }
+    }
+    
+    return message;
+    }
+    
+    /*******************************
+     * Event Handlers
+     *******************************/
+    
+    /**
+     * Handle the "Download" button click event.
+     */
+    document.getElementById("downloadBtn").addEventListener("click", debounce(function () {
+    document.getElementById("loading").style.display = "initial";
+    document.getElementById("downloadBtn").disabled = true; // Disable the button
+    
+    const inputUrl = document.getElementById("inputUrl").value.trim();
+    if (!inputUrl) {
+        displayError("Please enter a valid YouTube URL.");
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("downloadBtn").disabled = false;
+        return;
+    }
+    
+    makeRequest(inputUrl); // Make the AJAX request with retry logic
+    }, 300));  // Adjust the delay as needed
+    
+    /**
+     * Display an error message within the page instead of using alert.
+     * @param {string} message - The error message to display.
+     */
+    function displayError(message) {
+    const errorContainer = document.getElementById("error");
+    if (errorContainer) {
+        errorContainer.innerHTML = sanitizeContent(message);
+        errorContainer.style.display = "block";
+    } else {
+        // Fallback to alert if error container is not available
+        alert(message);
+    }
+    }
+    
+    /*******************************
+     * Response Handlers
+     *******************************/
+    
+    /**
+     * Handle successful AJAX responses.
+     * @param {Object} data - The response data from the server.
+     * @param {string} inputUrl - The original input URL.
+     */
+    function handleSuccessResponse(data, inputUrl) {
+    document.getElementById("container").style.display = "block";
+    document.getElementById("loading").style.display = "none";
+    
+    if (data.data) {
+        const videoData = data.data;
+    
+        // Extract necessary data
+        const thumbnailUrl = videoData.thumbnail;
+        const downloadUrls = videoData.downloads.map(download => download.url);
+        const videoSource = videoData.source;
+        const videoId = getYouTubeVideoIds(videoSource);
+    
+        // Construct video HTML
+        const videoHtml = `
+            <video style='background: black url(${thumbnailUrl}) center center/cover no-repeat; width:100%; height:500px; border-radius:20px;' 
+                   poster='${thumbnailUrl}' autoplay controls playsinline>
+                <source src='https://inv.nadeko.net/latest_version?id=${videoId}&itag=18&local=true' type='video/mp4'>
+                <source src='https://vkrcors.vercel.app/proxy?url=https://invidious.jing.rocks/latest_version?id=${videoId}&itag=18&local=true' type='video/mp4'>
+                ${downloadUrls.map(url => `<source src='${url}' type='video/mp4'>`).join('')}
+            </video>`;
+        const titleHtml = videoData.title ? `<h3>${sanitizeContent(videoData.title)}</h3>` : "";
+        const descriptionHtml = videoData.description ? `<h4><details><summary>View Description</summary>${sanitizeContent(videoData.description)}</details></h4>` : "";
+        const durationHtml = videoData.size ? `<h5>${sanitizeContent(videoData.size)}</h5>` : "";
+    
+        // Update DOM elements
+        updateElement("thumb", videoHtml);
+        updateElement("title", titleHtml);
+        updateElement("description", descriptionHtml);
+        updateElement("duration", durationHtml);
+    
+        // Generate download buttons
+        generateDownloadButtons(data, inputUrl);
+    } else {
+        displayError("Issue: Unable to retrieve the download link. Please check the URL and contact us on Social Media @TheOfficialVKr.");
+        document.getElementById("loading").style.display = "none";
+    }
+    }
+    
+    /**
+     * Generate download buttons with dynamic colors and labels.
+     * @param {Object} videoData - The video data from the server.
+     * @param {string} inputUrl - The original input URL.
+     */
+    function generateDownloadButtons(videoData, inputUrl) {
+    const downloadContainer = document.getElementById("download");
+    downloadContainer.innerHTML = "";
+    
+    if (videoData.data) {
+        const downloads = videoData.data.downloads;
+        const videoSource = videoData.data.source;
+    
+        // Add YouTube specific button if applicable
+        const videoId = getYouTubeVideoIds(videoSource);
+        if (videoId) {
+            downloadContainer.innerHTML += `
+                <a href='https://inv.nadeko.net/latest_version?id=${videoId}&itag=18&local=true' target='_blank' rel='noopener noreferrer'>
+                    <button class='dlbtns' style='background: green'>Download Video (YouTube)</button>
+                </a>`;
+        }
+    
+        // Generate download buttons for available formats
+        downloads.forEach(download => {
+            if (download && download.url) {
+                const downloadUrl = download.url;
+                const itag = getParameterByName("itag", downloadUrl);
+                const bgColor = getBackgroundColor(itag);
+                const videoExt = download.format_id;
+                const videoSize = download.size;
+    
+                downloadContainer.innerHTML += `
+                    <a href='${downloadUrl}' target='_blank' rel='noopener noreferrer'>
+                        <button class='dlbtns' style='background:${bgColor}'>
+                            ${sanitizeContent(videoExt)} - ${sanitizeContent(videoSize)}
+                        </button>
+                    </a>`;
+            }
+        });
+    
+        // Add iframes for additional download options, only if YouTube video source
+        if (videoId) {
+            const qualities = ["mp3", "360", "720", "1080"];
+            qualities.forEach(quality => {
+                downloadContainer.innerHTML += `
+                    <iframe 
+                        style='border:0;outline:none;width:100%;max-height:45px;height:45px !important; margin-top: 10px;' 
+                        src='https://vkrdownloader.xyz/server/dlbtn.php?q=${encodeURIComponent(quality)}&vkr=${encodeURIComponent(videoSource)}' 
+                        title='Download ${quality}' 
+                        sandbox='allow-scripts allow-same-origin'>
+                    </iframe>`;
+            });
+        }
+    } else {
+        displayError("No download links found or data structure is incorrect.");
+        document.getElementById("loading").style.display = "none";
+    }
+    
+    // If no download buttons or iframes were added, notify the user
+    if (downloadContainer.innerHTML.trim() === "") {
+        displayError("Server Down due to Too Many Requests. Please contact us on Social Media @TheOfficialVKr.");
+        document.getElementById("container").style.display = "none";
+        // Redirecting the user to an alternative download page
+        window.location.href = `https://vkrdownloader.xyz/download.php?vkr=${encodeURIComponent(inputUrl)}`;
+    }
+    }
+    
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+
+</body>
+
+</html>
