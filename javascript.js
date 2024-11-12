@@ -211,7 +211,10 @@ function handleSuccessResponse(data, inputUrl) {
         const videoData = data.data;
 
         // Extract necessary data
-        const thumbnailUrl = videoData.thumbnail;
+        const thumbnailUrl = videoId 
+    ? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`
+    : videoData.thumbnail;
+        //const thumbnailUrl = videoData.thumbnail;
         const downloadUrls = videoData.downloads.map(download => download.url);
         const videoSource = videoData.source;
         const videoId = getYouTubeVideoIds(videoSource);
