@@ -209,16 +209,15 @@ function handleSuccessResponse(data, inputUrl) {
 
     if (data.data) {
         const videoData = data.data;
-        const videoId = getYouTubeVideoIds(videoSource);
-
+        
         // Extract necessary data
-        const thumbnailUrl = videoId 
-    ? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`
-    : videoData.thumbnail;
         //const thumbnailUrl = videoData.thumbnail;
         const downloadUrls = videoData.downloads.map(download => download.url);
         const videoSource = videoData.source;
-        
+        const videoId = getYouTubeVideoIds(videoSource);
+        const thumbnailUrl = videoId 
+    ? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`
+    : videoData.thumbnail;
         // Construct video HTML
         const videoHtml = `
             <video style='background: black url(${thumbnailUrl}) center center/cover no-repeat; width:100%; height:500px; border-radius:20px;' 
