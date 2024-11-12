@@ -222,7 +222,7 @@ function handleSuccessResponse(data, inputUrl) {
                    poster='${thumbnailUrl}' autoplay controls playsinline>
                 <source src='https://invidious.nerdvpn.de/latest_version?id=${videoId}&itag=18&local=true' type='video/mp4'>
                 <source src='https://invidious.jing.rocks/latest_version?id=${videoId}&itag=18&local=true' type='video/mp4'>
-                <source src='https://vkrcors.vercel.app/proxy?url=https://invidious.nerdvpn.de/latest_version?id=${videoId}&itag=18&local=true' type='video/mp4'>
+                <source src='https://vkrcors.vercel.app/proxy?url=https://eu-proxy.poketube.fun/latest_version?id=${videoId}&itag=18&local=true' type='video/mp4'>
                 ${downloadUrls.map(url => `<source src='${url}' type='video/mp4'>`).join('')}
             </video>`;
         const titleHtml = videoData.title ? `<h3>${sanitizeContent(videoData.title)}</h3>` : "";
