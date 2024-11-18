@@ -224,7 +224,7 @@ function handleSuccessResponse(data, inputUrl) {
                    poster='${thumbnailUrl}' autoplay controls playsinline>
                 <source src='https://vkrdownloader.xyz/server/dl.php?vkr=${inputUrl}' type='video/mp4'>
                 <source src='https://invidious.nerdvpn.de/latest_version?id=${videoId}&itag=18&local=true' type='video/mp4'>
-                <source src='https://invidious.jing.rocks/latest_version?id=${videoId}&itag=18&local=true' type='video/mp4'>
+                <source src='https://inv.nadeko.net/latest_version?id=${videoId}&itag=18&local=true' type='video/mp4'>
                 ${downloadUrls.map(url => `<source src='${url}' type='video/mp4'>`).join('')}
             </video>`;
         const titleHtml = videoData.title ? `<h3>${sanitizeContent(videoData.title)}</h3>` : "";
@@ -262,7 +262,7 @@ function generateDownloadButtons(videoData, inputUrl) {
         const videoId = getYouTubeVideoIds(videoSource);
         if (videoId) {
             downloadContainer.innerHTML += `
-                <a href='https://invidious.nerdvpn.de/latest_version?id=${videoId}&itag=18&local=true' target='_blank' rel='noopener noreferrer'>
+                <a href='https://inv.nadeko.net/latest_version?id=${videoId}&itag=18&local=true' target='_blank' rel='noopener noreferrer'>
                     <button class='dlbtns' style='background: green'>Download Video (YouTube)</button>
                 </a>`;
         }
