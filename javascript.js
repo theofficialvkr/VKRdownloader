@@ -222,6 +222,11 @@ function handleSuccessResponse(data, inputUrl) {
         const videoHtml = `
             <video style='background: black url(${thumbnailUrl}) center center/cover no-repeat; width:100%; height:500px; border-radius:20px;' 
                    poster='${thumbnailUrl}' autoplay controls playsinline>
+                ${downloadUrls.map(url => `<source src='${url}' type='video/mp4'>`).join('')}
+            </video>`;
+        const YTvideoHtml = `
+            <video style='background: black url(${thumbnailUrl}) center center/cover no-repeat; width:100%; height:500px; border-radius:20px;' 
+                   poster='${thumbnailUrl}' autoplay controls playsinline>
                  <source src='https://vkrdownloader.xyz/server/redirect.php?vkr=https://youtu.be/${videoId}' type='video/mp4'>
                  <source src='https://vkrdownloader.xyz/server/dl.php?vkr=${inputUrl}' type='video/mp4'>
                 ${downloadUrls.map(url => `<source src='${url}' type='video/mp4'>`).join('')}
@@ -231,7 +236,11 @@ function handleSuccessResponse(data, inputUrl) {
         const durationHtml = videoData.size ? `<h5>${sanitizeContent(videoData.size)}</h5>` : "";
 
         // Update DOM elements
-        updateElement("thumb", videoHtml);
+        if (videoId) {
+            updateElement("thumb", YTvideoHtml);
+        } else {
+            updateElement("thumb", videoHtml);
+        }
         updateElement("title", titleHtml);
         updateElement("description", descriptionHtml);
         updateElement("duration", durationHtml);
