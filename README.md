@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-</head>
-<body>
-
 <h1>VKrDownloader</h1>
 <p>
     Video Downloader by Vijay Kumar 
@@ -178,5 +169,3 @@ Vijay Kumar
 <h2>At Last, Remember</h2>
 <p>I am not the Developer 👍</p>
 
-</body>
-</html>
