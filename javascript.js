@@ -47,10 +47,24 @@ function debounce(func, wait) {
  */
 // Function to get YouTube video IDs from a URL, including Shorts URLs
 function getYouTubeVideoIds(url) {
+    // Validate the input
+    if (!url || typeof url !== 'string') {
+        console.warn('Invalid URL provided to getYouTubeVideoIds:', url);
+        return null;
+    }
+
+    // Regular expression to match YouTube video IDs
     const regExp = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:shorts\/|[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
     const match = url.match(regExp);
-    return (match && match[1]) ? match[1] : null;
+
+    if (match && match[1]) {
+        return match[1];
+    } else {
+        console.warn('No video ID found in URL:', url);
+        return null;
+    }
 }
+
 
 /**
  * Sanitize HTML content using DOMPurify.
