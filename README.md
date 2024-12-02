@@ -6,9 +6,9 @@
     <li><strong>Telegram</strong>: <a href="https://t.me/vkrdownloader">join telegram @vkrdownloader</a></li>
 
  <h2>Demo</h2>   
- Light theme https://theofficialvkr.github.io/VKRdownloader/
+ Light theme https://theofficialvkr.github.io/VKrDownloader/
  <br>
- Dark Theme https://theofficialvkr.github.io/VKRdownloader/dark.html
+ Dark Theme https://theofficialvkr.github.io/VKrDownloader/dark.html
  <hr>
 
  
