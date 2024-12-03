@@ -337,6 +337,16 @@ function generateDownloadButtons(videoData, inputUrl) {
                 <a href='https://inv.nadeko.net/latest_version?id=${videoId}&itag=18&local=true' target='_blank' rel='noopener noreferrer'>
                     <button class='dlbtns' style='background: green'>Download Video (YouTube)</button>
                 </a>`;
+            const qualities = ["mp3", "360", "720", "1080"];
+            qualities.forEach(quality => {
+                downloadContainer.innerHTML += `
+                    <iframe 
+    style="border: 0; outline: none; width: 100%; max-height: 45px; height: 45px !important; margin-top: 10px; overflow: hidden;" 
+    sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-downloads allow-downloads-without-user-activation"  scrolling="no"
+    src="https://vkrdownloader.xyz/server/dlbtn.php?q=${encodeURIComponent(quality)}&vkr=${encodeURIComponent(videoSource)}">
+                    </iframe>`;
+            });
+        }
         }
 
         // Generate download buttons for available formats
@@ -356,19 +366,6 @@ function generateDownloadButtons(videoData, inputUrl) {
                     </a>`;
             }
         });
-
-        // Add iframes for additional download options, only if YouTube video source
-        if (videoId) {
-            const qualities = ["mp3", "360", "720", "1080"];
-            qualities.forEach(quality => {
-                downloadContainer.innerHTML += `
-                    <iframe 
-    style="border: 0; outline: none; width: 100%; max-height: 45px; height: 45px !important; margin-top: 10px; overflow: hidden;" 
-    sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-downloads allow-downloads-without-user-activation"  scrolling="no"
-    src="https://vkrdownloader.xyz/server/dlbtn.php?q=${encodeURIComponent(quality)}&vkr=${encodeURIComponent(videoSource)}">
-                    </iframe>`;
-            });
-        }
     } else {
         displayError("No download links found or data structure is incorrect.");
         document.getElementById("loading").style.display = "none";
