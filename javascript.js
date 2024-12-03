@@ -46,7 +46,7 @@ function debounce(func, wait) {
  * @returns {string|null} - The video ID or null if not found.
  */
 // Function to get YouTube video IDs from a URL, including Shorts URLs
-function getYouTubeVideoId(url) {
+function getYouTubeVideoIds(url) {
     // Validate the input
     if (!url || typeof url !== 'string') {
         console.error('Invalid URL provided to getYouTubeVideoId:', url);
