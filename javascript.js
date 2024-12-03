@@ -118,22 +118,25 @@ function getParameterByName(name, url) {
  */
 function makeRequest(inputUrl, retries = 4) {
     const requestUrl = `https://vkrdownloader.xyz/server?api_key=vkrdownloader&vkr=${encodeURIComponent(inputUrl)}`;
-    
+    const retryDelay = 2000; // Initial retry delay in milliseconds
+    const maxRetries = retries;
+
     $.ajax({
         url: requestUrl,
         type: "GET",
         cache: true,
         async: true,
         crossDomain: true,
-        dataType: 'json', // Assuming server supports CORS
-        timeout: 10000, // Set a timeout for the request
+        dataType: 'json',
+        timeout: 15000, // Extended timeout for slower networks
         success: function (data) {
             handleSuccessResponse(data, inputUrl);
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
             if (retries > 0) {
-                console.log(`Retrying... (${retries} attempts left)`);
-                setTimeout(() => makeRequest(inputUrl, retries - 1), 2000); // Adding a delay before retrying
+                let delay = retryDelay * Math.pow(2, maxRetries - retries); // Exponential backoff
+                console.log(`Retrying in ${delay / 1000} seconds... (${retries} attempts left)`);
+                setTimeout(() => makeRequest(inputUrl, retries - 1), delay);
             } else {
                 const errorMessage = getErrorMessage(xhr, status, error);
                 console.error(`Error Details: ${errorMessage}`);
@@ -145,6 +148,27 @@ function makeRequest(inputUrl, retries = 4) {
             document.getElementById("downloadBtn").disabled = false; // Re-enable the button
         }
     });
+}
+
+function getErrorMessage(xhr, status, error) {
+    const statusCode = xhr.status;
+    switch (statusCode) {
+        case 0: return "Network Error: The server is unreachable.";
+        case 400: return "Bad Request: The input URL might be incorrect.";
+        case 401: return "Unauthorized: Please check the API key.";
+        case 429: return "Too Many Requests: You are being rate-limited.";
+        case 503: return "Service Unavailable: The server is temporarily overloaded.";
+        default: return `Error ${statusCode}: ${xhr.statusText || error}`;
+    }
+}
+
+function displayError(message) {
+    // Assuming there's a placeholder element for error messages
+    const errorElement = document.getElementById("errorMessage");
+    if (errorElement) {
+        errorElement.innerText = message;
+        errorElement.style.display = "block";
+    }
 }
 
 /**
