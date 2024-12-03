@@ -46,24 +46,50 @@ function debounce(func, wait) {
  * @returns {string|null} - The video ID or null if not found.
  */
 // Function to get YouTube video IDs from a URL, including Shorts URLs
-function getYouTubeVideoIds(url) {
+function getYouTubeVideoId(url) {
     // Validate the input
     if (!url || typeof url !== 'string') {
-        console.warn('Invalid URL provided to getYouTubeVideoIds:', url);
+        console.error('Invalid URL provided to getYouTubeVideoId:', url);
         return null;
     }
 
-    // Regular expression to match YouTube video IDs
-    const regExp = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:shorts\/|[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-    const match = url.match(regExp);
+    try {
+        // Create a URL object to parse the URL
+        const urlObj = new URL(url);
 
-    if (match && match[1]) {
-        return match[1];
-    } else {
-        console.warn('No video ID found in URL:', url);
+        // Check if the hostname belongs to YouTube or YouTube short links
+        const validHosts = ['www.youtube.com', 'youtube.com', 'youtu.be'];
+        if (!validHosts.includes(urlObj.hostname)) {
+            console.warn('URL does not belong to YouTube:', url);
+            return null;
+        }
+
+        // For youtu.be (short link), the video ID is in the pathname
+        if (urlObj.hostname === 'youtu.be') {
+            const videoId = urlObj.pathname.slice(1); // Remove the leading '/'
+            return videoId.length === 11 ? videoId : null;
+        }
+
+        // For youtube.com URLs, look for 'v' or 'shorts' in query or pathname
+        if (urlObj.hostname.includes('youtube.com')) {
+            if (urlObj.pathname.startsWith('/shorts/')) {
+                // Shorts video ID is in the pathname after "/shorts/"
+                return urlObj.pathname.split('/')[2];
+            }
+
+            // Regular video URLs have 'v' as a query parameter
+            const videoId = urlObj.searchParams.get('v');
+            return videoId && videoId.length === 11 ? videoId : null;
+        }
+
+        console.warn('Unrecognized YouTube URL format:', url);
+        return null;
+    } catch (error) {
+        console.error('Error parsing URL in getYouTubeVideoId:', error);
         return null;
     }
 }
+
 
 
 /**
