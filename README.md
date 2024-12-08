@@ -141,7 +141,7 @@ Vijay Kumar
 <hr>
 
 <h2>Demo</h2>
-<p><a href="https://theofficialvkr.github.io/VKRdownloader/">https://theofficialvkr.github.io/VKRdownloader/</a></p>
+<p><a href="https://theofficialvkr.github.io/VKrDownloader/">https://theofficialvkr.github.io/VKRdownloader/</a></p>
 
 <hr>
 
