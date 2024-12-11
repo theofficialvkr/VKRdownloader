@@ -48,7 +48,7 @@ Flexible Format & Quality Options: Get download links in various resolutions and
 <b>VKrDownloader</b> is a hassle-free solution for anyone looking to download videos with ease, perfect for enjoying content offline anytime, anywhere.
 <hr>
 
-<a href="https://github.com/theofficialvkr/VKRdownloader/releases/download/VKrDownloader.V1.0/VKrDownloader.apk">
+<a href="https://github.com/theofficialvkr/VKrDownloader/releases/download/VKrDownloader.V1.1/VKrDownloader.apk">
 <button> Click here to Download VKrDownloader App</button>
 </a>
 <hr>
