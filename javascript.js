@@ -285,12 +285,12 @@ function handleSuccessResponse(data, inputUrl) {
         // Construct video HTML
         const videoHtml = `
             <video style='background: black url(${thumbnailUrl}) center center/cover no-repeat; width:100%; height:500px; border-radius:20px;' 
-                   poster='${thumbnailUrl}' autoplay controls playsinline>
+                   poster='${thumbnailUrl}' controls playsinline>
                 ${downloadUrls.map(url => `<source src='${url}' type='video/mp4'>`).join('')}
             </video>`;
         const YTvideoHtml = `
             <video style='background: black url(${thumbnailUrl}) center center/cover no-repeat; width:100%; height:500px; border-radius:20px;' 
-                   poster='${thumbnailUrl}' autoplay controls playsinline>
+                   poster='${thumbnailUrl}' controls playsinline>
                  <source src='https://vkrdownloader.xyz/server/redirect.php?vkr=https://youtu.be/${videoId}' type='video/mp4'>
                  <source src='https://vkrdownloader.xyz/server/dl.php?vkr=${inputUrl}' type='video/mp4'>
                 ${downloadUrls.map(url => `<source src='${url}' type='video/mp4'>`).join('')}
