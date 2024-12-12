@@ -41,7 +41,6 @@ Vijay Kumar
 
 <hr>
 
-<li>It will Live in 24 hrs</li>
 
 <br>
 <a href="https://www.paypal.com/ncp/payment/4C9YTYAMKYVZS">
